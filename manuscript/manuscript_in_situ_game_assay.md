@@ -109,7 +109,7 @@ The dynamical system admits four mutually exclusive Nash equilibrium regimes:
    $$x^* = \frac{A_{RR} - A_{SR}}{A_{SS} - A_{SR} - A_{RS} + A_{RR}}$$
 
 ### 2.7 Biostatistical Evaluation Battery
-To ensure epidemiological rigor, all continuous predictions were audited using Luca Celebrano's clinical classification framework adapted from on-chain statistical validation (`meme-intelligence-onchain`):
+To ensure epidemiological rigor, all continuous predictions were audited using standard clinical classification metrics:
 - **Full $2 \times 2$ Contingency Tables:** True Positives ($TP$), False Positives ($FP$), False Negatives ($FN$), and True Negatives ($TN$), binarizing true vs predicted purified fitness relative to cohort medians.
 - **Woolf Logit Odds Ratio (DOR):**
   $$\text{OR} = \frac{(TP + 0.5)(TN + 0.5)}{(FP + 0.5)(FN + 0.5)}, \quad \text{SE}_{\ln\text{OR}} = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}$$
@@ -126,12 +126,21 @@ Applying *InSituGame* across the three primary clinical cancer cohorts revealed 
 
 ![**Figure 1 | Spatial Game Decomposition and In Silico Adaptive Therapy Dynamics.** (A) Spot-level subclonal phenotypic deconvolution (Sensitive $T_S$, Resistant $T_R$, and Stroma/CAF $S_{CAF}$) across intact tumor tissue. (B) Delaunay triangulation graph capturing physical spatial contact neighborhoods ($\sim 55\,\mu\text{m}$). (C) Microenvironmental decoupling separating intrinsic game proliferation from extrinsic hypoxia ($Z_{hyp}$) and vascular ($Z_{vasc}$) gradients. (D) Forward replicator simulation comparing standard Maximum Tolerated Dose (MTD) chemotherapy against patient-tailored Adaptive Chemotherapy guided by the inferred payoff matrix.](../figures/figure1_spatial_game_decomposition.png){width=95%}
 
-**Table 1 | In Situ Game Assay Pan-Cancer Parameter Summary and Diagnostic Performance.**
-| Cancer Cohort | Primary Histology | In-Tissue Spots ($N$) | Reconstructed Payoff Matrix $A_{2 \times 2}$ | Inferred Game Dynamics | Critical Nash Equilibrium | Explained Variance $R^2$ (%) | Diagnostic Odds Ratio [95% CI] | Fisher Exact $p$-value |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Lung SCC** | Squamous Cell Lung Carcinoma | 3,858 | $\begin{pmatrix} +0.547 & -0.077 \\ -0.044 & +0.070 \end{pmatrix}$ | **Stag Hunt (Bistable)** | $x_{sep} = 0.200$ (Separatrix) | 30.86% | 7.04 [6.11 - 8.11] | $5.29 \times 10^{-12}$ |
-| **Breast IDC** | Invasive Ductal Breast Carcinoma | 4,992 | $\begin{pmatrix} -0.996 & +2.606 \\ +1.991 & -1.970 \end{pmatrix}$ | **Hawk-Dove / Snowdrift** | $x^* = 0.605$ (Stable Coexistence) | 32.29% | 6.16 [5.45 - 6.96] | $5.82 \times 10^{-12}$ |
-| **Melanoma SKCM** | Cutaneous Malignant Melanoma | 3,458 | $\begin{pmatrix} +1.019 & -1.696 \\ -0.467 & -0.034 \end{pmatrix}$ | **Stag Hunt (Bistable)** | $x_{sep} = 0.528$ (Separatrix) | 36.78% | 16.33 [13.81 - 19.30] | $3.75 \times 10^{-12}$ |
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Pan-Cancer In Situ Game Assay Parameter Summary and Diagnostic Performance.}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccc}
+\hline
+\textbf{Cancer Cohort} & \textbf{Spots ($N$)} & \textbf{Payoffs $(A_{SS}, A_{SR}, A_{RS}, A_{RR})$} & \textbf{Game \& Equilibrium} & \textbf{$R^2$} & \textbf{DOR [95\% CI]} \\
+\hline
+\textbf{Lung SCC} & 3,858 & $+0.55, -0.08, -0.04, +0.07$ & Stag Hunt ($x_{sep} = 0.200$) & 30.9\% & 7.04 [6.11--8.11] ($p < 10^{-11}$) \\
+\textbf{Breast IDC} & 4,992 & $-1.00, +2.61, +1.99, -1.97$ & Hawk-Dove ($x^* = 0.605$) & 32.3\% & 6.16 [5.45--6.96] ($p < 10^{-11}$) \\
+\textbf{Melanoma SKCM} & 3,458 & $+1.02, -1.70, -0.47, -0.03$ & Stag Hunt ($x_{sep} = 0.528$) & 36.8\% & 16.33 [13.81--19.30] ($p < 10^{-11}$) \\
+\hline
+\end{tabular}%
+}
+\end{table}
 
 In Human Lung SCC, sensitive tumor cells strongly facilitate one another ($A_{SS} = +0.547, p = 0.001$), while resistant cells exert mutual facilitation ($A_{RR} = +0.070$), producing a classic Stag Hunt coordination game with an unstable tipping point at $x_{sep} = 20.0\%$. If chemotherapy drives sensitive clone frequency below 20%, resistant dominance becomes evolutionary inevitable.
 
@@ -142,18 +151,29 @@ In Human Breast IDC, we observed strong negative diagonal payoffs ($A_{SS} = -0.
 ### 3.2 Model Ablation: Proving the Non-Redundancy of Spatial Games
 To rigorously prove that spatial game theory provides genuine biological information beyond simple cell fraction or microenvironmental gradients, we conducted an incremental model ablation (Table 2 and Figure 2A).
 
-**Table 2 | Incremental Model Ablation Battery Across Cohorts.**
-| Cohort | Model Specification | Explained Variance $R^2$ (%) | ROC-AUC | DOR [95% CI] | Sensitivity (%) | Specificity (%) | Incremental $F$-test ($p$-value) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Lung SCC** | Model 1: Microenvironment Alone ($Z_{hyp}, Z_{vasc}$) | 15.82% | 0.698 | 3.40 [2.98 - 3.89] | 64.9% | 64.9% | Baseline |
-| | Model 2: Intrinsic Mass Action ($f_S, f_R, f_C$) | 27.84% | 0.780 | 6.29 [5.47 - 7.23] | 71.5% | 71.5% | — |
-| | **Model 3: In Situ Spatial Game Assay** | **30.86%** | **0.793** | **7.04 [6.11 - 8.11]** | **72.6%** | **72.6%** | **$F = 18.70$ ($p < 10^{-15}$)** |
-| **Breast IDC** | Model 1: Microenvironment Alone ($Z_{hyp}, Z_{vasc}$) | 16.12% | 0.705 | 4.33 [3.85 - 4.88] | 66.8% | 66.8% | Baseline |
-| | Model 2: Intrinsic Mass Action ($f_S, f_R, f_C$) | 23.49% | 0.754 | 5.04 [4.47 - 5.69] | 68.3% | 68.3% | — |
-| | **Model 3: In Situ Spatial Game Assay** | **32.29%** | **0.783** | **6.16 [5.45 - 6.96]** | **71.3%** | **71.3%** | **$F = 71.95$ ($p < 10^{-15}$)** |
-| **Melanoma SKCM** | Model 1: Microenvironment Alone ($Z_{hyp}, Z_{vasc}$) | 10.23% | 0.674 | 3.52 [3.06 - 4.05] | 65.4% | 65.4% | Baseline |
-| | Model 2: Intrinsic Mass Action ($f_S, f_R, f_C$) | 32.48% | 0.822 | 13.40 [11.39 - 15.76] | 78.4% | 78.4% | — |
-| | **Model 3: In Situ Spatial Game Assay** | **36.78%** | **0.832** | **16.33 [13.81 - 19.30]** | **80.2%** | **80.2%** | **$F = 26.03$ ($p < 10^{-15}$)** |
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Incremental Model Ablation Battery Across Cohorts.}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccc}
+\hline
+\textbf{Cohort} & \textbf{Model Specification} & \textbf{Explained $R^2$} & \textbf{ROC-AUC} & \textbf{DOR [95\% CI]} & \textbf{Incremental $F$-test} \\
+\hline
+\textbf{Lung SCC} & Model 1: Microenvironment Alone ($Z_{hyp}, Z_{vasc}$) & 15.8\% & 0.698 & 3.40 [2.98--3.89] & Baseline \\
+ & Model 2: Intrinsic Mass Action ($f_S, f_R, f_C$) & 27.8\% & 0.780 & 6.29 [5.47--7.23] & --- \\
+ & \textbf{Model 3: In Situ Spatial Game Assay} & \textbf{30.9\%} & \textbf{0.793} & \textbf{7.04 [6.11--8.11]} & \textbf{$F=18.70$ ($p < 10^{-15}$)} \\
+\hline
+\textbf{Breast IDC} & Model 1: Microenvironment Alone ($Z_{hyp}, Z_{vasc}$) & 16.1\% & 0.705 & 4.33 [3.85--4.88] & Baseline \\
+ & Model 2: Intrinsic Mass Action ($f_S, f_R, f_C$) & 23.5\% & 0.754 & 5.04 [4.47--5.69] & --- \\
+ & \textbf{Model 3: In Situ Spatial Game Assay} & \textbf{32.3\%} & \textbf{0.783} & \textbf{6.16 [5.45--6.96]} & \textbf{$F=71.95$ ($p < 10^{-15}$)} \\
+\hline
+\textbf{Melanoma} & Model 1: Microenvironment Alone ($Z_{hyp}, Z_{vasc}$) & 10.2\% & 0.674 & 3.52 [3.06--4.05] & Baseline \\
+ & Model 2: Intrinsic Mass Action ($f_S, f_R, f_C$) & 32.5\% & 0.822 & 13.40 [11.39--15.76] & --- \\
+ & \textbf{Model 3: In Situ Spatial Game Assay} & \textbf{36.8\%} & \textbf{0.832} & \textbf{16.33 [13.81--19.30]} & \textbf{$F=26.03$ ($p < 10^{-15}$)} \\
+\hline
+\end{tabular}%
+}
+\end{table}
 
 While the physical microenvironment accounts for $10.2\% - 16.1\%$ of proliferation variance, adding spatial neighbor interactions yields massive, statistically indisputable performance gains in every cohort (nested $F$-test $p < 1.11 \times 10^{-16}$). Diagnostic Odds Ratios increase substantially, reaching $16.33$ in Melanoma, demonstrating that local clonal interactions are primary determinants of tumor expansion.
 
@@ -177,7 +197,7 @@ Next, we executed a rigorous **Blind Out-Of-Sample (OOS) Generalization Test**: 
 ![**Figure 3 | Reproducibility Battery, Serial Section Concordance, and Blind Out-Of-Sample Validation.** (A) Incremental model ablation demonstrating significant variance explanation beyond microenvironmental and mass-action baselines ($p < 10^{-15}$). (B) Parameter stability across quality control filtering ($0, \ge 500, \ge 1,000$ UMI) and spatial neighborhood radii ($k \in \{6, 12, 18\}$). (C) Replicate concordance across independent consecutive serial histological sections ($\approx 10\,\mu\text{m}$ spacing, $r = +0.811$, $p = 0.0079$) and game classification preservation. (D) Blind Out-Of-Sample (OOS) validation on held-out serial section ($R^2_{OOS} = 10.20\%$, DOR $= 2.30$, exact Fisher $p = 4.82 \times 10^{-12}$).](../figures/figure_reproducibility_battery.png){width=95%}
 
 ### 3.5 Independent Ground-Truth Literature Concordance
-To calibrate our in situ findings against external biological ground truth, we benchmarked the inferred game matrices against independent published studies (Table 3):
+To calibrate our in situ findings against external biological ground truth, we benchmarked the inferred game matrices against independent published studies (Table 1 and Figure 2):
 - **Breast Cancer Coexistence:** In a landmark in vitro study, Kaznatcheev et al. (*Nature Ecology & Evolution* 2019, 3:450-456) tracked co-cultures of sensitive (MCF-7) and resistant (MDA-MB-231) breast cancer cells under chemotherapy using robotic time-lapse imaging, discovering that cell-cell interactions followed a **Hawk-Dove / Snowdrift game** where cross-phenotype interactions exceed self-interactions ($A_{SR} > A_{RR}$ and $A_{RS} > A_{SS}$). Our *InSituGame* assay, operating on intact human FFPE clinical biopsies, discovered the exact same game dynamic ($A_{SR} - A_{RR} = +4.576 > 0$, $A_{RS} - A_{SS} = +2.987 > 0$), validating that in situ spatial transcriptomics recapitulates genuine cellular game biology.
 - **Lung & Melanoma Bistability:** In NSCLC and melanoma models, Gallaher et al. (*Cancer Res* 2018) and Marusyk et al. (*Nature* 2014) reported that resistant clones suffer significant growth deficits at low frequency ($A_{RS} < A_{SS}$), creating non-autonomous frequency thresholds below which sensitive populations naturally suppress resistance. *InSituGame* identified this exact bistable threshold ($x_{sep} = 20.0\%$ in Lung, $52.8\%$ in Melanoma).
 
