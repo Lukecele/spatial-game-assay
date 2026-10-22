@@ -3,8 +3,8 @@ message: "If you use this software, methodology, or assay in your clinical resea
 title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy"
 version: 1.0.0
 date-released: 2026-10-22
-url: "https://github.com/lucacelebrano/spatial-game-assay"
-repository-code: "https://github.com/lucacelebrano/spatial-game-assay"
+url: "https://github.com/Lukecele/spatial-game-assay"
+repository-code: "https://github.com/Lukecele/spatial-game-assay"
 license: GPL-3.0-or-later
 keywords:
   - "spatial transcriptomics"
@@ -18,4 +18,6 @@ keywords:
 authors:
   - family-names: "Celebrano"
     given-names: "Luca"
-    affiliation: "School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy"
+    orcid: "https://orcid.org/0009-0007-0931-3555"
+    email: "luca.celebrano1@gmail.com"
+    affiliation: "Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Naples, Italy; Telethon Institute of Genetics and Medicine (TIGEM), Pozzuoli, Naples, Italy"
