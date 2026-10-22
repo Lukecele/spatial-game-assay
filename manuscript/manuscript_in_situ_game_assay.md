@@ -25,7 +25,7 @@ Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.co
 
 Acquired therapeutic resistance remains the primary cause of cancer-related mortality in medical oncology. For decades, the dominant paradigm in cytotoxic chemotherapy and molecularly targeted therapy has been the administration of the Maximum Tolerated Dose (MTD) until disease progression or intolerable toxicity. While MTD protocols achieve rapid initial tumor debulking, they inadvertently act as an intense, unselective evolutionary filter. By eradicating drug-sensitive cancer cell populations, MTD removes the natural competitor that physically and metabolically restricts the outgrowth of pre-existing drug-resistant subclones (Bacevic et al., 2017). This evolutionary phenomenon—termed **competitive release**—inevitably leads to therapeutic failure, as the repopulating tumor becomes entirely refractory to further treatment.
 
-To overcome this dilemma, evolutionary cancer biologists formulated **adaptive therapy** (Gatenby et al., 2009; Enriquez-Navas et al., 2016; Zhang et al., 2017). Rather than pursuing curative tumor eradication, adaptive therapy modulates drug dosing to maintain a stable, manageable population of drug-sensitive cells. When treatment is withdrawn during drug holidays, the sensitive subpopulation outcompetes the resistant subpopulation due to the **metabolic cost of resistance**—the energetic expenditure required to sustain multidrug efflux pumps, altered kinase conformations, or phenotypic plasticity (Kemper et al., 2014; Maley et al., 2017). Mathematical models and preliminary clinical trials (e.g., in metastatic castrate-resistant prostate cancer) have demonstrated that adaptive schedules can significantly prolong progression-free survival compared to conventional continuous dosing.
+To overcome this dilemma, evolutionary cancer biologists formulated **adaptive therapy** (Gatenby et al., 2009; Enriquez-Navas et al., 2016; Zhang et al., 2017). Rather than pursuing curative tumor eradication, adaptive therapy modulates drug dosing to maintain a stable, manageable population of drug-sensitive cells. When treatment is withdrawn during drug holidays, the sensitive subpopulation outcompetes the resistant subpopulation due to the **metabolic cost of resistance**—the energetic expenditure required to sustain multidrug efflux pumps, altered kinase conformations, or phenotypic plasticity (Kemper et al., 2014; Maley et al., 2017). Landmark clinical trials in metastatic castrate-resistant prostate cancer (Zhang et al., 2017) demonstrated that adaptive dosing of abiraterone acetate prolonged median progression-free survival (PFS) by more than 27 months while using 53% less cumulative drug compared to standard continuous MTD.
 
 Despite its clinical promise, a critical translational bottleneck persists: **how do we objectively measure the clonal interaction payoff matrix ($A$) for an individual patient's biopsy?** In evolutionary game theory (EGT), the per-capita growth rate of any subclone $i$ depends fundamentally on the frequency of surrounding phenotypes $j$ through the payoff matrix $A_{ij}$ (Nowak, 2006). In literature, these matrix values have historically been either arbitrarily postulated in mathematical differential equations or derived from in vitro two-dimensional co-cultures of established cell lines using automated time-lapse robotic microscopy (Kaznatcheev et al., 2019). 
 
@@ -110,6 +110,10 @@ The dynamical system admits four mutually exclusive Nash equilibrium regimes:
    $$x^* = \frac{A_{RR} - A_{SR}}{A_{SS} - A_{SR} - A_{RS} + A_{RR}}$$
 
 When evaluating total per-capita fitness with baseline proliferation included ($\tilde{A}_{ij} = b_i + A_{ij}$), the relative selective advantages become $\tilde{\Delta}_S = \Delta_S + (b_S - b_R)$ and $\tilde{\Delta}_R = \Delta_R - (b_S - b_R)$. For breast IDC and melanoma SKCM, both the 12-parameter interaction matrix and the 9-parameter absorbed matrix yield identical Nash game topologies.
+
+To simulate patient-tailored therapeutic schedules (Section 3.6), let $u(t) \in \{0, 1\}$ denote the binary drug delivery state and $d_i$ the clone-specific drug-induced cytotoxicity rate ($d_S > d_R$). The treatment-modified net per-capita fitness is given by:
+$$F_i^{\text{treat}}(\mathbf{x}, t) = F_i(\mathbf{x}) - u(t) d_i$$
+which directly drives the continuous replicator vector field.
 
 ### 2.7 Biostatistical Evaluation Battery
 To ensure epidemiological rigor, all continuous predictions were audited using standard clinical classification metrics:
@@ -227,6 +231,9 @@ The clinical failure of oncology drug regimens is fundamentally an evolutionary 
 In conclusion, *InSituGame* provides an open-source, mathematically grounded, and clinically audited framework that unlocks personalized evolutionary game theory for precision oncology.
 
 ---
+
+## Ethical Approval
+Not applicable. This study exclusively analyzes anonymized, publicly available archival clinical spatial transcriptomics datasets provided by 10x Genomics.
 
 ## Acknowledgments
 The author warmly acknowledges the Telethon Institute of Genetics and Medicine (TIGEM), Pozzuoli, Italy, for scientific hospitality and providing a stimulating research environment during experimental degree thesis investigations.
