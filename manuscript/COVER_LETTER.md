@@ -4,7 +4,7 @@
 The Editor-in-Chief  
 *Bioinformatics* (Oxford University Press) / *Computers in Biology and Medicine* (Elsevier)
 
-**Date:** October 22, 2026  
+**Date:** October 23, 2026  
 **From:**  
 Luca Celebrano$^{1,*}$  
 $^{1}$ Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Via Sergio Pansini 5, 80131 Naples, Italy  
@@ -12,26 +12,26 @@ $^{*}$ Corresponding Author: Luca Celebrano (`l.celebrano@studenti.unina.it`, OR
 
 ---
 
-**Subject:** Submission of Original Research Article: *"InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Designing Adaptive Chemotherapy in Intact Human Biopsies"*
+**Subject:** Submission of Original Research Article: *"InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies"*
 
 Dear Editor-in-Chief and Editorial Board Members,
 
-I am delighted to submit our original research manuscript entitled **"InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Designing Adaptive Chemotherapy in Intact Human Biopsies"** for consideration as an Original Article in your esteemed journal.
+I am pleased to submit our original research manuscript entitled **"InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies"** for consideration as an Original Article in your esteemed journal.
 
-### Background and Breakthrough
-For over two decades since the pioneering formulations of evolutionary oncology, **evolutionary game theory (EGT)** has offered a mathematically elegant paradigm to overcome acquired cancer drug resistance. By modulating therapy to maintain a competing subpopulation of treatment-sensitive cells, adaptive therapy prevents competitive release of lethal refractory subclones, substantially prolonging progression-free survival in clinical trials. 
+### Background and Scientific Rationale
+For over two decades since the founding formulations of evolutionary oncology, **evolutionary game theory (EGT)** has provided a compelling mathematical foundation to counter acquired cancer drug resistance. By modulating therapy to maintain a competing subpopulation of treatment-sensitive cells, adaptive therapy prevents competitive release of refractory subclones, substantially prolonging progression-free survival in clinical pilot trials.
 
-However, translation to bedside oncology has been paralyzed by a fundamental bottleneck: **how can oncologists measure the subclonal interaction payoff matrix ($A$) directly from a patient's intact clinical tumor?** Up to now, researchers were forced to either assume arbitrary mathematical parameters or measure interactions in artificial 2D plastic co-cultures stripped of the native 3D extracellular matrix, stroma, and physical microenvironmental gradients.
+However, translation to bedside oncology has been constrained by a fundamental bottleneck: **how can we estimate the subclonal interaction payoff matrix ($A$) directly from a patient's intact clinical biopsy?** Historically, researchers were limited to either postulating mathematical heuristics or measuring interactions in artificial 2D in vitro co-cultures stripped of the native 3D extracellular matrix, stroma, and physical microenvironmental gradients.
 
-In this work, we resolve this 20-year translational bottleneck by introducing **InSituGame** (*In Situ Spatial Evolutionary Game Assay*):
-1. **Mathematical Foundation:** We prove the **Space-for-Time Ergodic Mapping Theorem**, establishing how single-cell-cycle transcriptional snapshots across spatial micro-neighborhoods formally identify continuous non-linear replicator vector fields without requiring sequential invasive biopsies.
-2. **Microenvironmental Decoupling:** We introduce an OLS architecture that mathematically removes hypoxia ($Z_{hyp}$) and vascular perfusion ($Z_{vasc}$) confounders from cell proliferation, isolating pure frequency-dependent cellular game interactions.
-3. **Rigorous Clinical Validation:** The assay is audited across $N = 20,093$ authentic clinical spatial spots (>350 million authentic sequenced reads) across lung adenocarcinoma/SCC, invasive ductal breast cancer, cutaneous melanoma, and consecutive serial histological sections ($\approx 10\,\mu\text{m}$ apart). Model ablations demonstrate massive incremental explanatory power of spatial game interactions over microenvironmental and mass-action baselines (nested $F$-tests: $p < 10^{-15}$).
-4. **Independent Benchmark Recapitulation:** *InSituGame* empirically discovers Hawk-Dove / Snowdrift (Coexistence) dynamics in human breast cancer ($x^* = 60.5\%$), independently validating landmark in vitro findings (Kaznatcheev et al., *Nat Ecol Evol* 2019) directly inside native clinical tissue.
-5. **Out-of-Sample Clinical Reproducibility:** Tested blindly on independent consecutive serial slices, *InSituGame* demonstrates robust parameter preservation ($r = +0.811$, $p = 0.0079$), identical game classification (Stag Hunt with tipping separatrix $x_{sep} \approx 0.80$), and high predictive power (Diagnostic Odds Ratio $= 2.30$, exact Fisher $p = 4.82 \times 10^{-12}$).
+In this work, we address this translational bottleneck by developing **InSituGame** (*In Situ Spatial Evolutionary Game Assay*), an exploratory computational framework with five core contributions:
+1. **Mathematical Foundation & Ergodicity:** We prove the **Space-for-Time Ergodic Mapping Theorem**, establishing how single-cell-cycle transcriptional snapshots across spatial micro-neighborhoods formally identify continuous non-linear replicator vector fields without requiring sequential invasive biopsies.
+2. **Identifiable Formulation on the Simplex:** We identify the exact algebraic collinearity between intrinsic fitness and interaction terms on the unit simplex, and formulate a fully identifiable 9-parameter absorbed payoff matrix ($\tilde{A}_{ij} = b_i + A_{ij}$) with condition number reduced by seven orders of magnitude ($\approx 31\text{--}54$ vs $\sim 4 \times 10^8$).
+3. **Microenvironmental Decoupling & Spatial Null Controls:** We decouple hypoxia ($Z_{hyp}$) and vascular density ($Z_{vasc}$) confounders from cell proliferation, and benchmark spatial Delaunay interactions against a non-spatial within-spot quadratic co-localization control, demonstrating a statistically significant $+2.60\%$ to $+3.91\%$ increment in purified variance explanation ($p < 1.11 \times 10^{-16}$). When evaluated directly on raw proliferation, joint regression accounts for $49.60\%\text{--}54.30\%$ of total tissue variance.
+4. **Reproducibility Across Serial Slices:** Evaluated across independent consecutive serial sections ($\approx 10\,\mu\text{m}$ apart), *InSituGame* demonstrates parameter concordance ($r = +0.811$, $p = 0.0079$), consistent game classification (Stag Hunt with tipping separatrix $x_{sep} \approx 0.80$), and blind out-of-sample predictive generalizability ($R^2_{\text{OOS}} = 10.20\%$ vs $6.21\%$ for mass-action baseline; Diagnostic Odds Ratio $= 2.30$ [95% CI: $2.03\text{--}2.61$], exact Fisher $p = 4.82 \times 10^{-12}$).
+5. **Patient-Specific Game Individuality:** While the primary CytAssist breast IDC cohort exhibits Hawk-Dove coexistence ($x^* = 60.5\%$), independent fresh-frozen breast serial cuts display Stag Hunt bistability, demonstrating that evolutionary games are patient-specific ecological architectures that warrant individual biopsy profiling.
 
 ### Open Science, Software, and Ethical Declarations
-- **Software Implementation:** *InSituGame* is fully implemented as an open-source Python package (`insitugame`) with an automated, passing test suite guaranteeing 100% deterministic reproducibility. All code, raw coordinate parsers, and figure generation scripts are publicly available on GitHub ([https://github.com/Lukecele/spatial-game-assay](https://github.com/Lukecele/spatial-game-assay)) under the copyleft GNU General Public License v3.0 (GPL-3.0) to ensure unencumbered access for public hospitals and research institutions.
+- **Software Implementation:** *InSituGame* is fully implemented as an open-source Python package (`insitugame`) with an automated test suite. All code, raw data streaming parsers, and figure generation scripts are publicly available on GitHub ([https://github.com/Lukecele/spatial-game-assay](https://github.com/Lukecele/spatial-game-assay)) under the copyleft GNU General Public License v3.0 (GPL-3.0) to ensure unencumbered access for research institutions and hospitals.
 - **Institutional Open Access Funding:** As an investigator affiliated with the School of Medicine, Università degli Studi di Napoli Federico II, open access publication is eligible for **0€ Article Processing Charges (APC)** through the national **CRUI-CARE (Conferenza dei Rettori delle Università Italiane)** Transformative Agreement with Oxford University Press and Elsevier.
 - **Competing Interests:** The author declares no competing financial, personal, or commercial interests.
 - **Originality:** This manuscript is original, has not been published previously, and is not currently under consideration for publication elsewhere.
