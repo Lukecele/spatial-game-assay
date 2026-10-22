@@ -1,0 +1,33 @@
+{
+  "n_spots": 3858,
+  "strategies": [
+    "T_Sensitive",
+    "T_Resistant",
+    "Stroma_CAF"
+  ],
+  "payoff_matrix": [
+    [
+      0.5467492438761171,
+      -0.07706676919484617,
+      -0.3401764037593085
+    ],
+    [
+      -0.04446551624540412,
+      0.07045322847399207,
+      -0.2880525202118249
+    ],
+    [
+      0.7089336947309759,
+      -0.44282545708654697,
+      -0.3052490257561557
+    ]
+  ],
+  "baseline_fitness": [
+    0.12980331610023912,
+    -0.26187758623709667,
+    -0.03878832386674683
+  ],
+  "r2_environmental": 0.1582,
+  "r2_game_interaction": 0.308615364826647,
+  "game_classification": "Bistabile / Coordinazione (Chi inizia in maggioranza vince)"
+}

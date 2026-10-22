@@ -1,0 +1,217 @@
+{
+  "dataset": "10x Visium Human Breast Cancer Block A Serial Sections",
+  "cohorts": {
+    "section_1": {
+      "n_spots": 3798,
+      "median_umi": 20761.5
+    },
+    "section_2": {
+      "n_spots": 3987,
+      "median_umi": 18828.0
+    }
+  },
+  "section_1_in_sample": {
+    "r2_intrinsic": 0.06873387098312378,
+    "r2_game": 0.13830709448691747,
+    "diagnostic_intrinsic": {
+      "contingency_table": {
+        "TP": 1136,
+        "FP": 763,
+        "FN": 763,
+        "TN": 1136
+      },
+      "sensitivity": 0.5982095839915745,
+      "specificity": 0.5982095839915745,
+      "ppv_precision": 0.5982095839915745,
+      "npv": 0.5982095839915745,
+      "accuracy": 0.5982095839915745,
+      "odds_ratio": 2.2167033971235157,
+      "odds_ratio_95_ci": [
+        1.9469784915580686,
+        2.5237946757627965
+      ],
+      "fisher_exact_p_value": 3.597993893465528e-12,
+      "roc_auc": 0.6336155416739111,
+      "is_statistically_significant": true,
+      "is_asymmetric_signal": false
+    },
+    "diagnostic_game": {
+      "contingency_table": {
+        "TP": 1202,
+        "FP": 697,
+        "FN": 697,
+        "TN": 1202
+      },
+      "sensitivity": 0.6329647182727751,
+      "specificity": 0.6329647182727751,
+      "ppv_precision": 0.6329647182727751,
+      "npv": 0.6329647182727751,
+      "accuracy": 0.6329647182727751,
+      "odds_ratio": 2.9740165373634495,
+      "odds_ratio_95_ci": [
+        2.606338948427432,
+        3.3935625947069896
+      ],
+      "fisher_exact_p_value": 3.597993893465528e-12,
+      "roc_auc": 0.6773992908326518,
+      "is_statistically_significant": true,
+      "is_asymmetric_signal": false
+    },
+    "payoff_matrix_3x3": [
+      [
+        1.3136594884907766,
+        -4.840627598233136,
+        2.853730529660417
+      ],
+      [
+        -1.4999848894626664,
+        5.536162732514351,
+        -3.4469089797677213
+      ],
+      [
+        0.18996500527253235,
+        0.6007380822177636,
+        -0.8360877577089715
+      ]
+    ],
+    "game_type": "Stag Hunt (Bistable)",
+    "equilibria": {
+      "x_sep": 0.7866905496224887,
+      "x_equilibria": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "section_2_in_sample": {
+    "r2_intrinsic": 0.06518489122390747,
+    "r2_game": 0.11171578247041192,
+    "diagnostic_intrinsic": {
+      "contingency_table": {
+        "TP": 1195,
+        "FP": 799,
+        "FN": 799,
+        "TN": 1194
+      },
+      "sensitivity": 0.5992978936810431,
+      "specificity": 0.599096838936277,
+      "ppv_precision": 0.5992978936810431,
+      "npv": 0.599096838936277,
+      "accuracy": 0.599197391522448,
+      "odds_ratio": 2.235005897547153,
+      "odds_ratio_95_ci": [
+        1.9690722658297983,
+        2.5368552738035124
+      ],
+      "fisher_exact_p_value": 4.816166334630203e-12,
+      "roc_auc": 0.6328634674721606,
+      "is_statistically_significant": true,
+      "is_asymmetric_signal": false
+    },
+    "diagnostic_game": {
+      "contingency_table": {
+        "TP": 1199,
+        "FP": 795,
+        "FN": 795,
+        "TN": 1198
+      },
+      "sensitivity": 0.6013039117352056,
+      "specificity": 0.6011038635223281,
+      "ppv_precision": 0.6013039117352056,
+      "npv": 0.6011038635223281,
+      "accuracy": 0.6012039127163281,
+      "odds_ratio": 2.27269807365215,
+      "odds_ratio_95_ci": [
+        2.0020670086508403,
+        2.5799119168658122
+      ],
+      "fisher_exact_p_value": 4.816166334630203e-12,
+      "roc_auc": 0.6563654838071666,
+      "is_statistically_significant": true,
+      "is_asymmetric_signal": false
+    },
+    "payoff_matrix_3x3": [
+      [
+        0.8725505768984039,
+        -4.022202711521364,
+        2.73372911824449
+      ],
+      [
+        -2.096972927332828,
+        10.136575275218403,
+        -7.3301582130418215
+      ],
+      [
+        1.268676262048534,
+        -5.018012086792997,
+        3.135579530789656
+      ]
+    ],
+    "game_type": "Stag Hunt (Bistable)",
+    "equilibria": {
+      "x_sep": 0.8266305911420007,
+      "x_equilibria": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "blind_oos_evaluation": {
+    "oos_r2_intrinsic": 0.062089502811431885,
+    "oos_r2_game": 0.1020188025507559,
+    "delta_oos_r2": 0.03992929973932402,
+    "delta_oos_auc": 0.024631093481145894,
+    "diagnostic_intrinsic_oos": {
+      "contingency_table": {
+        "TP": 1188,
+        "FP": 806,
+        "FN": 806,
+        "TN": 1187
+      },
+      "sensitivity": 0.5957873620862588,
+      "specificity": 0.5955845459106874,
+      "ppv_precision": 0.5957873620862588,
+      "npv": 0.5955845459106874,
+      "accuracy": 0.5956859794331577,
+      "odds_ratio": 2.170686353588779,
+      "odds_ratio_95_ci": [
+        1.9127502784272488,
+        2.4634053377479437
+      ],
+      "fisher_exact_p_value": 4.816166334630203e-12,
+      "roc_auc": 0.6283866652642323,
+      "is_statistically_significant": true,
+      "is_asymmetric_signal": false
+    },
+    "diagnostic_game_oos": {
+      "contingency_table": {
+        "TP": 1202,
+        "FP": 792,
+        "FN": 792,
+        "TN": 1201
+      },
+      "sensitivity": 0.6028084252758275,
+      "specificity": 0.6026091319618665,
+      "ppv_precision": 0.6028084252758275,
+      "npv": 0.6026091319618665,
+      "accuracy": 0.6027088036117382,
+      "odds_ratio": 2.301426512600755,
+      "odds_ratio_95_ci": [
+        2.0272098400876883,
+        2.612735932986871
+      ],
+      "fisher_exact_p_value": 4.816166334630203e-12,
+      "roc_auc": 0.6530177587453782,
+      "is_statistically_significant": true,
+      "is_asymmetric_signal": false
+    }
+  },
+  "parameter_concordance": {
+    "payoff_matrix_pearson_r": 0.8113790073749483,
+    "payoff_matrix_pearson_p": 0.00793695933701572,
+    "payoff_matrix_spearman_rho": 0.6333333333333333,
+    "payoff_matrix_spearman_p": 0.06708578689234565,
+    "payoff_matrix_mae": 2.3477015264281977,
+    "intrinsic_vector_pearson_r": 0.7903416316896762
+  }
+}

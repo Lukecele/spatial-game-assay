@@ -1,0 +1,2234 @@
+{
+  "lung": {
+    "cancer_key": "lung",
+    "short_name": "Lung_SCC",
+    "ablation": {
+      "n_spots": 3858,
+      "model1_env": {
+        "r2": 0.1582152247428894,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1251,
+            "FP": 678,
+            "FN": 678,
+            "TN": 1251
+          },
+          "sensitivity": 0.6485225505443235,
+          "specificity": 0.6485225505443235,
+          "ppv_precision": 0.6485225505443235,
+          "npv": 0.6485225505443235,
+          "accuracy": 0.6485225505443235,
+          "odds_ratio": 3.40451484062965,
+          "odds_ratio_95_ci": [
+            2.982953577326899,
+            3.8856525921715064
+          ],
+          "fisher_exact_p_value": 5.287423861087031e-12,
+          "roc_auc": 0.6983889723332799,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "model2_intrinsic": {
+        "r2": 0.2783621549606323,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1379,
+            "FP": 550,
+            "FN": 550,
+            "TN": 1379
+          },
+          "sensitivity": 0.7148781752203214,
+          "specificity": 0.7148781752203214,
+          "ppv_precision": 0.7148781752203214,
+          "npv": 0.7148781752203214,
+          "accuracy": 0.7148781752203214,
+          "odds_ratio": 6.28641652892562,
+          "odds_ratio_95_ci": [
+            5.466300004396243,
+            7.229576266097043
+          ],
+          "fisher_exact_p_value": 5.287423861087031e-12,
+          "roc_auc": 0.7799330886168683,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "model3_game": {
+        "r2": 0.308615364826647,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1401,
+            "FP": 528,
+            "FN": 528,
+            "TN": 1401
+          },
+          "sensitivity": 0.7262830482115086,
+          "specificity": 0.7262830482115086,
+          "ppv_precision": 0.7262830482115086,
+          "npv": 0.7262830482115086,
+          "accuracy": 0.7262830482115086,
+          "odds_ratio": 7.040579803719008,
+          "odds_ratio_95_ci": [
+            6.111323532894777,
+            8.111133980343546
+          ],
+          "fisher_exact_p_value": 5.287423861087031e-12,
+          "roc_auc": 0.7930866658013175,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "incremental_f_test": {
+        "f_statistic": 18.699013253240384,
+        "df_num": 9,
+        "df_denom": 3846,
+        "p_value": 1.1102230246251565e-16
+      },
+      "delta_r2": 0.030253209866014652,
+      "delta_auc": 0.013153577184449206,
+      "payoff_2x2": {
+        "A_SS": 0.5467492438761171,
+        "A_SR": -0.07706676919484617,
+        "A_RS": -0.04446551624540412,
+        "A_RR": 0.07045322847399207
+      }
+    },
+    "qc_sensitivity": {
+      "cut_0": {
+        "n_spots": 3858,
+        "model1_env": {
+          "r2": 0.1582152247428894,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1251,
+              "FP": 678,
+              "FN": 678,
+              "TN": 1251
+            },
+            "sensitivity": 0.6485225505443235,
+            "specificity": 0.6485225505443235,
+            "ppv_precision": 0.6485225505443235,
+            "npv": 0.6485225505443235,
+            "accuracy": 0.6485225505443235,
+            "odds_ratio": 3.40451484062965,
+            "odds_ratio_95_ci": [
+              2.982953577326899,
+              3.8856525921715064
+            ],
+            "fisher_exact_p_value": 5.287423861087031e-12,
+            "roc_auc": 0.6983889723332799,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.2783621549606323,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1379,
+              "FP": 550,
+              "FN": 550,
+              "TN": 1379
+            },
+            "sensitivity": 0.7148781752203214,
+            "specificity": 0.7148781752203214,
+            "ppv_precision": 0.7148781752203214,
+            "npv": 0.7148781752203214,
+            "accuracy": 0.7148781752203214,
+            "odds_ratio": 6.28641652892562,
+            "odds_ratio_95_ci": [
+              5.466300004396243,
+              7.229576266097043
+            ],
+            "fisher_exact_p_value": 5.287423861087031e-12,
+            "roc_auc": 0.7799330886168683,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.308615364826647,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1401,
+              "FP": 528,
+              "FN": 528,
+              "TN": 1401
+            },
+            "sensitivity": 0.7262830482115086,
+            "specificity": 0.7262830482115086,
+            "ppv_precision": 0.7262830482115086,
+            "npv": 0.7262830482115086,
+            "accuracy": 0.7262830482115086,
+            "odds_ratio": 7.040579803719008,
+            "odds_ratio_95_ci": [
+              6.111323532894777,
+              8.111133980343546
+            ],
+            "fisher_exact_p_value": 5.287423861087031e-12,
+            "roc_auc": 0.7930866658013175,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 18.699013253240384,
+          "df_num": 9,
+          "df_denom": 3846,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.030253209866014652,
+        "delta_auc": 0.013153577184449206,
+        "payoff_2x2": {
+          "A_SS": 0.5467492438761171,
+          "A_SR": -0.07706676919484617,
+          "A_RS": -0.04446551624540412,
+          "A_RR": 0.07045322847399207
+        }
+      },
+      "cut_500": {
+        "n_spots": 3816,
+        "model1_env": {
+          "r2": 0.15716391801834106,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1229,
+              "FP": 679,
+              "FN": 679,
+              "TN": 1229
+            },
+            "sensitivity": 0.6441299790356394,
+            "specificity": 0.6441299790356394,
+            "ppv_precision": 0.6441299790356394,
+            "npv": 0.6441299790356394,
+            "accuracy": 0.6441299790356394,
+            "odds_ratio": 3.2761533139135133,
+            "odds_ratio_95_ci": [
+              2.8694753649728235,
+              3.7404679152448996
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.6955107920309059,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.28220057487487793,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1362,
+              "FP": 546,
+              "FN": 546,
+              "TN": 1362
+            },
+            "sensitivity": 0.7138364779874213,
+            "specificity": 0.7138364779874213,
+            "ppv_precision": 0.7138364779874213,
+            "npv": 0.7138364779874213,
+            "accuracy": 0.7138364779874213,
+            "odds_ratio": 6.222557662118102,
+            "odds_ratio_95_ci": [
+              5.407453869050697,
+              7.160527818831343
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7800176021518136,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.31179982479067103,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1384,
+              "FP": 524,
+              "FN": 524,
+              "TN": 1384
+            },
+            "sensitivity": 0.7253668763102725,
+            "specificity": 0.7253668763102725,
+            "ppv_precision": 0.7253668763102725,
+            "npv": 0.7253668763102725,
+            "accuracy": 0.7253668763102725,
+            "odds_ratio": 6.9760503467163915,
+            "odds_ratio_95_ci": [
+              6.051503865285653,
+              8.041848691378918
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7925940209819408,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 18.178743627226392,
+          "df_num": 9,
+          "df_denom": 3804,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.029599249915793102,
+        "delta_auc": 0.012576418830127167,
+        "payoff_2x2": {
+          "A_SS": 0.4990021988257771,
+          "A_SR": -0.003186215488412885,
+          "A_RS": -0.09660383612642796,
+          "A_RR": -0.008097031553879665
+        }
+      },
+      "cut_1000": {
+        "n_spots": 3775,
+        "model1_env": {
+          "r2": 0.15736067295074463,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1217,
+              "FP": 671,
+              "FN": 671,
+              "TN": 1216
+            },
+            "sensitivity": 0.6445974576271186,
+            "specificity": 0.6444091149973503,
+            "ppv_precision": 0.6445974576271186,
+            "npv": 0.6444091149973503,
+            "accuracy": 0.6445033112582782,
+            "odds_ratio": 3.286844156796027,
+            "odds_ratio_95_ci": [
+              2.876683247994174,
+              3.755486294362453
+            ],
+            "fisher_exact_p_value": 3.926761129365572e-12,
+            "roc_auc": 0.694091149973503,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.28107190132141113,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1341,
+              "FP": 547,
+              "FN": 547,
+              "TN": 1340
+            },
+            "sensitivity": 0.7102754237288136,
+            "specificity": 0.7101218865924749,
+            "ppv_precision": 0.7102754237288136,
+            "npv": 0.7101218865924749,
+            "accuracy": 0.7101986754966887,
+            "odds_ratio": 6.005634857240257,
+            "odds_ratio_95_ci": [
+              5.2177438311830375,
+              6.9124991960982225
+            ],
+            "fisher_exact_p_value": 3.926761129365572e-12,
+            "roc_auc": 0.7767177072386444,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.31147500547147844,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1363,
+              "FP": 525,
+              "FN": 525,
+              "TN": 1362
+            },
+            "sensitivity": 0.721927966101695,
+            "specificity": 0.7217806041335453,
+            "ppv_precision": 0.721927966101695,
+            "npv": 0.7217806041335453,
+            "accuracy": 0.7218543046357616,
+            "odds_ratio": 6.735259863945578,
+            "odds_ratio_95_ci": [
+              5.841400635081311,
+              7.765898672047643
+            ],
+            "fisher_exact_p_value": 3.926761129365572e-12,
+            "roc_auc": 0.7894890778116103,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 18.46249999820001,
+          "df_num": 9,
+          "df_denom": 3763,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.030403104150067306,
+        "delta_auc": 0.012771370572965846,
+        "payoff_2x2": {
+          "A_SS": 0.48777835856974333,
+          "A_SR": -0.06975581199631582,
+          "A_RS": -0.040545358530789645,
+          "A_RR": -0.014243853798516922
+        }
+      }
+    },
+    "topology_sensitivity": {
+      "Delaunay (Contact)": {
+        "n_spots": 3816,
+        "model1_env": {
+          "r2": 0.15716391801834106,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1229,
+              "FP": 679,
+              "FN": 679,
+              "TN": 1229
+            },
+            "sensitivity": 0.6441299790356394,
+            "specificity": 0.6441299790356394,
+            "ppv_precision": 0.6441299790356394,
+            "npv": 0.6441299790356394,
+            "accuracy": 0.6441299790356394,
+            "odds_ratio": 3.2761533139135133,
+            "odds_ratio_95_ci": [
+              2.8694753649728235,
+              3.7404679152448996
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.6955107920309059,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.28220057487487793,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1362,
+              "FP": 546,
+              "FN": 546,
+              "TN": 1362
+            },
+            "sensitivity": 0.7138364779874213,
+            "specificity": 0.7138364779874213,
+            "ppv_precision": 0.7138364779874213,
+            "npv": 0.7138364779874213,
+            "accuracy": 0.7138364779874213,
+            "odds_ratio": 6.222557662118102,
+            "odds_ratio_95_ci": [
+              5.407453869050697,
+              7.160527818831343
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7800176021518136,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.31179982479067103,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1384,
+              "FP": 524,
+              "FN": 524,
+              "TN": 1384
+            },
+            "sensitivity": 0.7253668763102725,
+            "specificity": 0.7253668763102725,
+            "ppv_precision": 0.7253668763102725,
+            "npv": 0.7253668763102725,
+            "accuracy": 0.7253668763102725,
+            "odds_ratio": 6.9760503467163915,
+            "odds_ratio_95_ci": [
+              6.051503865285653,
+              8.041848691378918
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7925940209819408,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 18.178743627226392,
+          "df_num": 9,
+          "df_denom": 3804,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.029599249915793102,
+        "delta_auc": 0.012576418830127167,
+        "payoff_2x2": {
+          "A_SS": 0.4990021988257771,
+          "A_SR": -0.003186215488412885,
+          "A_RS": -0.09660383612642796,
+          "A_RR": -0.008097031553879665
+        }
+      },
+      "k-NN (k=6)": {
+        "n_spots": 3816,
+        "model1_env": {
+          "r2": 0.15716391801834106,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1229,
+              "FP": 679,
+              "FN": 679,
+              "TN": 1229
+            },
+            "sensitivity": 0.6441299790356394,
+            "specificity": 0.6441299790356394,
+            "ppv_precision": 0.6441299790356394,
+            "npv": 0.6441299790356394,
+            "accuracy": 0.6441299790356394,
+            "odds_ratio": 3.2761533139135133,
+            "odds_ratio_95_ci": [
+              2.8694753649728235,
+              3.7404679152448996
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.6955107920309059,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.28220057487487793,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1362,
+              "FP": 546,
+              "FN": 546,
+              "TN": 1362
+            },
+            "sensitivity": 0.7138364779874213,
+            "specificity": 0.7138364779874213,
+            "ppv_precision": 0.7138364779874213,
+            "npv": 0.7138364779874213,
+            "accuracy": 0.7138364779874213,
+            "odds_ratio": 6.222557662118102,
+            "odds_ratio_95_ci": [
+              5.407453869050697,
+              7.160527818831343
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7800176021518136,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.31324956001836923,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1386,
+              "FP": 522,
+              "FN": 522,
+              "TN": 1386
+            },
+            "sensitivity": 0.7264150943396226,
+            "specificity": 0.7264150943396226,
+            "ppv_precision": 0.7264150943396226,
+            "npv": 0.7264150943396226,
+            "accuracy": 0.7264150943396226,
+            "odds_ratio": 7.049940546967895,
+            "odds_ratio_95_ci": [
+              6.114566038698861,
+              8.128403782250784
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7932194907022841,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 19.109371529393027,
+          "df_num": 9,
+          "df_denom": 3804,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.031048985143491303,
+        "delta_auc": 0.013201888550470553,
+        "payoff_2x2": {
+          "A_SS": 0.5061415524129707,
+          "A_SR": -0.016240394922680396,
+          "A_RS": -0.024947202370509815,
+          "A_RR": 0.011063440944462943
+        }
+      },
+      "k-NN (k=12)": {
+        "n_spots": 3816,
+        "model1_env": {
+          "r2": 0.15716391801834106,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1229,
+              "FP": 679,
+              "FN": 679,
+              "TN": 1229
+            },
+            "sensitivity": 0.6441299790356394,
+            "specificity": 0.6441299790356394,
+            "ppv_precision": 0.6441299790356394,
+            "npv": 0.6441299790356394,
+            "accuracy": 0.6441299790356394,
+            "odds_ratio": 3.2761533139135133,
+            "odds_ratio_95_ci": [
+              2.8694753649728235,
+              3.7404679152448996
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.6955107920309059,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.28220057487487793,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1362,
+              "FP": 546,
+              "FN": 546,
+              "TN": 1362
+            },
+            "sensitivity": 0.7138364779874213,
+            "specificity": 0.7138364779874213,
+            "ppv_precision": 0.7138364779874213,
+            "npv": 0.7138364779874213,
+            "accuracy": 0.7138364779874213,
+            "odds_ratio": 6.222557662118102,
+            "odds_ratio_95_ci": [
+              5.407453869050697,
+              7.160527818831343
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7800176021518136,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.31487387670634337,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1388,
+              "FP": 520,
+              "FN": 520,
+              "TN": 1388
+            },
+            "sensitivity": 0.7274633123689728,
+            "specificity": 0.7274633123689728,
+            "ppv_precision": 0.7274633123689728,
+            "npv": 0.7274633123689728,
+            "accuracy": 0.7274633123689728,
+            "odds_ratio": 7.124792899408284,
+            "odds_ratio_95_ci": [
+              6.1784324173770235,
+              8.216108946451723
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7941592060792251,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 20.156746847296915,
+          "df_num": 9,
+          "df_denom": 3804,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.03267330183146544,
+        "delta_auc": 0.014141603927411484,
+        "payoff_2x2": {
+          "A_SS": 0.5220564055293142,
+          "A_SR": 0.4213485599733232,
+          "A_RS": -0.13956306746203084,
+          "A_RR": -0.1333258886458521
+        }
+      },
+      "k-NN (k=18)": {
+        "n_spots": 3816,
+        "model1_env": {
+          "r2": 0.15716391801834106,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1229,
+              "FP": 679,
+              "FN": 679,
+              "TN": 1229
+            },
+            "sensitivity": 0.6441299790356394,
+            "specificity": 0.6441299790356394,
+            "ppv_precision": 0.6441299790356394,
+            "npv": 0.6441299790356394,
+            "accuracy": 0.6441299790356394,
+            "odds_ratio": 3.2761533139135133,
+            "odds_ratio_95_ci": [
+              2.8694753649728235,
+              3.7404679152448996
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.6955107920309059,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.28220057487487793,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1362,
+              "FP": 546,
+              "FN": 546,
+              "TN": 1362
+            },
+            "sensitivity": 0.7138364779874213,
+            "specificity": 0.7138364779874213,
+            "ppv_precision": 0.7138364779874213,
+            "npv": 0.7138364779874213,
+            "accuracy": 0.7138364779874213,
+            "odds_ratio": 6.222557662118102,
+            "odds_ratio_95_ci": [
+              5.407453869050697,
+              7.160527818831343
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7800176021518136,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.31512886941224205,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1390,
+              "FP": 518,
+              "FN": 518,
+              "TN": 1390
+            },
+            "sensitivity": 0.7285115303983228,
+            "specificity": 0.7285115303983228,
+            "ppv_precision": 0.7285115303983228,
+            "npv": 0.7285115303983228,
+            "accuracy": 0.7285115303983228,
+            "odds_ratio": 7.200623127264054,
+            "odds_ratio_95_ci": [
+              6.243115868579428,
+              8.30498336284888
+            ],
+            "fisher_exact_p_value": 5.085386734794808e-12,
+            "roc_auc": 0.7946184881927139,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 20.32161982179405,
+          "df_num": 9,
+          "df_denom": 3804,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.03292829453736412,
+        "delta_auc": 0.014600886040900263,
+        "payoff_2x2": {
+          "A_SS": 0.527008009785839,
+          "A_SR": 0.6542044388411313,
+          "A_RS": -0.17786076313177704,
+          "A_RR": -0.23924731926752024
+        }
+      }
+    }
+  },
+  "breast": {
+    "cancer_key": "breast",
+    "short_name": "Breast_IDC",
+    "ablation": {
+      "n_spots": 4992,
+      "model1_env": {
+        "r2": 0.16122090816497803,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1686,
+            "FP": 810,
+            "FN": 810,
+            "TN": 1686
+          },
+          "sensitivity": 0.6754807692307693,
+          "specificity": 0.6754807692307693,
+          "ppv_precision": 0.6754807692307693,
+          "npv": 0.6754807692307693,
+          "accuracy": 0.6754807692307693,
+          "odds_ratio": 4.332565157750343,
+          "odds_ratio_95_ci": [
+            3.8484049670733627,
+            4.877636581065773
+          ],
+          "fisher_exact_p_value": 5.822787362625981e-12,
+          "roc_auc": 0.705156776483399,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "model2_intrinsic": {
+        "r2": 0.23486328125,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1727,
+            "FP": 769,
+            "FN": 769,
+            "TN": 1727
+          },
+          "sensitivity": 0.6919070512820513,
+          "specificity": 0.6919070512820513,
+          "ppv_precision": 0.6919070512820513,
+          "npv": 0.6919070512820513,
+          "accuracy": 0.6919070512820513,
+          "odds_ratio": 5.043499655878558,
+          "odds_ratio_95_ci": [
+            4.47243744075416,
+            5.687477827427783
+          ],
+          "fisher_exact_p_value": 5.822787362625981e-12,
+          "roc_auc": 0.754258737056213,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "model3_game": {
+        "r2": 0.3229111584424649,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1779,
+            "FP": 717,
+            "FN": 717,
+            "TN": 1779
+          },
+          "sensitivity": 0.7127403846153846,
+          "specificity": 0.7127403846153846,
+          "ppv_precision": 0.7127403846153846,
+          "npv": 0.7127403846153846,
+          "accuracy": 0.7127403846153846,
+          "odds_ratio": 6.156212251186079,
+          "odds_ratio_95_ci": [
+            5.445807635651095,
+            6.959289019602399
+          ],
+          "fisher_exact_p_value": 5.822787362625981e-12,
+          "roc_auc": 0.7828063362919132,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "incremental_f_test": {
+        "f_statistic": 71.95482337116809,
+        "df_num": 9,
+        "df_denom": 4980,
+        "p_value": 1.1102230246251565e-16
+      },
+      "delta_r2": 0.08804787719246487,
+      "delta_auc": 0.02854759923570016,
+      "payoff_2x2": {
+        "A_SS": -0.995964212479927,
+        "A_SR": 2.605760721681669,
+        "A_RS": 1.9905598194752971,
+        "A_RR": -1.969775265552968
+      }
+    },
+    "qc_sensitivity": {
+      "cut_0": {
+        "n_spots": 4992,
+        "model1_env": {
+          "r2": 0.16122090816497803,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1686,
+              "FP": 810,
+              "FN": 810,
+              "TN": 1686
+            },
+            "sensitivity": 0.6754807692307693,
+            "specificity": 0.6754807692307693,
+            "ppv_precision": 0.6754807692307693,
+            "npv": 0.6754807692307693,
+            "accuracy": 0.6754807692307693,
+            "odds_ratio": 4.332565157750343,
+            "odds_ratio_95_ci": [
+              3.8484049670733627,
+              4.877636581065773
+            ],
+            "fisher_exact_p_value": 5.822787362625981e-12,
+            "roc_auc": 0.705156776483399,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.23486328125,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1727,
+              "FP": 769,
+              "FN": 769,
+              "TN": 1727
+            },
+            "sensitivity": 0.6919070512820513,
+            "specificity": 0.6919070512820513,
+            "ppv_precision": 0.6919070512820513,
+            "npv": 0.6919070512820513,
+            "accuracy": 0.6919070512820513,
+            "odds_ratio": 5.043499655878558,
+            "odds_ratio_95_ci": [
+              4.47243744075416,
+              5.687477827427783
+            ],
+            "fisher_exact_p_value": 5.822787362625981e-12,
+            "roc_auc": 0.754258737056213,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.3229111584424649,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1779,
+              "FP": 717,
+              "FN": 717,
+              "TN": 1779
+            },
+            "sensitivity": 0.7127403846153846,
+            "specificity": 0.7127403846153846,
+            "ppv_precision": 0.7127403846153846,
+            "npv": 0.7127403846153846,
+            "accuracy": 0.7127403846153846,
+            "odds_ratio": 6.156212251186079,
+            "odds_ratio_95_ci": [
+              5.445807635651095,
+              6.959289019602399
+            ],
+            "fisher_exact_p_value": 5.822787362625981e-12,
+            "roc_auc": 0.7828063362919132,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 71.95482337116809,
+          "df_num": 9,
+          "df_denom": 4980,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.08804787719246487,
+        "delta_auc": 0.02854759923570016,
+        "payoff_2x2": {
+          "A_SS": -0.995964212479927,
+          "A_SR": 2.605760721681669,
+          "A_RS": 1.9905598194752971,
+          "A_RR": -1.969775265552968
+        }
+      },
+      "cut_500": {
+        "n_spots": 4981,
+        "model1_env": {
+          "r2": 0.16075140237808228,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1680,
+              "FP": 811,
+              "FN": 811,
+              "TN": 1679
+            },
+            "sensitivity": 0.67442794058611,
+            "specificity": 0.6742971887550201,
+            "ppv_precision": 0.67442794058611,
+            "npv": 0.6742971887550201,
+            "accuracy": 0.6743625777956234,
+            "odds_ratio": 4.288626940602474,
+            "odds_ratio_95_ci": [
+              3.8092813234394405,
+              4.828291605161551
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7048004140205946,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.23588800430297852,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1727,
+              "FP": 764,
+              "FN": 764,
+              "TN": 1726
+            },
+            "sensitivity": 0.6932958651144119,
+            "specificity": 0.6931726907630522,
+            "ppv_precision": 0.6932958651144119,
+            "npv": 0.6931726907630522,
+            "accuracy": 0.693234290303152,
+            "odds_ratio": 5.106771333022669,
+            "odds_ratio_95_ci": [
+              4.527290293824072,
+              5.76042439411453
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7549697787537142,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.32682480430716654,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1780,
+              "FP": 711,
+              "FN": 711,
+              "TN": 1779
+            },
+            "sensitivity": 0.7145724608590928,
+            "specificity": 0.7144578313253012,
+            "ppv_precision": 0.7145724608590928,
+            "npv": 0.7144578313253012,
+            "accuracy": 0.7145151575988757,
+            "odds_ratio": 6.264072115698458,
+            "odds_ratio_95_ci": [
+              5.539208311617487,
+              7.083791990341849
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7844785807219242,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 74.58267716963262,
+          "df_num": 9,
+          "df_denom": 4969,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.09093680000418802,
+        "delta_auc": 0.02950880196821004,
+        "payoff_2x2": {
+          "A_SS": -1.0093936508187773,
+          "A_SR": 2.6889705076063075,
+          "A_RS": 1.9573798293052684,
+          "A_RR": -1.970352661665687
+        }
+      },
+      "cut_1000": {
+        "n_spots": 4963,
+        "model1_env": {
+          "r2": 0.16312694549560547,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1675,
+              "FP": 807,
+              "FN": 807,
+              "TN": 1674
+            },
+            "sensitivity": 0.6748589846897664,
+            "specificity": 0.6747279322853688,
+            "ppv_precision": 0.6748589846897664,
+            "npv": 0.6747279322853688,
+            "accuracy": 0.6747934716905097,
+            "odds_ratio": 4.3054960545044985,
+            "odds_ratio_95_ci": [
+              3.8232882109190545,
+              4.8485218096853195
+            ],
+            "fisher_exact_p_value": 5.078379047212127e-12,
+            "roc_auc": 0.7052892880330479,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.2378026247024536,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1721,
+              "FP": 761,
+              "FN": 761,
+              "TN": 1720
+            },
+            "sensitivity": 0.693392425463336,
+            "specificity": 0.6932688432083837,
+            "ppv_precision": 0.693392425463336,
+            "npv": 0.6932688432083837,
+            "accuracy": 0.693330646786218,
+            "odds_ratio": 5.111401589650522,
+            "odds_ratio_95_ci": [
+              4.5303585401608935,
+              5.766966561051482
+            ],
+            "fisher_exact_p_value": 5.078379047212127e-12,
+            "roc_auc": 0.7545156241423537,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.3275924886487689,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1771,
+              "FP": 711,
+              "FN": 711,
+              "TN": 1770
+            },
+            "sensitivity": 0.7135374697824335,
+            "specificity": 0.713422007255139,
+            "ppv_precision": 0.7135374697824335,
+            "npv": 0.713422007255139,
+            "accuracy": 0.7134797501511183,
+            "odds_ratio": 6.200869993531426,
+            "odds_ratio_95_ci": [
+              5.482830692241486,
+              7.012944742409875
+            ],
+            "fisher_exact_p_value": 5.078379047212127e-12,
+            "roc_auc": 0.783395871475754,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 73.4590506235708,
+          "df_num": 9,
+          "df_denom": 4951,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.08978986394631527,
+        "delta_auc": 0.028880247333400222,
+        "payoff_2x2": {
+          "A_SS": -1.0310001931622905,
+          "A_SR": 2.7685343843023302,
+          "A_RS": 1.8824146200388001,
+          "A_RR": -1.9688407263548153
+        }
+      }
+    },
+    "topology_sensitivity": {
+      "Delaunay (Contact)": {
+        "n_spots": 4981,
+        "model1_env": {
+          "r2": 0.16075140237808228,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1680,
+              "FP": 811,
+              "FN": 811,
+              "TN": 1679
+            },
+            "sensitivity": 0.67442794058611,
+            "specificity": 0.6742971887550201,
+            "ppv_precision": 0.67442794058611,
+            "npv": 0.6742971887550201,
+            "accuracy": 0.6743625777956234,
+            "odds_ratio": 4.288626940602474,
+            "odds_ratio_95_ci": [
+              3.8092813234394405,
+              4.828291605161551
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7048004140205946,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.23588800430297852,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1727,
+              "FP": 764,
+              "FN": 764,
+              "TN": 1726
+            },
+            "sensitivity": 0.6932958651144119,
+            "specificity": 0.6931726907630522,
+            "ppv_precision": 0.6932958651144119,
+            "npv": 0.6931726907630522,
+            "accuracy": 0.693234290303152,
+            "odds_ratio": 5.106771333022669,
+            "odds_ratio_95_ci": [
+              4.527290293824072,
+              5.76042439411453
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7549697787537142,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.32682480430716654,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1780,
+              "FP": 711,
+              "FN": 711,
+              "TN": 1779
+            },
+            "sensitivity": 0.7145724608590928,
+            "specificity": 0.7144578313253012,
+            "ppv_precision": 0.7145724608590928,
+            "npv": 0.7144578313253012,
+            "accuracy": 0.7145151575988757,
+            "odds_ratio": 6.264072115698458,
+            "odds_ratio_95_ci": [
+              5.539208311617487,
+              7.083791990341849
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7844785807219242,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 74.58267716963262,
+          "df_num": 9,
+          "df_denom": 4969,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.09093680000418802,
+        "delta_auc": 0.02950880196821004,
+        "payoff_2x2": {
+          "A_SS": -1.0093936508187773,
+          "A_SR": 2.6889705076063075,
+          "A_RS": 1.9573798293052684,
+          "A_RR": -1.970352661665687
+        }
+      },
+      "k-NN (k=6)": {
+        "n_spots": 4981,
+        "model1_env": {
+          "r2": 0.16075140237808228,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1680,
+              "FP": 811,
+              "FN": 811,
+              "TN": 1679
+            },
+            "sensitivity": 0.67442794058611,
+            "specificity": 0.6742971887550201,
+            "ppv_precision": 0.67442794058611,
+            "npv": 0.6742971887550201,
+            "accuracy": 0.6743625777956234,
+            "odds_ratio": 4.288626940602474,
+            "odds_ratio_95_ci": [
+              3.8092813234394405,
+              4.828291605161551
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7048004140205946,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.23588800430297852,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1727,
+              "FP": 764,
+              "FN": 764,
+              "TN": 1726
+            },
+            "sensitivity": 0.6932958651144119,
+            "specificity": 0.6931726907630522,
+            "ppv_precision": 0.6932958651144119,
+            "npv": 0.6931726907630522,
+            "accuracy": 0.693234290303152,
+            "odds_ratio": 5.106771333022669,
+            "odds_ratio_95_ci": [
+              4.527290293824072,
+              5.76042439411453
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7549697787537142,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.32546968051164527,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1779,
+              "FP": 712,
+              "FN": 712,
+              "TN": 1778
+            },
+            "sensitivity": 0.7141710156563629,
+            "specificity": 0.7140562248995984,
+            "ppv_precision": 0.7141710156563629,
+            "npv": 0.7140562248995984,
+            "accuracy": 0.7141136318008432,
+            "odds_ratio": 6.239470237343769,
+            "odds_ratio_95_ci": [
+              5.517739377647747,
+              7.055604873330442
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7837074512421424,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 73.32365642517036,
+          "df_num": 9,
+          "df_denom": 4969,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.08958167620866675,
+        "delta_auc": 0.02873767248842818,
+        "payoff_2x2": {
+          "A_SS": -1.0415242507664482,
+          "A_SR": 2.745420671329029,
+          "A_RS": 1.8992915658903704,
+          "A_RR": -1.9179391407087343
+        }
+      },
+      "k-NN (k=12)": {
+        "n_spots": 4981,
+        "model1_env": {
+          "r2": 0.16075140237808228,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1680,
+              "FP": 811,
+              "FN": 811,
+              "TN": 1679
+            },
+            "sensitivity": 0.67442794058611,
+            "specificity": 0.6742971887550201,
+            "ppv_precision": 0.67442794058611,
+            "npv": 0.6742971887550201,
+            "accuracy": 0.6743625777956234,
+            "odds_ratio": 4.288626940602474,
+            "odds_ratio_95_ci": [
+              3.8092813234394405,
+              4.828291605161551
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7048004140205946,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.23588800430297852,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1727,
+              "FP": 764,
+              "FN": 764,
+              "TN": 1726
+            },
+            "sensitivity": 0.6932958651144119,
+            "specificity": 0.6931726907630522,
+            "ppv_precision": 0.6932958651144119,
+            "npv": 0.6931726907630522,
+            "accuracy": 0.693234290303152,
+            "odds_ratio": 5.106771333022669,
+            "odds_ratio_95_ci": [
+              4.527290293824072,
+              5.76042439411453
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7549697787537142,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.3294877957731006,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1783,
+              "FP": 708,
+              "FN": 708,
+              "TN": 1782
+            },
+            "sensitivity": 0.7157767964672822,
+            "specificity": 0.7156626506024096,
+            "ppv_precision": 0.7157767964672822,
+            "npv": 0.7156626506024096,
+            "accuracy": 0.7157197349929733,
+            "odds_ratio": 6.338588049411089,
+            "odds_ratio_95_ci": [
+              5.604224183422374,
+              7.1691811649835655
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7880419308708136,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 77.07164038227052,
+          "df_num": 9,
+          "df_denom": 4969,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.0935997914701221,
+        "delta_auc": 0.03307215211709946,
+        "payoff_2x2": {
+          "A_SS": -1.1507758659666179,
+          "A_SR": 2.9205950330424924,
+          "A_RS": 1.9820808054075574,
+          "A_RR": -2.003518604350502
+        }
+      },
+      "k-NN (k=18)": {
+        "n_spots": 4981,
+        "model1_env": {
+          "r2": 0.16075140237808228,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1680,
+              "FP": 811,
+              "FN": 811,
+              "TN": 1679
+            },
+            "sensitivity": 0.67442794058611,
+            "specificity": 0.6742971887550201,
+            "ppv_precision": 0.67442794058611,
+            "npv": 0.6742971887550201,
+            "accuracy": 0.6743625777956234,
+            "odds_ratio": 4.288626940602474,
+            "odds_ratio_95_ci": [
+              3.8092813234394405,
+              4.828291605161551
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7048004140205946,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.23588800430297852,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1727,
+              "FP": 764,
+              "FN": 764,
+              "TN": 1726
+            },
+            "sensitivity": 0.6932958651144119,
+            "specificity": 0.6931726907630522,
+            "ppv_precision": 0.6932958651144119,
+            "npv": 0.6931726907630522,
+            "accuracy": 0.693234290303152,
+            "odds_ratio": 5.106771333022669,
+            "odds_ratio_95_ci": [
+              4.527290293824072,
+              5.76042439411453
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7549697787537142,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.3306775104494736,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1791,
+              "FP": 700,
+              "FN": 700,
+              "TN": 1790
+            },
+            "sensitivity": 0.7189883580891209,
+            "specificity": 0.7188755020080321,
+            "ppv_precision": 0.7189883580891209,
+            "npv": 0.7188755020080321,
+            "accuracy": 0.7189319413772335,
+            "odds_ratio": 6.542632653061225,
+            "odds_ratio_95_ci": [
+              5.7821729532704556,
+              7.403106475514787
+            ],
+            "fisher_exact_p_value": 4.5404319806859775e-12,
+            "roc_auc": 0.7888432090465435,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 78.19000703699787,
+          "df_num": 9,
+          "df_denom": 4969,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.09478950614649506,
+        "delta_auc": 0.0338734302928293,
+        "payoff_2x2": {
+          "A_SS": -1.2256528527603041,
+          "A_SR": 3.110120524276068,
+          "A_RS": 2.015237504170709,
+          "A_RR": -2.1451753192058547
+        }
+      }
+    }
+  },
+  "melanoma": {
+    "cancer_key": "melanoma",
+    "short_name": "Melanoma_SKCM",
+    "ablation": {
+      "n_spots": 3458,
+      "model1_env": {
+        "r2": 0.1022539734840393,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1128,
+            "FP": 601,
+            "FN": 601,
+            "TN": 1128
+          },
+          "sensitivity": 0.6524002313475997,
+          "specificity": 0.6524002313475997,
+          "ppv_precision": 0.6524002313475997,
+          "npv": 0.6524002313475997,
+          "accuracy": 0.6524002313475997,
+          "odds_ratio": 3.522648054684234,
+          "odds_ratio_95_ci": [
+            3.0624936945582606,
+            4.051942813537947
+          ],
+          "fisher_exact_p_value": 3.754298556902551e-12,
+          "roc_auc": 0.6737768030879352,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "model2_intrinsic": {
+        "r2": 0.3248317241668701,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1358,
+            "FP": 371,
+            "FN": 371,
+            "TN": 1358
+          },
+          "sensitivity": 0.7854251012145749,
+          "specificity": 0.7854251012145749,
+          "ppv_precision": 0.7854251012145749,
+          "npv": 0.7854251012145749,
+          "accuracy": 0.7854251012145749,
+          "odds_ratio": 13.398362406550374,
+          "odds_ratio_95_ci": [
+            11.390193822998357,
+            15.760584759742608
+          ],
+          "fisher_exact_p_value": 3.754298556902551e-12,
+          "roc_auc": 0.8215964121720415,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "model3_game": {
+        "r2": 0.36780596026177714,
+        "diagnostic": {
+          "contingency_table": {
+            "TP": 1386,
+            "FP": 343,
+            "FN": 343,
+            "TN": 1386
+          },
+          "sensitivity": 0.8016194331983806,
+          "specificity": 0.8016194331983806,
+          "ppv_precision": 0.8016194331983806,
+          "npv": 0.8016194331983806,
+          "accuracy": 0.8016194331983806,
+          "odds_ratio": 16.328196584756352,
+          "odds_ratio_95_ci": [
+            13.814663044714164,
+            19.29905947380025
+          ],
+          "fisher_exact_p_value": 3.754298556902551e-12,
+          "roc_auc": 0.8322007358566368,
+          "is_statistically_significant": true,
+          "is_asymmetric_signal": true
+        }
+      },
+      "incremental_f_test": {
+        "f_statistic": 26.02739277041744,
+        "df_num": 9,
+        "df_denom": 3446,
+        "p_value": 1.1102230246251565e-16
+      },
+      "delta_r2": 0.042974236094907026,
+      "delta_auc": 0.010604323684595296,
+      "payoff_2x2": {
+        "A_SS": 1.0193809082037781,
+        "A_SR": -1.6961006150467932,
+        "A_RS": -0.4666457600593479,
+        "A_RR": -0.034282241377929124
+      }
+    },
+    "qc_sensitivity": {
+      "cut_0": {
+        "n_spots": 3458,
+        "model1_env": {
+          "r2": 0.1022539734840393,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1128,
+              "FP": 601,
+              "FN": 601,
+              "TN": 1128
+            },
+            "sensitivity": 0.6524002313475997,
+            "specificity": 0.6524002313475997,
+            "ppv_precision": 0.6524002313475997,
+            "npv": 0.6524002313475997,
+            "accuracy": 0.6524002313475997,
+            "odds_ratio": 3.522648054684234,
+            "odds_ratio_95_ci": [
+              3.0624936945582606,
+              4.051942813537947
+            ],
+            "fisher_exact_p_value": 3.754298556902551e-12,
+            "roc_auc": 0.6737768030879352,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.3248317241668701,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1358,
+              "FP": 371,
+              "FN": 371,
+              "TN": 1358
+            },
+            "sensitivity": 0.7854251012145749,
+            "specificity": 0.7854251012145749,
+            "ppv_precision": 0.7854251012145749,
+            "npv": 0.7854251012145749,
+            "accuracy": 0.7854251012145749,
+            "odds_ratio": 13.398362406550374,
+            "odds_ratio_95_ci": [
+              11.390193822998357,
+              15.760584759742608
+            ],
+            "fisher_exact_p_value": 3.754298556902551e-12,
+            "roc_auc": 0.8215964121720415,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.36780596026177714,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1386,
+              "FP": 343,
+              "FN": 343,
+              "TN": 1386
+            },
+            "sensitivity": 0.8016194331983806,
+            "specificity": 0.8016194331983806,
+            "ppv_precision": 0.8016194331983806,
+            "npv": 0.8016194331983806,
+            "accuracy": 0.8016194331983806,
+            "odds_ratio": 16.328196584756352,
+            "odds_ratio_95_ci": [
+              13.814663044714164,
+              19.29905947380025
+            ],
+            "fisher_exact_p_value": 3.754298556902551e-12,
+            "roc_auc": 0.8322007358566368,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 26.02739277041744,
+          "df_num": 9,
+          "df_denom": 3446,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.042974236094907026,
+        "delta_auc": 0.010604323684595296,
+        "payoff_2x2": {
+          "A_SS": 1.0193809082037781,
+          "A_SR": -1.6961006150467932,
+          "A_RS": -0.4666457600593479,
+          "A_RR": -0.034282241377929124
+        }
+      },
+      "cut_500": {
+        "n_spots": 3379,
+        "model1_env": {
+          "r2": 0.09978502988815308,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1088,
+              "FP": 602,
+              "FN": 602,
+              "TN": 1087
+            },
+            "sensitivity": 0.6437869822485207,
+            "specificity": 0.6435760805210183,
+            "ppv_precision": 0.6437869822485207,
+            "npv": 0.6435760805210183,
+            "accuracy": 0.643681562592483,
+            "odds_ratio": 3.2633635390337856,
+            "odds_ratio_95_ci": [
+              2.8347314035895876,
+              3.756807990488877
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.6660451722072162,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.32566362619400024,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1313,
+              "FP": 377,
+              "FN": 377,
+              "TN": 1312
+            },
+            "sensitivity": 0.7769230769230769,
+            "specificity": 0.7767910005920663,
+            "ppv_precision": 0.7769230769230769,
+            "npv": 0.7767910005920663,
+            "accuracy": 0.7768570583012726,
+            "odds_ratio": 12.12036952346108,
+            "odds_ratio_95_ci": [
+              10.307989110025579,
+              14.251407895102025
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8131789056232286,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.36796234493410473,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1335,
+              "FP": 355,
+              "FN": 355,
+              "TN": 1334
+            },
+            "sensitivity": 0.7899408284023669,
+            "specificity": 0.7898164594434577,
+            "ppv_precision": 0.7899408284023669,
+            "npv": 0.7898164594434577,
+            "accuracy": 0.789878662326132,
+            "odds_ratio": 14.131243800833168,
+            "odds_ratio_95_ci": [
+              11.975444014018,
+              16.675127128884235
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8222242074544301,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 25.037144307842226,
+          "df_num": 9,
+          "df_denom": 3367,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.04229871874010449,
+        "delta_auc": 0.009045301831201558,
+        "payoff_2x2": {
+          "A_SS": 0.9801375649728389,
+          "A_SR": -1.6892811266409027,
+          "A_RS": -0.309216450996266,
+          "A_RR": -0.3264222338977043
+        }
+      },
+      "cut_1000": {
+        "n_spots": 3157,
+        "model1_env": {
+          "r2": 0.09337550401687622,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 981,
+              "FP": 598,
+              "FN": 598,
+              "TN": 980
+            },
+            "sensitivity": 0.6212792906903103,
+            "specificity": 0.6210392902408112,
+            "ppv_precision": 0.6212792906903103,
+            "npv": 0.6210392902408112,
+            "accuracy": 0.6211593284764017,
+            "odds_ratio": 2.688392747284706,
+            "odds_ratio_95_ci": [
+              2.3282656168217093,
+              3.104222950953136
+            ],
+            "fisher_exact_p_value": 3.687427123741488e-12,
+            "roc_auc": 0.6444810732755888,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": false
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.32887840270996094,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1180,
+              "FP": 399,
+              "FN": 399,
+              "TN": 1179
+            },
+            "sensitivity": 0.747308423052565,
+            "specificity": 0.747148288973384,
+            "ppv_precision": 0.747308423052565,
+            "npv": 0.747148288973384,
+            "accuracy": 0.7472283813747228,
+            "odds_ratio": 8.73876420374244,
+            "odds_ratio_95_ci": [
+              7.442733139373921,
+              10.26047802313575
+            ],
+            "fisher_exact_p_value": 3.687427123741488e-12,
+            "roc_auc": 0.7851000657392535,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.36653466617555097,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1190,
+              "FP": 389,
+              "FN": 389,
+              "TN": 1189
+            },
+            "sensitivity": 0.7536415452818239,
+            "specificity": 0.7534854245880862,
+            "ppv_precision": 0.7536415452818239,
+            "npv": 0.7534854245880862,
+            "accuracy": 0.7535635096610707,
+            "odds_ratio": 9.350387586653538,
+            "odds_ratio_95_ci": [
+              7.952781248837972,
+              10.99360654908237
+            ],
+            "fisher_exact_p_value": 3.687427123741488e-12,
+            "roc_auc": 0.7889625478897218,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 20.772695153615782,
+          "df_num": 9,
+          "df_denom": 3145,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.037656263465590034,
+        "delta_auc": 0.0038624821504682494,
+        "payoff_2x2": {
+          "A_SS": 0.8337907378773581,
+          "A_SR": -1.4587891938860058,
+          "A_RS": -0.3301508417400659,
+          "A_RR": -0.5702179791437411
+        }
+      }
+    },
+    "topology_sensitivity": {
+      "Delaunay (Contact)": {
+        "n_spots": 3379,
+        "model1_env": {
+          "r2": 0.09978502988815308,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1088,
+              "FP": 602,
+              "FN": 602,
+              "TN": 1087
+            },
+            "sensitivity": 0.6437869822485207,
+            "specificity": 0.6435760805210183,
+            "ppv_precision": 0.6437869822485207,
+            "npv": 0.6435760805210183,
+            "accuracy": 0.643681562592483,
+            "odds_ratio": 3.2633635390337856,
+            "odds_ratio_95_ci": [
+              2.8347314035895876,
+              3.756807990488877
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.6660451722072162,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.32566362619400024,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1313,
+              "FP": 377,
+              "FN": 377,
+              "TN": 1312
+            },
+            "sensitivity": 0.7769230769230769,
+            "specificity": 0.7767910005920663,
+            "ppv_precision": 0.7769230769230769,
+            "npv": 0.7767910005920663,
+            "accuracy": 0.7768570583012726,
+            "odds_ratio": 12.12036952346108,
+            "odds_ratio_95_ci": [
+              10.307989110025579,
+              14.251407895102025
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8131789056232286,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.36796234493410473,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1335,
+              "FP": 355,
+              "FN": 355,
+              "TN": 1334
+            },
+            "sensitivity": 0.7899408284023669,
+            "specificity": 0.7898164594434577,
+            "ppv_precision": 0.7899408284023669,
+            "npv": 0.7898164594434577,
+            "accuracy": 0.789878662326132,
+            "odds_ratio": 14.131243800833168,
+            "odds_ratio_95_ci": [
+              11.975444014018,
+              16.675127128884235
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8222242074544301,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 25.037144307842226,
+          "df_num": 9,
+          "df_denom": 3367,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.04229871874010449,
+        "delta_auc": 0.009045301831201558,
+        "payoff_2x2": {
+          "A_SS": 0.9801375649728389,
+          "A_SR": -1.6892811266409027,
+          "A_RS": -0.309216450996266,
+          "A_RR": -0.3264222338977043
+        }
+      },
+      "k-NN (k=6)": {
+        "n_spots": 3379,
+        "model1_env": {
+          "r2": 0.09978502988815308,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1088,
+              "FP": 602,
+              "FN": 602,
+              "TN": 1087
+            },
+            "sensitivity": 0.6437869822485207,
+            "specificity": 0.6435760805210183,
+            "ppv_precision": 0.6437869822485207,
+            "npv": 0.6435760805210183,
+            "accuracy": 0.643681562592483,
+            "odds_ratio": 3.2633635390337856,
+            "odds_ratio_95_ci": [
+              2.8347314035895876,
+              3.756807990488877
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.6660451722072162,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.32566362619400024,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1313,
+              "FP": 377,
+              "FN": 377,
+              "TN": 1312
+            },
+            "sensitivity": 0.7769230769230769,
+            "specificity": 0.7767910005920663,
+            "ppv_precision": 0.7769230769230769,
+            "npv": 0.7767910005920663,
+            "accuracy": 0.7768570583012726,
+            "odds_ratio": 12.12036952346108,
+            "odds_ratio_95_ci": [
+              10.307989110025579,
+              14.251407895102025
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8131789056232286,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.37191990355312154,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1335,
+              "FP": 355,
+              "FN": 355,
+              "TN": 1334
+            },
+            "sensitivity": 0.7899408284023669,
+            "specificity": 0.7898164594434577,
+            "ppv_precision": 0.7899408284023669,
+            "npv": 0.7898164594434577,
+            "accuracy": 0.789878662326132,
+            "odds_ratio": 14.131243800833168,
+            "odds_ratio_95_ci": [
+              11.975444014018,
+              16.675127128884235
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8226284941546589,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 27.552193944719875,
+          "df_num": 9,
+          "df_denom": 3367,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.0462562773591213,
+        "delta_auc": 0.009449588531430297,
+        "payoff_2x2": {
+          "A_SS": 0.9780710856666827,
+          "A_SR": -1.626007141183255,
+          "A_RS": -0.28344790705184103,
+          "A_RR": -0.40396120784733774
+        }
+      },
+      "k-NN (k=12)": {
+        "n_spots": 3379,
+        "model1_env": {
+          "r2": 0.09978502988815308,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1088,
+              "FP": 602,
+              "FN": 602,
+              "TN": 1087
+            },
+            "sensitivity": 0.6437869822485207,
+            "specificity": 0.6435760805210183,
+            "ppv_precision": 0.6437869822485207,
+            "npv": 0.6435760805210183,
+            "accuracy": 0.643681562592483,
+            "odds_ratio": 3.2633635390337856,
+            "odds_ratio_95_ci": [
+              2.8347314035895876,
+              3.756807990488877
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.6660451722072162,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.32566362619400024,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1313,
+              "FP": 377,
+              "FN": 377,
+              "TN": 1312
+            },
+            "sensitivity": 0.7769230769230769,
+            "specificity": 0.7767910005920663,
+            "ppv_precision": 0.7769230769230769,
+            "npv": 0.7767910005920663,
+            "accuracy": 0.7768570583012726,
+            "odds_ratio": 12.12036952346108,
+            "odds_ratio_95_ci": [
+              10.307989110025579,
+              14.251407895102025
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8131789056232286,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.3753798554392205,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1340,
+              "FP": 350,
+              "FN": 350,
+              "TN": 1339
+            },
+            "sensitivity": 0.7928994082840237,
+            "specificity": 0.7927767910005921,
+            "ppv_precision": 0.7928994082840237,
+            "npv": 0.7927767910005921,
+            "accuracy": 0.7928381177863273,
+            "odds_ratio": 14.647020408163264,
+            "odds_ratio_95_ci": [
+              12.401782319814574,
+              17.29873991534136
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.821709565199113,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 29.777123323009274,
+          "df_num": 9,
+          "df_denom": 3367,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.049716229245220234,
+        "delta_auc": 0.008530659575884392,
+        "payoff_2x2": {
+          "A_SS": 0.9958182228001492,
+          "A_SR": -1.8812836042890555,
+          "A_RS": -0.036274402010687976,
+          "A_RR": -0.6240875240992843
+        }
+      },
+      "k-NN (k=18)": {
+        "n_spots": 3379,
+        "model1_env": {
+          "r2": 0.09978502988815308,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1088,
+              "FP": 602,
+              "FN": 602,
+              "TN": 1087
+            },
+            "sensitivity": 0.6437869822485207,
+            "specificity": 0.6435760805210183,
+            "ppv_precision": 0.6437869822485207,
+            "npv": 0.6435760805210183,
+            "accuracy": 0.643681562592483,
+            "odds_ratio": 3.2633635390337856,
+            "odds_ratio_95_ci": [
+              2.8347314035895876,
+              3.756807990488877
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.6660451722072162,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model2_intrinsic": {
+          "r2": 0.32566362619400024,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1313,
+              "FP": 377,
+              "FN": 377,
+              "TN": 1312
+            },
+            "sensitivity": 0.7769230769230769,
+            "specificity": 0.7767910005920663,
+            "ppv_precision": 0.7769230769230769,
+            "npv": 0.7767910005920663,
+            "accuracy": 0.7768570583012726,
+            "odds_ratio": 12.12036952346108,
+            "odds_ratio_95_ci": [
+              10.307989110025579,
+              14.251407895102025
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8131789056232286,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "model3_game": {
+          "r2": 0.37603761661677837,
+          "diagnostic": {
+            "contingency_table": {
+              "TP": 1341,
+              "FP": 349,
+              "FN": 349,
+              "TN": 1340
+            },
+            "sensitivity": 0.7934911242603551,
+            "specificity": 0.7933688573120189,
+            "ppv_precision": 0.7934911242603551,
+            "npv": 0.7933688573120189,
+            "accuracy": 0.7934300088783663,
+            "odds_ratio": 14.753080844984853,
+            "odds_ratio_95_ci": [
+              12.489385771778046,
+              17.427069544963928
+            ],
+            "fisher_exact_p_value": 4.4333057691332375e-12,
+            "roc_auc": 0.8206953450975858,
+            "is_statistically_significant": true,
+            "is_asymmetric_signal": true
+          }
+        },
+        "incremental_f_test": {
+          "f_statistic": 30.20288937519126,
+          "df_num": 9,
+          "df_denom": 3367,
+          "p_value": 1.1102230246251565e-16
+        },
+        "delta_r2": 0.050373990422778125,
+        "delta_auc": 0.007516439474357206,
+        "payoff_2x2": {
+          "A_SS": 1.009846992781673,
+          "A_SR": -1.984296719427372,
+          "A_RS": -0.008215905662852439,
+          "A_RR": -0.6923126014072309
+        }
+      }
+    }
+  }
+}

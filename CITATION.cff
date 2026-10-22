@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, methodology, or assay in your clinical research, please cite it as below."
+title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy"
+version: 1.0.0
+date-released: 2026-10-22
+url: "https://github.com/lucacelebrano/spatial-game-assay"
+repository-code: "https://github.com/lucacelebrano/spatial-game-assay"
+license: GPL-3.0-or-later
+keywords:
+  - "spatial transcriptomics"
+  - "evolutionary game theory"
+  - "adaptive therapy"
+  - "mathematical oncology"
+  - "cancer evolutionary dynamics"
+  - "frequency-dependent selection"
+  - "Nash equilibrium"
+  - "10x Genomics Visium"
+authors:
+  - family-names: "Celebrano"
+    given-names: "Luca"
+    affiliation: "School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy"

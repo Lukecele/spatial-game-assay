@@ -1,0 +1,737 @@
+{
+  "lung": {
+    "cancer_key": "lung",
+    "short_name": "Lung_SCC",
+    "title": "Human Lung Squamous Cell Carcinoma",
+    "n_spots": 3858,
+    "total_umi_sum": 72655040.0,
+    "mean_umi_per_spot": 18832.306640625,
+    "r2_environmental": 0.1582152247428894,
+    "r2_game": 0.308615364826647,
+    "game_classification": "Stag Hunt (Bistabile / Coordinazione)",
+    "observed_tissue_frequencies": {
+      "mean_f_Sensitive": 0.3986304700374603,
+      "mean_f_Resistant": 0.29184696078300476,
+      "mean_f_Stroma": 0.3095225989818573,
+      "subgame_x0_Sensitive": 0.577325850555006,
+      "subgame_x0_Resistant": 0.422674149444994
+    },
+    "intrinsic_fitness": {
+      "b_Sensitive": 0.12980331610023912,
+      "b_Resistant": -0.26187758623709667,
+      "b_Stroma": -0.03878832386674683
+    },
+    "payoff_matrix_3x3": [
+      [
+        0.5467492438761171,
+        -0.07706676919484617,
+        -0.3401764037593085
+      ],
+      [
+        -0.04446551624540412,
+        0.07045322847399207,
+        -0.2880525202118249
+      ],
+      [
+        0.7089336947309759,
+        -0.44282545708654697,
+        -0.3052490257561557
+      ]
+    ],
+    "subgame_2x2": {
+      "A_SS": 0.5467492438761171,
+      "A_SR": -0.07706676919484617,
+      "A_RS": -0.04446551624540412,
+      "A_RR": 0.07045322847399207,
+      "nash_internal_x_Sensitive": 0.1996927802748682,
+      "nash_nature": "Unstable Separatrix (Tipping Point)"
+    },
+    "validation": {
+      "sample": "Lung_SCC",
+      "n_spots": 3858,
+      "morans_i": {
+        "w_raw": {
+          "I": 0.5754565115382949,
+          "E_I": -0.00025926886180969663,
+          "z_score": 62.56685771392411,
+          "p_value": 0.0,
+          "S0": 23148.0,
+          "S1": 45441.0,
+          "S2": 557378.0
+        },
+        "w_purified": {
+          "I": 0.45898881715723694,
+          "E_I": -0.00025926886180969663,
+          "z_score": 49.90953979648887,
+          "p_value": 0.0,
+          "S0": 23148.0,
+          "S1": 45441.0,
+          "S2": 557378.0
+        },
+        "residuals": {
+          "I": 0.2504280346168979,
+          "E_I": -0.00025926886180969663,
+          "z_score": 27.243854313910273,
+          "p_value": 0.0,
+          "S0": 23148.0,
+          "S1": 45441.0,
+          "S2": 557378.0
+        },
+        "attenuation_pct": 56.48184882860038
+      },
+      "permutation_test": {
+        "observed_r2": 0.308615364826647,
+        "perm_r2_mean": 0.2799286815191713,
+        "perm_r2_max": 0.28248596837230566,
+        "p_value_r2": 0.000999000999000999,
+        "coef_p_values_interaction_only": [
+          0.000999000999000999,
+          0.7692307692307693,
+          0.14785214785214784,
+          0.8351648351648352,
+          0.7792207792207793,
+          0.3176823176823177,
+          0.000999000999000999,
+          0.07792207792207792,
+          0.15884115884115885
+        ]
+      },
+      "spatial_block_cv": {
+        "overall_oof_r2": 0.26066792011260986,
+        "overall_oof_rmse": 0.2900154540860569,
+        "fold_metrics": [
+          {
+            "fold": 1,
+            "n_test_spots": 634,
+            "r2": 0.1595909965878184,
+            "rmse": 0.29058805664344783
+          },
+          {
+            "fold": 2,
+            "n_test_spots": 714,
+            "r2": 0.06610921135281644,
+            "rmse": 0.27939617952966117
+          },
+          {
+            "fold": 3,
+            "n_test_spots": 891,
+            "r2": 0.2380049194116708,
+            "rmse": 0.2845679530465253
+          },
+          {
+            "fold": 4,
+            "n_test_spots": 885,
+            "r2": 0.1580073143396511,
+            "rmse": 0.32153980285309713
+          },
+          {
+            "fold": 5,
+            "n_test_spots": 734,
+            "r2": 0.1641887720292745,
+            "rmse": 0.2650629455808653
+          }
+        ]
+      },
+      "bootstrap_parameters": [
+        {
+          "parameter": "b_T_Sens",
+          "estimate": 0.12980331610023912,
+          "ci_95_lower": 0.058515049737070265,
+          "ci_95_upper": 0.22667042128894516,
+          "std_error": 0.042558350769156046,
+          "p_value": 0.00228835167044239,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "b_T_Res",
+          "estimate": -0.26187758623709667,
+          "ci_95_lower": -0.34890118693929967,
+          "ci_95_upper": -0.19101094379402014,
+          "std_error": 0.03891573140963462,
+          "p_value": 1.7042145472601078e-11,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "b_Stroma",
+          "estimate": -0.03878832386674683,
+          "ci_95_lower": -0.1112812988036247,
+          "ci_95_upper": 0.044844177536169635,
+          "std_error": 0.038510278277920626,
+          "p_value": 0.31382904682575496,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "A_T_Sens_T_Sens",
+          "estimate": 0.5467492438761171,
+          "ci_95_lower": 0.18373892355951524,
+          "ci_95_upper": 0.8093369506412876,
+          "std_error": 0.15948447831098603,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Sens_T_Res",
+          "estimate": -0.07706676919484617,
+          "ci_95_lower": -1.0946847585678634,
+          "ci_95_upper": 0.8325945405481958,
+          "std_error": 0.4875172766330076,
+          "p_value": 0.7692307692307693,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Sens_Stroma",
+          "estimate": -0.3401764037593085,
+          "ci_95_lower": -1.3009336650268624,
+          "ci_95_upper": 0.7130879931891149,
+          "std_error": 0.5029647830270649,
+          "p_value": 0.14785214785214784,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_T_Sens",
+          "estimate": -0.04446551624540412,
+          "ci_95_lower": -0.6099379209075044,
+          "ci_95_upper": 0.4683215422980781,
+          "std_error": 0.2779017287103278,
+          "p_value": 0.8351648351648352,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_T_Res",
+          "estimate": 0.07045322847399207,
+          "ci_95_lower": -0.7109314608111401,
+          "ci_95_upper": 0.802034206621815,
+          "std_error": 0.3949674884088474,
+          "p_value": 0.7792207792207793,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_Stroma",
+          "estimate": -0.2880525202118249,
+          "ci_95_lower": -0.9045142829018386,
+          "ci_95_upper": 0.38552207736776817,
+          "std_error": 0.3343057999053384,
+          "p_value": 0.3176823176823177,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_T_Sens",
+          "estimate": 0.7089336947309759,
+          "ci_95_lower": 0.2336451076219343,
+          "ci_95_upper": 1.1909889599484982,
+          "std_error": 0.24571481396084394,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_T_Res",
+          "estimate": -0.44282545708654697,
+          "ci_95_lower": -1.3083056214746966,
+          "ci_95_upper": 0.46211500536316863,
+          "std_error": 0.44569854012717114,
+          "p_value": 0.07792207792207792,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_Stroma",
+          "estimate": -0.3052490257561557,
+          "ci_95_lower": -0.9435928748616895,
+          "ci_95_upper": 0.27403591800824145,
+          "std_error": 0.30774002574727793,
+          "p_value": 0.15884115884115885,
+          "p_source": "permutation"
+        }
+      ]
+    }
+  },
+  "breast": {
+    "cancer_key": "breast",
+    "short_name": "Breast_IDC",
+    "title": "Human Invasive Breast Carcinoma",
+    "n_spots": 4992,
+    "total_umi_sum": 115297808.0,
+    "mean_umi_per_spot": 23096.515625,
+    "r2_environmental": 0.16122090816497803,
+    "r2_game": 0.3229111584424649,
+    "game_classification": "Falco-Colomba (Coesistenza)",
+    "observed_tissue_frequencies": {
+      "mean_f_Sensitive": 0.2089722752571106,
+      "mean_f_Resistant": 0.34750238060951233,
+      "mean_f_Stroma": 0.4435253143310547,
+      "subgame_x0_Sensitive": 0.37552882787028047,
+      "subgame_x0_Resistant": 0.6244711721297196
+    },
+    "intrinsic_fitness": {
+      "b_Sensitive": 0.2598173820592035,
+      "b_Resistant": 0.19771791723610568,
+      "b_Stroma": 0.014071754105157699
+    },
+    "payoff_matrix_3x3": [
+      [
+        -0.995964212479927,
+        2.605760721681669,
+        -1.3496439012681534
+      ],
+      [
+        1.9905598194752971,
+        -1.969775265552968,
+        0.17725734514499303
+      ],
+      [
+        0.5771839308066158,
+        -0.3451720852043182,
+        -0.21755751170539123
+      ]
+    ],
+    "subgame_2x2": {
+      "A_SS": -0.995964212479927,
+      "A_SR": 2.605760721681669,
+      "A_RS": 1.9905598194752971,
+      "A_RR": -1.969775265552968,
+      "nash_internal_x_Sensitive": 0.6050647542631941,
+      "nash_nature": "Stable ESS (Coexistence Equilibrium)"
+    },
+    "validation": {
+      "sample": "Breast_IDC",
+      "n_spots": 4992,
+      "morans_i": {
+        "w_raw": {
+          "I": 0.6264881113106077,
+          "E_I": -0.0002003606491685033,
+          "z_score": 77.2257934122331,
+          "p_value": 0.0,
+          "S0": 29952.0,
+          "S1": 59151.0,
+          "S2": 720708.0
+        },
+        "w_purified": {
+          "I": 0.46992512491728805,
+          "E_I": -0.0002003606491685033,
+          "z_score": 57.93279316698716,
+          "p_value": 0.0,
+          "S0": 29952.0,
+          "S1": 59151.0,
+          "S2": 720708.0
+        },
+        "residuals": {
+          "I": 0.2201211408028449,
+          "E_I": -0.0002003606491685033,
+          "z_score": 27.1498575714957,
+          "p_value": 0.0,
+          "S0": 29952.0,
+          "S1": 59151.0,
+          "S2": 720708.0
+        },
+        "attenuation_pct": 64.86427486351603
+      },
+      "permutation_test": {
+        "observed_r2": 0.3229111584424649,
+        "perm_r2_mean": 0.2360902572085608,
+        "perm_r2_max": 0.23980248798281645,
+        "p_value_r2": 0.000999000999000999,
+        "coef_p_values_interaction_only": [
+          0.000999000999000999,
+          0.000999000999000999,
+          0.000999000999000999,
+          0.000999000999000999,
+          0.000999000999000999,
+          0.3916083916083916,
+          0.01998001998001998,
+          0.07892107892107893,
+          0.0939060939060939
+        ]
+      },
+      "spatial_block_cv": {
+        "overall_oof_r2": 0.27022188901901245,
+        "overall_oof_rmse": 0.2419355065912318,
+        "fold_metrics": [
+          {
+            "fold": 1,
+            "n_test_spots": 849,
+            "r2": -0.009093055590457588,
+            "rmse": 0.25816726022098074
+          },
+          {
+            "fold": 2,
+            "n_test_spots": 1181,
+            "r2": 0.195685124822654,
+            "rmse": 0.23509282466318682
+          },
+          {
+            "fold": 3,
+            "n_test_spots": 1171,
+            "r2": 0.07086408507211828,
+            "rmse": 0.23339056877702305
+          },
+          {
+            "fold": 4,
+            "n_test_spots": 871,
+            "r2": 0.31325220879545945,
+            "rmse": 0.2397133584272097
+          },
+          {
+            "fold": 5,
+            "n_test_spots": 920,
+            "r2": -0.12604069011582641,
+            "rmse": 0.2478203096620218
+          }
+        ]
+      },
+      "bootstrap_parameters": [
+        {
+          "parameter": "b_T_Sens",
+          "estimate": 0.2598173820592035,
+          "ci_95_lower": 0.14843732830535109,
+          "ci_95_upper": 0.39216591239001014,
+          "std_error": 0.06123958946155652,
+          "p_value": 2.2090805479768605e-05,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "b_T_Res",
+          "estimate": 0.19771791723610568,
+          "ci_95_lower": 0.023951630021841152,
+          "ci_95_upper": 0.3253230654977476,
+          "std_error": 0.07908458714556985,
+          "p_value": 0.012416472066470119,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "b_Stroma",
+          "estimate": 0.014071754105157699,
+          "ci_95_lower": -0.06952396861681988,
+          "ci_95_upper": 0.11780946101569073,
+          "std_error": 0.04802918348897404,
+          "p_value": 0.7695348301222156,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "A_T_Sens_T_Sens",
+          "estimate": -0.995964212479927,
+          "ci_95_lower": -1.4798750474699727,
+          "ci_95_upper": -0.17245648875418645,
+          "std_error": 0.3445626945539003,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Sens_T_Res",
+          "estimate": 2.605760721681669,
+          "ci_95_lower": 1.3158768668859882,
+          "ci_95_upper": 3.8591284159244665,
+          "std_error": 0.658759768065949,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Sens_Stroma",
+          "estimate": -1.3496439012681534,
+          "ci_95_lower": -2.658524182694513,
+          "ci_95_upper": -0.20272199511500547,
+          "std_error": 0.6253028153099948,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_T_Sens",
+          "estimate": 1.9905598194752971,
+          "ci_95_lower": 0.9494113834287823,
+          "ci_95_upper": 2.6020267207344303,
+          "std_error": 0.4251261921783336,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_T_Res",
+          "estimate": -1.969775265552968,
+          "ci_95_lower": -2.6458291947393664,
+          "ci_95_upper": -0.876722446771062,
+          "std_error": 0.4526657206411545,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_Stroma",
+          "estimate": 0.17725734514499303,
+          "ci_95_lower": -0.4437084377618936,
+          "ci_95_upper": 0.688817237716759,
+          "std_error": 0.2815923345549484,
+          "p_value": 0.3916083916083916,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_T_Sens",
+          "estimate": 0.5771839308066158,
+          "ci_95_lower": 0.11521474703726045,
+          "ci_95_upper": 1.2140190336088763,
+          "std_error": 0.2811715216042565,
+          "p_value": 0.01998001998001998,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_T_Res",
+          "estimate": -0.3451720852043182,
+          "ci_95_lower": -0.9811868840090971,
+          "ci_95_upper": 0.17575523360174095,
+          "std_error": 0.28860198393826947,
+          "p_value": 0.07892107892107893,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_Stroma",
+          "estimate": -0.21755751170539123,
+          "ci_95_lower": -0.5456014643220913,
+          "ci_95_upper": 0.07104271027877287,
+          "std_error": 0.15930089249853277,
+          "p_value": 0.0939060939060939,
+          "p_source": "permutation"
+        }
+      ]
+    }
+  },
+  "melanoma": {
+    "cancer_key": "melanoma",
+    "short_name": "Melanoma_SKCM",
+    "title": "Human Cutaneous Malignant Melanoma",
+    "n_spots": 3458,
+    "total_umi_sum": 105698520.0,
+    "mean_umi_per_spot": 30566.373046875,
+    "r2_environmental": 0.1022539734840393,
+    "r2_game": 0.36780596026177714,
+    "game_classification": "Stag Hunt (Bistabile / Coordinazione)",
+    "observed_tissue_frequencies": {
+      "mean_f_Sensitive": 0.4307304620742798,
+      "mean_f_Resistant": 0.23484690487384796,
+      "mean_f_Stroma": 0.33442264795303345,
+      "subgame_x0_Sensitive": 0.6471531086600922,
+      "subgame_x0_Resistant": 0.35284689133990776
+    },
+    "intrinsic_fitness": {
+      "b_Sensitive": -0.0859605347962301,
+      "b_Resistant": -0.2332108630910754,
+      "b_Stroma": -0.06324527378482049
+    },
+    "payoff_matrix_3x3": [
+      [
+        1.0193809082037781,
+        -1.6961006150467932,
+        0.5907558197805333
+      ],
+      [
+        -0.4666457600593479,
+        -0.034282241377929124,
+        0.2677110466073128
+      ],
+      [
+        0.4513584107213303,
+        -0.3194271033478819,
+        -0.1952018799376478
+      ]
+    ],
+    "subgame_2x2": {
+      "A_SS": 1.0193809082037781,
+      "A_SR": -1.6961006150467932,
+      "A_RS": -0.4666457600593479,
+      "A_RR": -0.034282241377929124,
+      "nash_internal_x_Sensitive": 0.52792254749901,
+      "nash_nature": "Unstable Separatrix (Tipping Point)"
+    },
+    "validation": {
+      "sample": "Melanoma_SKCM",
+      "n_spots": 3458,
+      "morans_i": {
+        "w_raw": {
+          "I": 0.6395071730934206,
+          "E_I": -0.0002892681515765114,
+          "z_score": 66.21519893921597,
+          "p_value": 0.0,
+          "S0": 20748.0,
+          "S1": 40263.0,
+          "S2": 500474.0
+        },
+        "w_purified": {
+          "I": 0.5244186473237892,
+          "E_I": -0.0002892681515765114,
+          "z_score": 54.3042079767966,
+          "p_value": 0.0,
+          "S0": 20748.0,
+          "S1": 40263.0,
+          "S2": 500474.0
+        },
+        "residuals": {
+          "I": 0.25645374478016647,
+          "E_I": -0.0002892681515765114,
+          "z_score": 26.57140393661418,
+          "p_value": 0.0,
+          "S0": 20748.0,
+          "S1": 40263.0,
+          "S2": 500474.0
+        },
+        "attenuation_pct": 59.89822232334787
+      },
+      "permutation_test": {
+        "observed_r2": 0.36780596026177714,
+        "perm_r2_mean": 0.32640741537699547,
+        "perm_r2_max": 0.3293223407966197,
+        "p_value_r2": 0.000999000999000999,
+        "coef_p_values_interaction_only": [
+          0.000999000999000999,
+          0.000999000999000999,
+          0.000999000999000999,
+          0.06493506493506493,
+          0.906093906093906,
+          0.16083916083916083,
+          0.000999000999000999,
+          0.1048951048951049,
+          0.003996003996003996
+        ]
+      },
+      "spatial_block_cv": {
+        "overall_oof_r2": 0.3341801166534424,
+        "overall_oof_rmse": 0.21267704355406686,
+        "fold_metrics": [
+          {
+            "fold": 1,
+            "n_test_spots": 627,
+            "r2": 0.03802547784200816,
+            "rmse": 0.21037512836326888
+          },
+          {
+            "fold": 2,
+            "n_test_spots": 771,
+            "r2": 0.40912477587766005,
+            "rmse": 0.17079418388392764
+          },
+          {
+            "fold": 3,
+            "n_test_spots": 662,
+            "r2": 0.11126402622915432,
+            "rmse": 0.23931842845815507
+          },
+          {
+            "fold": 4,
+            "n_test_spots": 811,
+            "r2": -0.05385726314455486,
+            "rmse": 0.21587850615393628
+          },
+          {
+            "fold": 5,
+            "n_test_spots": 587,
+            "r2": -0.10597496770073067,
+            "rmse": 0.2277961629149798
+          }
+        ]
+      },
+      "bootstrap_parameters": [
+        {
+          "parameter": "b_T_Sens",
+          "estimate": -0.0859605347962301,
+          "ci_95_lower": -0.200271491410952,
+          "ci_95_upper": 0.10866268203619342,
+          "std_error": 0.07909963182848556,
+          "p_value": 0.27715284364372117,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "b_T_Res",
+          "estimate": -0.2332108630910754,
+          "ci_95_lower": -0.3949543637634953,
+          "ci_95_upper": -0.13705428643118864,
+          "std_error": 0.06552572641548951,
+          "p_value": 0.00037216566593656353,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "b_Stroma",
+          "estimate": -0.06324527378482049,
+          "ci_95_lower": -0.1188271110208586,
+          "ci_95_upper": 0.011299502100782741,
+          "std_error": 0.03289905841197407,
+          "p_value": 0.05455497210316551,
+          "p_source": "bootstrap-z"
+        },
+        {
+          "parameter": "A_T_Sens_T_Sens",
+          "estimate": 1.0193809082037781,
+          "ci_95_lower": 0.44818336168537143,
+          "ci_95_upper": 1.5197853222486097,
+          "std_error": 0.27619667699353073,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Sens_T_Res",
+          "estimate": -1.6961006150467932,
+          "ci_95_lower": -2.7571253966900486,
+          "ci_95_upper": -0.4016945559546129,
+          "std_error": 0.5932645604026766,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Sens_Stroma",
+          "estimate": 0.5907558197805333,
+          "ci_95_lower": -0.18202920470684153,
+          "ci_95_upper": 1.294085229724982,
+          "std_error": 0.3610356052020881,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_T_Sens",
+          "estimate": -0.4666457600593479,
+          "ci_95_lower": -1.2140641763987743,
+          "ci_95_upper": 0.336868211446619,
+          "std_error": 0.40121571088780317,
+          "p_value": 0.06493506493506493,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_T_Res",
+          "estimate": -0.034282241377929124,
+          "ci_95_lower": -1.3075367122723869,
+          "ci_95_upper": 0.9197915510525344,
+          "std_error": 0.5604763823774342,
+          "p_value": 0.906093906093906,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_T_Res_Stroma",
+          "estimate": 0.2677110466073128,
+          "ci_95_lower": -0.2358096378043991,
+          "ci_95_upper": 0.8934072270495353,
+          "std_error": 0.28791538562040314,
+          "p_value": 0.16083916083916083,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_T_Sens",
+          "estimate": 0.4513584107213303,
+          "ci_95_lower": 0.12688418558957887,
+          "ci_95_upper": 0.8166926357961364,
+          "std_error": 0.1802639084453367,
+          "p_value": 0.000999000999000999,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_T_Res",
+          "estimate": -0.3194271033478819,
+          "ci_95_lower": -0.6938690065424746,
+          "ci_95_upper": 0.11743882301221316,
+          "std_error": 0.20813405771345955,
+          "p_value": 0.1048951048951049,
+          "p_source": "permutation"
+        },
+        {
+          "parameter": "A_Stroma_Stroma",
+          "estimate": -0.1952018799376478,
+          "ci_95_lower": -0.43949755767730114,
+          "ci_95_upper": -0.036909675193513215,
+          "std_error": 0.09957212101262541,
+          "p_value": 0.003996003996003996,
+          "p_source": "permutation"
+        }
+      ]
+    }
+  }
+}
