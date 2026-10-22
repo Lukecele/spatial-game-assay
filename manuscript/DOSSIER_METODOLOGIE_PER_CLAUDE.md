@@ -43,11 +43,10 @@ Nelle biopsie cliniche naive non trattate, i cloni non possono essere definiti d
 - In **Lung SCC**, *EGFR* fa parte del programma epiteliale carcinomatoso principale ($T_S$).
 - Nel **Melanoma**, le cellule melanocitiche differenziate sono *MITF$^+$/MLANA$^+$, EGFR$^{\text{low}}$*, mentre la sovraespressione di *EGFR* è il canonico meccanismo non mutazionale di tolleranza e resistenza adattiva da bypass recettoriale sotto inibitori di BRAF/MEK (Prahallad et al., *Nature* 2012; Kemper et al., *Cancer Cell* 2014; Sun et al., *Nature* 2014).
 
-### Matrici di Correlazione Empirica tra Moduli (Dati Reali):
-Contro l'obiezione che $R$ sia indistinguibile dallo stroma o che $w$ sia un mero artefatto:
-1. **$S$ e $R$ si auto-escludono nello spazio:** $r = -0.603$ (Lung), $r = -0.517$ (Breast), $r = -0.218$ (Melanoma).
-2. **$R$ e Stroma $C$ sono correlati ma distinti:** $r = +0.675$ (Lung, $r^2 = 0.45$), $r = +0.648$ (Breast, $r^2 = 0.42$), $r = +0.454$ (Melanoma, $r^2 = 0.21$). Oltre il **55%–80%** della varianza di $R$ è completamente indipendente dai fibroblasti.
-3. **Costo Metabolico della Resistenza:** La proliferazione $w$ è fortemente positiva con l'epitelio sensibile $S$ ($r = +0.66\text{--}0.71$), ma è **negativa con $R$** ($r = -0.15\text{--}-0.54$) e con lo stroma $C$ ($r = -0.31\text{--}-0.44$), confermando lo stato quiescente/costoso dei cloni resistenti in assenza di farmaco.
+### Chiarimenti sulle Correlazioni dei Moduli e sulla Proliferazione:
+1. **Punteggi Grezzi dei Moduli (prima del Softmax):** Le correlazioni tra punteggi grezzi mediati mostrano che $S$ e $R$ sono negativamente correlati nello spazio ($r = -0.603$ in Lung, $r = -0.517$ in Breast, $r = -0.218$ in Melanoma). Riconosciamo esplicitamente che la successiva trasformazione softmax impone un vincolo a somma costante ($\sum f_i = 1$) che induce covarianza negativa matematica; pertanto, non usiamo il softmax come prova biologica di auto-esclusione.
+2. **Sovrapposizione $R$-Stroma:** $R$ condivide con lo stroma $C$ una parte significativa di varianza ($r = 0.65\text{--}0.68$, circa il $42\text{--}45\%$ di varianza condivisa), dovuta al comune fenotipo mesenchimale. L'indipendenza residua del $55\%$ è riferita specificamente al pannello di 4 geni CAF analizzato.
+3. **Proliferazione epiteliale vs "costo di fitness":** Poiché $w$ (*MKI67, PCNA, TOP2A, CDK1*) misura la proliferazione carcinomatosa epiteliale, gli spot arricchiti in $R$ o stroma contengono semplicemente meno parenchima epiteliale proliferante. La correlazione negativa tra $w$ ed $R$/stroma riflette la cellularità epiteliale dello spot e **non viene rivendicata come prova fisiologica di un costo metabolico di resistenza**.
 
 ---
 
@@ -76,7 +75,7 @@ Quando il modello congiunto viene stimato direttamente su $w_{raw}$ ($w_{raw} \s
 ### L'Identità Algebrica del Simplesso:
 Poiché le frequenze medie nel vicinato soddisfano il vincolo unitario $\sum_{j \in \{S, R, C\}} \bar{f}_{j,s} = 1$, vale identicamente per ogni spot $s$:
 $$\sum_{j \in \{S, R, C\}} f_{i,s} \bar{f}_{j,s} = f_{i,s} \sum_j \bar{f}_{j,s} = f_{i,s}$$
-Di conseguenza, i 3 regressori intrinseci $b_i f_{i,s}$ appartengono esattamente allo span lineare dei 9 regressori d'interazione. La matrice non vincolata a 12 parametri ($X_{12}$) è quindi intrinsecamente singolare, con un Condition Number elevato ($\approx 3.6\text{--}4.1 \times 10^8$).
+Di conseguenza, i 3 regressori intrinseci $b_i f_{i,s}$ appartengono esattamente allo span lineare dei 9 regressori d'interazione. La decomposizione a 12 parametri ($b_i$ e $A_{ij}$) non è identificabile in OLS.
 
 ### La Formulazione Rigorosa a 9 Parametri Assorbiti ($\tilde{A}_{ij}$):
 Assorbendo la proliferazione di base nella matrice di payoff:
@@ -85,61 +84,67 @@ $$\tilde{A}_{ij} = b_i + A_{ij} \implies w_{purified,s} = \sum_{i} \sum_{j} \til
   - **Lung SCC:** **$31.4$**
   - **Breast IDC:** **$54.4$**
   - **Melanoma SKCM:** **$45.4$**  
-  *(Crollo di 7 ordini di grandezza, piena stabilità e invertibilità numerica).*
+  *(Piena stabilità e invertibilità numerica).*
 - **Varianza Spiegata $R^2$:** identica al decimale ($30.86\%$, $32.29\%$, $36.78\%$).
-- **Perché Ridge ($L_2$, $\alpha = 10^{-3}$) senza intercetta:**  
-  Poiché $\sum_{i,j} f_{i,s}\bar{f}_{j,s} = 1$, la somma delle 9 colonne genera un vettore costante di $1$. L'aggiunta di un'intercetta libera in un OLS genererebbe una trappola delle variabili dummy (collinearità perfetta con la costante). La regressione Ridge senza intercetta è la formulazione algebricamente corretta per dati composizionali (Aitchison, 1986).
+- **Perché OLS senza intercetta:**  
+  Poiché $\sum_{i,j} f_{i,s}\bar{f}_{j,s} = 1$, la somma delle 9 colonne genera un vettore costante di $1$. Un'intercetta libera in OLS genererebbe una trappola delle variabili dummy (collinearità perfetta con la costante). Il modello viene quindi stimato direttamente senza intercetta (`fit_intercept=False`).
 
-### Dinamica del Replicatore e Risoluzione Lung SCC:
-Nella dinamica continua $\dot{x}_i = x_i [F_i(\mathbf{x}) - \bar{F}(\mathbf{x})]$, il campo vettoriale dipende da $\tilde{A}$:
-$$\tilde{\Delta}_S = \tilde{A}_{SS} - \tilde{A}_{RS} = \Delta_S + (b_S - b_R)$$
-$$\tilde{\Delta}_R = \tilde{A}_{RR} - \tilde{A}_{SR} = \Delta_R - (b_S - b_R)$$
+### Dinamica del Replicatore e Regimi di Gioco su $\tilde{A}$:
+Nella dinamica continua $\dot{x}_i = x_i [F_i(\mathbf{x}) - \bar{F}(\mathbf{x})]$, il campo vettoriale dipende unicamente dalla matrice assorbita $\tilde{A}$:
+$$\tilde{\Delta}_S = \tilde{A}_{SS} - \tilde{A}_{RS}, \quad \tilde{\Delta}_R = \tilde{A}_{RR} - \tilde{A}_{SR}$$
 
-- **Nel Lung SCC:** Nel tessuto non perturbato, la forte proliferazione intrinseca epiteliale ($b_S - b_R = +0.392$) produce $\tilde{\Delta}_S = +0.983$ e $\tilde{\Delta}_R = -0.244$, determinando **Sensitive Dominance** nel tumore vergine.
-- **Sotto Terapia ($d_S > d_R$):** Il debulking chemioterapico abbatte selettivamente il tasso di crescita epiteliale. Non appena il danno supera il delta basale, $\tilde{\Delta}_R$ transisce in territorio positivo, facendo emergere la dinamica di **Stag Hunt (Bistabile)** con separatice critica $x_{sep} = 20.0\%$.
-- **Breast e Melanoma:** Sia la matrice a 12 parametri che la matrice a 9 parametri assorbiti classificano negli stessi identici regimi (Hawk-Dove per Breast con $x^* = 60.5\%$ vs $61.3\%$; Stag Hunt per Melanoma con $x_{sep} = 0.528$ vs $0.481$).
+I risultati canonici riportati in Tabella 1 sono:
+1. **Breast IDC:** $\tilde{A}_{2 \times 2} = \begin{pmatrix} -0.74 & +2.87 \\ +2.19 & -1.77 \end{pmatrix}$.  
+   $\tilde{\Delta}_S = -2.924 < 0, \tilde{\Delta}_R = -4.638 < 0 \implies$ **Hawk-Dove / Snowdrift (Coesistenza)** con equilibrio interno stabile:
+   $$x^* = \frac{\tilde{\Delta}_R}{\tilde{\Delta}_S + \tilde{\Delta}_R} = \frac{-4.638}{-7.562} = \mathbf{61.3\%}$$
+2. **Melanoma SKCM:** $\tilde{A}_{2 \times 2} = \begin{pmatrix} +0.93 & -1.78 \\ -0.70 & -0.27 \end{pmatrix}$.  
+   $\tilde{\Delta}_S = +1.633 > 0, \tilde{\Delta}_R = +1.515 > 0 \implies$ **Stag Hunt / Bistabile** con separatice critica instabile:
+   $$x_{sep} = \frac{\tilde{\Delta}_R}{\tilde{\Delta}_S + \tilde{\Delta}_R} = \frac{1.515}{3.148} = \mathbf{48.1\%}$$
+3. **Lung SCC:** $\tilde{A}_{2 \times 2} = \begin{pmatrix} +0.68 & +0.05 \\ -0.31 & -0.19 \end{pmatrix}$.  
+   $\tilde{\Delta}_S = +0.983 > 0, \tilde{\Delta}_R = -0.244 < 0 \implies$ **Sensitive Dominance** nel tessuto baseline non trattato.  
+   Sotto terapia citotossica ($F_i^{\text{treat}} = \sum_j \tilde{A}_{ij}x_j - u(t)d_i$, con differenziale citotossico $d_S - d_R = 0.50$), le selective advantage diventano:
+   $$\tilde{\Delta}_S(D) = 0.983 - 0.500 = +0.483, \quad \tilde{\Delta}_R(D) = -0.244 + 0.500 = +0.256$$
+   facendo emergere una dinamica di **Stag Hunt terapia-indotta** con separatice critica:
+   $$x_{sep}(D) = \frac{0.256}{0.483 + 0.256} = \frac{0.256}{0.739} = \mathbf{34.6\%}$$
 
 ---
 
 ## 7. La Batteria di Validazione Empirica e i Controlli Nulli
 
-### A. Il Controllo Nullo Spaziale (Quadratico Locale Non-Spaziale):
-Per verificare se il vicinato Delaunay apporti informazione oltre la co-localizzazione nello stesso spot, abbiamo testato:
-- **Modello 2:** Lineare ($f_S, f_R, f_C$)
-- **Modello 2b:** Quadratico Locale non-spaziale ($f_i \cdot f_j$ sullo stesso spot)
-- **Modello 3:** InSituGame Spaziale ($f_i \cdot \bar{f}_j$ con vicini Delaunay)
+### A. Benchmark In Silico di Recupero Parametrico:
+Per dimostrare l'identificabilità numerica, abbiamo generato un tessuto sintetico ($N = 1.000$ spot su simplesso Dirichlet con smoothing spaziale) governato da una matrice nota Hawk-Dove ($x^* = 60.53\%$) con il $20\%$ di rumore gaussiano additivo.
+- **Correlazione matrice recuperata vs vera:** Pearson $r = 0.9997$ ($p = 1.13 \times 10^{-12}$), MAE $= 0.0227$.
+- **Recupero dell'equilibrio di Nash:** $x^* = 60.53\%$ vero vs $x^* = 60.30\%$ stimato (errore $< 0.25\%$).
 
-| Coorte | M2 (Lineare) | M2b (Quadratico Locale) | **M3 (InSituGame Spaziale)** | Incremento Spaziale Netto | Nested $F$-test vs M2b |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Lung SCC** | 27.84% | 28.26% | **30.86%** | **+2.60%** | **$F = 48.25, p < 1.11 \times 10^{-16}$** |
-| **Breast IDC** | 23.49% | 28.38% | **32.29%** | **+3.91%** | **$F = 95.92, p < 1.11 \times 10^{-16}$** |
-| **Melanoma** | 32.48% | 33.44% | **36.78%** | **+3.34%** | **$F = 60.74, p < 1.11 \times 10^{-16}$** |
+### B. Il Controllo Nullo $M_{2c}$ (Composizione Regionale Lineare):
+Per isolare se il guadagno spaziale derivi dalle **interazioni di gioco bilineari ($f_i \bar{f}_j$)** o dalla sola **composizione regionale liscia ($\bar{f}_i$)**, abbiamo confrontato l'intera gerarchia di modelli:
+- $M_2$: Lineare mass-action ($f_S, f_R, f_C$)
+- $M_{2b}$: Quadratico Locale non-spaziale ($f_i \cdot f_j$)
+- $M_{2c}$: Composizione Regionale Lineare ($f_i$ + $\bar{f}_i$, senza termini di prodotto)
+- $M_3$: InSituGame Spaziale ($\tilde{A}_{ij} f_i \bar{f}_j$)
 
-Il vicinato spaziale offre un guadagno significativo di varianza purificata che non può essere replicato dalla co-localizzazione quadratica locale.
+| Coorte | $M_2$ ($R^2$ in / OOF) | $M_{2b}$ ($R^2$ in / OOF) | $M_{2c}$ ($R^2$ in / OOF) | **$M_3$ Game ($R^2$ in / OOF)** | Nested $F$-test $M_3$ vs $M_{2c}$ | Moran $I$ Residui ($M_1 \to M_3$) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Breast IDC** | 23.49% / 17.02% | 28.38% / 20.93% | 26.58% / 19.76% | **32.29% / 27.02%** | **$F = 104.99, p < 1.11 \times 10^{-16}$** | $0.470 \to \mathbf{0.220}$ |
+| **Melanoma** | 32.48% / 29.06% | 33.44% / 29.32% | 35.52% / 32.88% | **36.78% / 33.42%** | **$F = 17.16, p = 6.04 \times 10^{-14}$** | $0.524 \to \mathbf{0.256}$ |
+| **Lung SCC** | 27.84% / 23.75% | 28.26% / 23.60% | 30.77% / 27.06% | **30.86% / 26.07%** | **$F = 1.30, p = 0.266$ (N.S.)** | $0.459 \to \mathbf{0.250}$ |
 
-### B. Test di Permutazione Monte Carlo (1.000 Shuffle delle Coordinate):
-- Lung SCC: $R^2$ reale $= 30.86\%$ vs permutato $= 27.99\%$ ($p = 0.001$)
-- Breast IDC: $R^2$ reale $= 32.29\%$ vs permutato $= 23.61\%$ ($p = 0.001$)
-- Melanoma: $R^2$ reale $= 36.78\%$ vs permutato $= 32.64\%$ ($p = 0.001$)
-Distruggere la topologia spaziale azzera il vantaggio del modello, dimostrando che l'effetto dipende dalla reale geometria cellulare.
+**Conclusioni Biologiche e Metodologiche:**
+1. Nel **Carcinoma Mammario (Breast IDC)**, il gioco spaziale bilineare $M_3$ batte nettamente la composizione regionale $M_{2c}$ ($F = 104.99, p < 10^{-16}$) e ottiene un incremento out-of-fold massiccio di **$+7.26\%$ in Spatial Block CV** ($27.02\%$ vs $19.76\%$). L'interazione non-lineare è indispensabile.
+2. Nel **Melanoma SKCM**, l'interazione di gioco batte significativamente la composizione regionale ($F = 17.16, p = 6.04 \times 10^{-14}$).
+3. Nel **Carcinoma Polmonare (Lung SCC)**, la variazione spaziale è dominata dalla composizione regionale liscia ($M_{2c} = 30.77\%$), e i termini di gioco aggiuntivi non raggiungono la significatività statistica ($F = 1.30, p = 0.266$). Riconoscere questa distinzione histotype-specifica nel manoscritto conferisce totale trasparenza e credibilità accademica.
 
-### C. Spatial Block Cross-Validation (5 Folds Geograficamente Disgiunti):
-- Lung SCC: $R^2_{\text{OOF}} = 26.07\%$
-- Breast IDC: $R^2_{\text{OOF}} = 27.02\%$
-- Melanoma SKCM: $R^2_{\text{OOF}} = 33.42\%$
-Il modello generalizza su blocchi tissutali fisicamente non contigui.
+### C. Test di Permutazione delle Coordinate Spaziali:
+Rimescolando le coordinate spaziali dei vicini per 1.000 permutazioni Monte Carlo, il guadagno spaziale crolla interamente:
+- Lung SCC: $p < 0.001$ (osservato $30.86\%$ vs nullo $27.99\%$)
+- Breast IDC: $p < 0.001$ (osservato $32.29\%$ vs nullo $23.61\%$)
+- Melanoma: $p < 0.001$ (osservato $36.78\%$ vs nullo $32.64\%$)
 
-### D. Attenuazione dell'Autocorrelazione Spaziale (Moran's I):
-Il modello assorbe gran parte dell'autocorrelazione spaziale tissutale:
-- Lung: Moran's I passa da $0.575$ a $0.250$ (**56.48% di attenuazione**)
-- Breast: Moran's I passa da $0.626$ a $0.220$ (**64.86% di attenuazione**)
-- Melanoma: Moran's I passa da $0.640$ a $0.256$ (**59.90% di attenuazione**)
-
-### E. Repliche Seriali e Test Cieco Out-Of-Sample (OOS):
-- Due fette seriali a $\approx 10\,\mu\text{m}$ (Block A): concordanza parametri Pearson $r = +0.811$ ($p = 0.0079$), Spearman $\rho = +0.633$ ($p = 0.067$), pendenza $= 1.36$.
-- Stessa classificazione di gioco: entrambe classificate come **Stag Hunt** ($x_{sep} = 0.787$ vs $0.827$, concordanza entro il 4%).
-- **Validazione Cieca OOS su Sezione 2:** Il modello fittato su Sezione 1 predice la proliferazione di Sezione 2 con $R^2_{\text{OOS}} = 10.20\%$ (rispetto al $6.21\%$ del modello di massa, guadagno netto $+3.99\%$; ROC-AUC $= 0.653$ vs $0.628$; Fisher exact $p = 4.82 \times 10^{-12}$; $\text{DOR} = 2.30$ [95% CI: $2.03\text{--}2.61$]).
-- **Divergenza Biologica Breast IDC vs Block A:** Il campione di Tabella 1 (FFPE CytAssist) è un gioco Hawk-Dove ($x^* = 60.5\%$), mentre il campione seriale Block A (Fresh Frozen) è uno Stag Hunt. Questo dimostra empiricamente che i giochi evolutivi **non sono costanti universali di istotipo, ma architetture eterogenee paziente-specifiche**, motivando la necessità di un test diagnostico su biopsia.
+### D. Repliche Seriali e Test Cieco Out-Of-Sample (OOS):
+- Due sezioni seriali consecutive a $\approx 10\,\mu\text{m}$ (Block A): concordanza parametri Pearson $r = +0.811$ ($p = 0.0079$), Spearman $\rho = +0.633$ ($p = 0.067$), pendenza $= 1.36$.
+- Entrambe classificate indipendentemente in regime **Stag Hunt** ($x_{sep} = 0.787$ vs $0.827$).
+- **Validazione Cieca OOS su Sezione 2:** Il modello fittato su Sezione 1 predice la Sezione 2 con $R^2_{\text{OOS}} = 10.20\%$ (rispetto al $6.21\%$ del modello di massa, guadagno netto $+3.99\%$; ROC-AUC $= 0.653$ vs $0.628$; Fisher exact $p = 4.82 \times 10^{-12}$; $\text{DOR} = 2.30$ [95% CI: $2.03\text{--}2.61$]).
+- **Differenze Piattaforma Breast IDC vs Block A:** Il campione di Tabella 1 (FFPE CytAssist, ibridazione sonde) è Hawk-Dove ($x^* = 61.3\%$), mentre Block A (Fresh Frozen Visium, cattura poly-A) è Stag Hunt. Le differenze di donatore, tessuto, chimica di cattura e stadio impediscono di attribuire questa divergenza unicamente alla biologia; essa dimostra che i parametri di gioco non possono essere assunti come costanti universali.
 
 ---
 
@@ -147,7 +152,7 @@ Il modello assorbe gran parte dell'autocorrelazione spaziale tissutale:
 
 Tutti gli script sono documentati, modulari e versionati nel repository GitHub [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay):
 
-- `src/insitu_spatial_game.py`: Pipeline completa di streaming, calcolo Delaunay, disaccoppiamento OLS e regressione Ridge.
+- `src/insitu_spatial_game.py`: Pipeline completa di streaming, calcolo Delaunay, disaccoppiamento OLS e regressione.
 - `src/run_pan_cancer_assay.py`: Esecuzione dell'atlante pan-cancer sui tre tumori e calcolo dei parametri di equilibrio.
 - `src/validation_battery.py`: Suite biostatistica con Moran's I esatto (Cliff & Ord 1981), test di permutazione spaziale e Spatial Block Cross-Validation.
 - `src/run_replicate_blind_oos_test.py`: Benchmark out-of-sample e correlazione tra sezioni seriali consecutive.
