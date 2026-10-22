@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Adaptive Therapy Regimens"
 readme = "README.md"
 authors = [
-  { name = "Luca Celebrano", email = "luca.celebrano1@gmail.com" }
+  { name = "Luca Celebrano", email = "l.celebrano@studenti.unina.it" }
 ]
 license = { text = "GPL-3.0-or-later" }
 classifiers = [
