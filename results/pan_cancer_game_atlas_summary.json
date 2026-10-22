@@ -8,7 +8,7 @@
     "mean_umi_per_spot": 18832.306640625,
     "r2_environmental": 0.1582152247428894,
     "r2_game": 0.308615364826647,
-    "game_classification": "Stag Hunt (Bistabile / Coordinazione)",
+    "game_classification": "Stag Hunt (Bistable)",
     "observed_tissue_frequencies": {
       "mean_f_Sensitive": 0.3986304700374603,
       "mean_f_Resistant": 0.29184696078300476,
@@ -253,7 +253,7 @@
     "mean_umi_per_spot": 23096.515625,
     "r2_environmental": 0.16122090816497803,
     "r2_game": 0.3229111584424649,
-    "game_classification": "Falco-Colomba (Coesistenza)",
+    "game_classification": "Hawk-Dove (Coexistence)",
     "observed_tissue_frequencies": {
       "mean_f_Sensitive": 0.2089722752571106,
       "mean_f_Resistant": 0.34750238060951233,
@@ -498,7 +498,7 @@
     "mean_umi_per_spot": 30566.373046875,
     "r2_environmental": 0.1022539734840393,
     "r2_game": 0.36780596026177714,
-    "game_classification": "Stag Hunt (Bistabile / Coordinazione)",
+    "game_classification": "Stag Hunt (Bistable)",
     "observed_tissue_frequencies": {
       "mean_f_Sensitive": 0.4307304620742798,
       "mean_f_Resistant": 0.23484690487384796,

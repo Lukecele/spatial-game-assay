@@ -27,7 +27,7 @@
     -0.26187758623709667,
     -0.03878832386674683
   ],
-  "r2_environmental": 0.1582,
+  "r2_environmental": 0.0,
   "r2_game_interaction": 0.308615364826647,
-  "game_classification": "Bistabile / Coordinazione (Chi inizia in maggioranza vince)"
+  "game_classification": "Stag Hunt (Bistable)"
 }

@@ -5,8 +5,7 @@
 $^{1}$ Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, 80131 Naples, Italy  
 $^{*}$ **Corresponding Author:** Luca Celebrano  
 Email: `l.celebrano@studenti.unina.it` | Public ORCID: [`0009-0007-0931-3555`](https://orcid.org/0009-0007-0931-3555)  
-Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay)  
-Target Journal Scope: *Bioinformatics* / *Computers in Biology and Medicine* (Open Access 0€ APC via CRUI Agreement)
+Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay)
 
 ---
 
@@ -24,11 +23,11 @@ Target Journal Scope: *Bioinformatics* / *Computers in Biology and Medicine* (Op
 
 ## 1. Introduction
 
-Acquired therapeutic resistance remains the primary cause of cancer-related mortality in medical oncology. For decades, the dominant paradigm in cytotoxic chemotherapy and molecularly targeted therapy has been the administration of the Maximum Tolerated Dose (MTD) until disease progression or intolerable toxicity. While MTD protocols achieve rapid initial tumor debulking, they inadvertently act as an intense, unselective evolutionary filter. By eradicating drug-sensitive cancer cell populations, MTD removes the natural competitor that physically and metabolically restricts the outgrowth of pre-existing drug-resistant subclones. This evolutionary phenomenon—termed **competitive release**—inevitably leads to the rapid expansion of refractory disease, resulting in therapeutic failure and patient death (Enriquez-Navas et al., 2016; Gatenby et al., 2009).
+Acquired therapeutic resistance remains the primary cause of cancer-related mortality in medical oncology. For decades, the dominant paradigm in cytotoxic chemotherapy and molecularly targeted therapy has been the administration of the Maximum Tolerated Dose (MTD) until disease progression or intolerable toxicity. While MTD protocols achieve rapid initial tumor debulking, they inadvertently act as an intense, unselective evolutionary filter. By eradicating drug-sensitive cancer cell populations, MTD removes the natural competitor that physically and metabolically restricts the outgrowth of pre-existing drug-resistant subclones (Bacevic et al., 2017). This evolutionary phenomenon—termed **competitive release**—inevitably leads to therapeutic failure, as the repopulating tumor becomes entirely refractory to further treatment.
 
-To avert competitive release, **adaptive therapy** reformulates cancer treatment as an evolutionary game played between the oncologist and the heterogeneous tumor subclonal ecosystem (Basanta et al., 2012; Maley et al., 2017). Rather than attempting complete tumor eradication, adaptive therapy modulates drug administration dynamically to maintain a stable, manageable population of treatment-sensitive cells, exploiting their competitive fitness advantage in the absence of treatment to keep resistant clones suppressed. Landmark clinical trials in metastatic castrate-resistant prostate cancer (Zhang et al., 2017) demonstrated that adaptive dosing of abiraterone acetate prolonged median progression-free survival (PFS) by more than 27 months while using 53% less drug compared to standard continuous MTD.
+To overcome this dilemma, evolutionary cancer biologists formulated **adaptive therapy** (Gatenby et al., 2009; Enriquez-Navas et al., 2016; Zhang et al., 2017). Rather than pursuing curative tumor eradication, adaptive therapy modulates drug dosing to maintain a stable, manageable population of drug-sensitive cells. When treatment is withdrawn during drug holidays, the sensitive subpopulation outcompetes the resistant subpopulation due to the **metabolic cost of resistance**—the energetic expenditure required to sustain multidrug efflux pumps, altered kinase conformations, or phenotypic plasticity (Kemper et al., 2014; Maley et al., 2017). Mathematical models and preliminary clinical trials (e.g., in metastatic castrate-resistant prostate cancer) have demonstrated that adaptive schedules can significantly prolong progression-free survival compared to conventional continuous dosing.
 
-Despite its clinical promise, a formidable translational bottleneck has restricted the widespread adoption of adaptive therapy across oncology: **how does an oncologist measure the subclonal interaction payoff matrix ($A$) for an individual patient's biopsy?** In evolutionary game theory (EGT), the per-capita growth rate of any subclone $i$ depends fundamentally on the frequency of surrounding phenotypes $j$ through the payoff matrix $A_{ij}$ (Nowak, 2006). In literature, these matrix values have historically been either arbitrarily postulated in mathematical differential equations or derived from in vitro two-dimensional co-cultures of established cell lines using automated time-lapse robotic microscopy (Kaznatcheev et al., 2019). 
+Despite its clinical promise, a critical translational bottleneck persists: **how do we objectively measure the clonal interaction payoff matrix ($A$) for an individual patient's biopsy?** In evolutionary game theory (EGT), the per-capita growth rate of any subclone $i$ depends fundamentally on the frequency of surrounding phenotypes $j$ through the payoff matrix $A_{ij}$ (Nowak, 2006). In literature, these matrix values have historically been either arbitrarily postulated in mathematical differential equations or derived from in vitro two-dimensional co-cultures of established cell lines using automated time-lapse robotic microscopy (Kaznatcheev et al., 2019). 
 
 However, two-dimensional plastic Petri dish co-cultures suffer from severe biological limitations:
 1. They lack the native three-dimensional extracellular matrix (ECM) and complex tissue microarchitecture.
@@ -78,12 +77,14 @@ The residual $w_{purified,s}$ represents the **purified cellular proliferation**
 Spatial cell-cell contact is modeled by constructing a Delaunay triangulation graph over the two-dimensional Euclidean coordinates of spot centroids $\mathbf{r}_s = (x_s, y_s)$. For each spot $s$, its local interaction neighborhood $\mathcal{N}(s)$ represents physical adjacent spots sharing Delaunay edges (mean distance $\sim 55\,\mu\text{m}$). The effective neighborhood phenotype frequencies are calculated as:
 $$\bar{f}_{j,s} = \frac{1}{|\mathcal{N}(s)|} \sum_{k \in \mathcal{N}(s)} f_{j,k}$$
 
+A standard 10x Genomics Visium spot ($55\,\mu\text{m}$ diameter, $100\,\mu\text{m}$ center-to-center pitch) encompasses approximately 1 to 10 cells in solid tumors. Consequently, the local phenotype frequency vector $\mathbf{f}_s$ reflects intra-spot cellular composition and direct physical juxtacrine contact ($f_{i,s} f_{j,s}$), whereas the Delaunay contact neighborhood $\bar{\mathbf{f}}_s$ ($\sim 55\text{--}100\,\mu\text{m}$) captures short-range paracrine diffusible signaling (e.g., cytokines, growth factors, and extracellular matrix remodeling) between adjacent micro-niches.
+
 Under continuous evolutionary game theory, the per-capita fitness of phenotype $i$ interacting with neighbors $\bar{\mathbf{f}}$ is given by:
 $$F_i(\bar{\mathbf{f}}) = b_i + \sum_{j \in \{S, R, C\}} A_{ij} \bar{f}_j$$
 where $b_i$ denotes baseline intrinsic fitness and $A_{ij}$ is the pairwise interaction payoff matrix. The aggregate spot-level proliferation is the frequency-weighted sum:
 $$w_{purified,s} = \sum_{i} f_{i,s} F_i(\bar{\mathbf{f}}_s) = \sum_{i} b_i f_{i,s} + \sum_{i} \sum_{j} A_{ij} f_{i,s} \bar{f}_{j,s}$$
 
-This yields a 12-parameter linear design matrix (3 intrinsic parameters $b_S, b_R, b_C$ and 9 interaction payoffs $A_{ij}$ for $i,j \in \{S, R, C\}$). Parameters are estimated via $L_2$-regularized Ridge regression ($\alpha = 10^{-3}$, without intercept) to ensure numerical stability and prevent collinearity inflation.
+Because neighborhood frequencies reside on the unit simplex ($\sum_{j \in \{S, R, C\}} \bar{f}_{j,s} = 1$), the identity $\sum_j f_{i,s}\bar{f}_{j,s} = f_{i,s} \sum_j \bar{f}_{j,s} = f_{i,s}$ holds identically for every phenotype $i$. Consequently, the total per-capita fitness can be written equivalently as an unconstrained 9-parameter matrix $\tilde{A}_{ij} = b_i + A_{ij}$. In our formulation, we employ an $L_2$-regularized Ridge regression ($\alpha = 10^{-3}$, without intercept) over the 12-parameter design matrix (3 baseline parameters $b_S, b_R, b_C$ and 9 interaction terms $A_{ij}$). Regularization resolves the simplex rank-deficiency by selecting the minimum $L_2$-norm solution, effectively performing an orthogonal decomposition between intrinsic, frequency-independent proliferation ($b_i$) and neighborhood-dependent, frequency-dependent ecological interactions ($A_{ij}$). This separation is of paramount pharmacological significance: in cancer adaptive therapy, chemotherapy selectively suppresses sensitive intrinsic growth ($b_S(D) = b_S - \delta \cdot D$), whereas the interaction matrix $A_{ij}$ represents the structural ecological wiring of the tumor micro-niche.
 
 ### 2.5 Space-for-Time Ergodic Mapping Theorem
 A critical theoretical question in spatial oncology is: *how can a static histological snapshot taken at time $t_0$ infer dynamic temporal trajectories?* We formalize the **Space-for-Time Ergodic Mapping Theorem**:
@@ -108,14 +109,18 @@ The dynamical system admits four mutually exclusive Nash equilibrium regimes:
 4. **Hawk-Dove / Snowdrift ($\Delta_S < 0, \Delta_R < 0$):** Both pure states are unstable, producing a stable interior coexistence equilibrium:
    $$x^* = \frac{A_{RR} - A_{SR}}{A_{SS} - A_{SR} - A_{RS} + A_{RR}}$$
 
+When evaluating total per-capita fitness with baseline proliferation included ($\tilde{A}_{ij} = b_i + A_{ij}$), the relative selective advantages become $\tilde{\Delta}_S = \Delta_S + (b_S - b_R)$ and $\tilde{\Delta}_R = \Delta_R - (b_S - b_R)$. For breast IDC and melanoma SKCM, both the 12-parameter interaction matrix and the 9-parameter absorbed matrix yield identical Nash game topologies.
+
 ### 2.7 Biostatistical Evaluation Battery
 To ensure epidemiological rigor, all continuous predictions were audited using standard clinical classification metrics:
 - **Full $2 \times 2$ Contingency Tables:** True Positives ($TP$), False Positives ($FP$), False Negatives ($FN$), and True Negatives ($TN$), binarizing true vs predicted purified fitness relative to cohort medians.
 - **Woolf Logit Odds Ratio (DOR):**
-  $$\text{OR} = \frac{(TP + 0.5)(TN + 0.5)}{(FP + 0.5)(FN + 0.5)}, \quad \text{SE}_{\ln\text{OR}} = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}$$
-  with exact 95% Confidence Intervals calculated via Woolf logit transforms.
+  $$\text{OR} = \frac{(TP + 0.5)(TN + 0.5)}{(FP + 0.5)(FN + 0.5)}, \quad \text{SE}_{\ln\text{OR}} = \sqrt{\frac{1}{TP + 0.5} + \frac{1}{FP + 0.5} + \frac{1}{FN + 0.5} + \frac{1}{TN + 0.5}}$$
+  with exact 95% Confidence Intervals calculated via Woolf logit transforms (Woolf, 1955).
 - **Exact Fisher's Exact Test:** Log-hypergeometric probability calculated via log-gamma functions (`math.lgamma`) to prevent floating-point overflow across large sample sizes ($N > 4,000$).
 - **ROC-AUC & Incremental Nested $F$-Tests:** Evaluating incremental variance gain of Model 3 (Spatial Game) over Model 2 (Intrinsic Mass Action) and Model 1 (Microenvironment).
+
+In contiguous planar spatial transcriptomics ($N > 3,400$ spots per biopsy), spatial autocorrelation among neighboring spots can violate independence assumptions and artificially inflate in-sample parametric significance (Cliff & Ord, 1981). To provide an incontrovertible benchmark immune to planar autocorrelation artifacts, we established blind Out-Of-Sample (OOS) validation across physically separate, independent serial tissue sections as the primary epidemiological standard.
 
 ---
 
@@ -124,7 +129,7 @@ To ensure epidemiological rigor, all continuous predictions were audited using s
 ### 3.1 Pan-Cancer Empirical Game Landscape
 Applying *InSituGame* across the three primary clinical cancer cohorts revealed distinct, lineage-specific evolutionary game regimes (Table 1 and Figure 1).
 
-![**Figure 1 | Spatial Game Decomposition and In Silico Adaptive Therapy Dynamics.** (A) Spot-level subclonal phenotypic deconvolution (Sensitive $T_S$, Resistant $T_R$, and Stroma/CAF $S_{CAF}$) across intact tumor tissue. (B) Delaunay triangulation graph capturing physical spatial contact neighborhoods ($\sim 55\,\mu\text{m}$). (C) Microenvironmental decoupling separating intrinsic game proliferation from extrinsic hypoxia ($Z_{hyp}$) and vascular ($Z_{vasc}$) gradients. (D) Forward replicator simulation comparing standard Maximum Tolerated Dose (MTD) chemotherapy against patient-tailored Adaptive Chemotherapy guided by the inferred payoff matrix.](../figures/figure1_spatial_game_decomposition.png){width=95%}
+![**Spatial Phenotypic Architecture, Decoupled Fitness, and In Situ Payoff Estimation.** (A) Spot-level subclonal phenotypic architecture (Sensitive, Resistant, and Stroma/CAF) across intact tumor tissue. (B) Decoupled proliferation fitness ($w_{purified}$) removing extrinsic hypoxia and vascular confounders. (C) Empirical $3 \times 3$ payoff matrix ($A_{ij}$) capturing direct and stroma-mediated subclonal interactions.](../figures/figure1_spatial_game_decomposition.png){width=84%}
 
 \begin{table}[htbp]
 \centering
@@ -132,7 +137,7 @@ Applying *InSituGame* across the three primary clinical cancer cohorts revealed 
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llcccc}
 \hline
-\textbf{Cancer Cohort} & \textbf{Spots ($N$)} & \textbf{Payoffs $(A_{SS}, A_{SR}, A_{RS}, A_{RR})$} & \textbf{Game \& Equilibrium} & \textbf{$R^2$} & \textbf{DOR [95\% CI]} \\
+\textbf{Cancer Cohort} & \textbf{Spots ($N$)} & \textbf{Payoffs $(A_{SS}, A_{SR}, A_{RS}, A_{RR})$} & \textbf{Game \& Equilibrium} & \textbf{$R^2$ ($w_{purified}$)} & \textbf{DOR [95\% CI]} \\
 \hline
 \textbf{Lung SCC} & 3,858 & $+0.55, -0.08, -0.04, +0.07$ & Stag Hunt ($x_{sep} = 0.200$) & 30.9\% & 7.04 [6.11--8.11] ($p < 10^{-11}$) \\
 \textbf{Breast IDC} & 4,992 & $-1.00, +2.61, +1.99, -1.97$ & Hawk-Dove ($x^* = 0.605$) & 32.3\% & 6.16 [5.45--6.96] ($p < 10^{-11}$) \\
@@ -146,14 +151,14 @@ In Human Lung SCC, sensitive tumor cells strongly facilitate one another ($A_{SS
 
 In Human Breast IDC, we observed strong negative diagonal payoffs ($A_{SS} = -0.996, A_{RR} = -1.970$) and positive cross-interaction payoffs ($A_{SR} = +2.606, A_{RS} = +1.991$). This fulfills the canonical conditions of a **Hawk-Dove / Snowdrift game**, yielding a stable interior coexistence equilibrium at $x^* = 60.5\%$ sensitive and $39.5\%$ resistant clones.
 
-![**Figure 2 | Pan-Cancer In Situ Spatial Evolutionary Game Atlas.** Comprehensive spatial game interaction landscapes across human Lung Squamous Cell Carcinoma (Lung SCC, $N=3,858$), Invasive Ductal Breast Carcinoma (Breast IDC, $N=4,992$), and Cutaneous Malignant Melanoma (Melanoma SKCM, $N=3,458$). Inferred subclonal payoff matrices $A_{2 \times 2}$, simplex phase portraits, replicator vector fields, and clinical Nash equilibria (Hawk-Dove coexistence in breast IDC; Stag Hunt bistable tipping separatrices in lung SCC and melanoma).](../figures/figure_pan_cancer_spatial_game_atlas.png){width=95%}
+![**Pan-Cancer In Situ Spatial Evolutionary Game Atlas.** Comprehensive spatial game interaction landscapes across human Lung Squamous Cell Carcinoma (Lung SCC, $N=3,858$), Invasive Ductal Breast Carcinoma (Breast IDC, $N=4,992$), and Cutaneous Malignant Melanoma (Melanoma SKCM, $N=3,458$). Inferred subclonal payoff matrices $A_{2 \times 2}$, simplex phase portraits, replicator vector fields, and clinical Nash equilibria (Hawk-Dove coexistence in breast IDC; Stag Hunt bistable tipping separatrices in lung SCC and melanoma).](../figures/figure_pan_cancer_spatial_game_atlas.png){width=84%}
 
 ### 3.2 Model Ablation: Proving the Non-Redundancy of Spatial Games
-To rigorously prove that spatial game theory provides genuine biological information beyond simple cell fraction or microenvironmental gradients, we conducted an incremental model ablation (Table 2 and Figure 2A).
+To rigorously prove that spatial game theory provides genuine biological information beyond simple cell fraction or microenvironmental gradients, we conducted an incremental model ablation (Table 2 and Figure 3A).
 
 \begin{table}[htbp]
 \centering
-\caption{\textbf{Incremental Model Ablation Battery Across Cohorts.}}
+\caption{\textbf{Incremental Model Ablation Battery Across Cohorts.} Model 1 fitted on raw proliferation $w_{raw}$; Models 2 and 3 fitted on purified residual $w_{purified}$. Cumulative joint explained variance on $w_{raw}$ is 41.8\% (Lung), 43.2\% (Breast), and 43.2\% (Melanoma).}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llcccc}
 \hline
@@ -175,34 +180,34 @@ To rigorously prove that spatial game theory provides genuine biological informa
 }
 \end{table}
 
-While the physical microenvironment accounts for $10.2\% - 16.1\%$ of proliferation variance, adding spatial neighbor interactions yields massive, statistically indisputable performance gains in every cohort (nested $F$-test $p < 1.11 \times 10^{-16}$). Diagnostic Odds Ratios increase substantially, reaching $16.33$ in Melanoma, demonstrating that local clonal interactions are primary determinants of tumor expansion.
+While extrinsic microenvironmental covariates alone (Model 1) account for $10.2\% - 16.1\%$ of raw proliferation variance ($w_{raw}$), fitting the game interaction model on the purified residual ($w_{purified}$) explains an additional $30.9\%$ (Lung), $32.3\%$ (Breast), and $36.8\%$ (Melanoma) of the decoupled biological variance. In cumulative terms, the joint two-stage architecture ($\text{Env} + \text{Game}$) explains $41.8\%$ (Lung SCC), $43.2\%$ (Breast IDC), and $43.2\%$ (Melanoma SKCM) of total raw proliferation variance in intact clinical tissue. Across all three cohorts, adding the 9 spatial game interaction parameters significantly outperformed intrinsic mass-action frequencies alone (incremental nested $F$-tests: $F = 18.70, 71.95, 26.03$; all $p < 1.11 \times 10^{-16}$).
 
-### 3.3 Quality Control Stringency and Spatial Scale Robustness
-To test whether low-coverage sequencing noise or arbitrary neighborhood definitions distorted the assay, we performed extensive parameter perturbation audits (Figure 2B):
-- **QC Cutoff Sensitivity:** In Breast IDC, varying spot filtering from unfiltered ($N = 4,992$, $0$ UMI) to standard QC ($N = 4,981$, $\ge 500$ UMI) and high stringency ($N = 4,963$, $\ge 1,000$ UMI) produced virtually invariant payoff estimates ($A_{SS} = -0.996 \rightarrow -1.031$, $A_{SR} = +2.606 \rightarrow +2.769$, $A_{RS} = +1.991 \rightarrow +1.882$, $A_{RR} = -1.970 \rightarrow -1.969$), with model $R^2$ remaining stable between $32.29\%$ and $32.76\%$.
+### 3.3 Robustness to Quality Control Cutoffs and Spatial Neighborhood Radii
+To test whether low-coverage sequencing noise or arbitrary neighborhood definitions distorted the assay, we performed extensive parameter perturbation audits (Figure 3B):
+- **Quality Control Stringency:** Re-fitting Breast IDC across unfiltered data ($N=4,992$, $0$ UMI threshold), standard QC ($N=4,981$, $\ge 500$ UMI) and high stringency ($N=4,963$, $\ge 1,000$ UMI) produced virtually invariant payoff estimates ($A_{SS} = -0.996 \to -1.031$, $A_{SR} = +2.606 \to +2.769$, $A_{RS} = +1.991 \to +1.882$, $A_{RR} = -1.970 \to -1.969$), with model $R^2$ remaining stable between $32.29\%$ and $32.76\%$.
 - **Neighborhood Radius Sensitivity:** Varying the contact graph from immediate Delaunay triangulation ($\sim 55\,\mu\text{m}$) to $k$-nearest neighbors ($k=6, 12, 18$, spanning up to $\sim 200\,\mu\text{m}$) preserved the exact sign structure ($A_{SS} < 0, A_{SR} > 0, A_{RS} > 0, A_{RR} < 0$) and the Hawk-Dove classification with zero sign flips.
 
 ### 3.4 Serial Section Replicate Concordance and Blind Out-Of-Sample Validation
 To provide concrete proof of biological and technical reproducibility, we evaluated two consecutive serial sections cut at $\approx 10\,\mu\text{m}$ thickness from human invasive breast cancer Block A (Section 1: $N=3,798$ spots; Section 2: $N=3,987$ spots).
 
-Independently fitting Section 1 and Section 2 demonstrated strong parameter concordance across the full $3 \times 3$ payoff matrix (Figure 2C):
+Independently fitting Section 1 and Section 2 demonstrated strong parameter concordance across the full $3 \times 3$ payoff matrix (Figure 3C):
 - **Payoff Matrix Correlation:** Pearson **$r = +0.811$ ($p = 0.0079$)**, Spearman **$\rho = +0.633$ ($p = 0.067$)**, Mean Absolute Error (MAE) $= 2.35$.
 - **Intrinsic Fitness Vector Correlation:** Pearson **$r = +0.790$**.
 - **Equilibrium Preservation:** Both serial sections independently classified the tumor into the **Stag Hunt (Bistable)** regime, with separatrix tipping points within $4.0\%$ agreement ($x_{sep} = 0.787$ vs $0.827$).
 
-Next, we executed a rigorous **Blind Out-Of-Sample (OOS) Generalization Test**: the spatial game model was trained exclusively on Section 1, and then applied blindly to predict spot-level proliferation on the unseen, held-out Section 2 (Figure 2D):
+Next, to provide validation completely immune to planar spatial autocorrelation (Cliff & Ord, 1981), we executed a rigorous **Blind Out-Of-Sample (OOS) Generalization Test**: the spatial game model was trained exclusively on Section 1, and then applied blindly to predict spot-level proliferation on the unseen, held-out Section 2 (Figure 3D):
 - **Blind OOS Explained Variance:** The Spatial Game Assay achieved **$\text{OOS } R^2 = 10.20\%$**, substantially outperforming the non-spatial intrinsic baseline ($\text{OOS } R^2 = 6.21\%$, a **$+3.99\%$ variance gain** out-of-sample).
 - **Blind Diagnostic Performance:** Blind Diagnostic Odds Ratio $= 2.30$ [95% CI: $2.03 - 2.61$], exact Fisher $p = 4.82 \times 10^{-12}$, ROC-AUC $= 0.653$, Sensitivity $= 60.3\%$, Specificity $= 60.3\%$.
 
-![**Figure 3 | Reproducibility Battery, Serial Section Concordance, and Blind Out-Of-Sample Validation.** (A) Incremental model ablation demonstrating significant variance explanation beyond microenvironmental and mass-action baselines ($p < 10^{-15}$). (B) Parameter stability across quality control filtering ($0, \ge 500, \ge 1,000$ UMI) and spatial neighborhood radii ($k \in \{6, 12, 18\}$). (C) Replicate concordance across independent consecutive serial histological sections ($\approx 10\,\mu\text{m}$ spacing, $r = +0.811$, $p = 0.0079$) and game classification preservation. (D) Blind Out-Of-Sample (OOS) validation on held-out serial section ($R^2_{OOS} = 10.20\%$, DOR $= 2.30$, exact Fisher $p = 4.82 \times 10^{-12}$).](../figures/figure_reproducibility_battery.png){width=95%}
+![**Reproducibility Battery, Serial Section Concordance, and Blind Out-Of-Sample Validation.** (A) Incremental model ablation demonstrating significant variance explanation beyond microenvironmental and mass-action baselines ($p < 10^{-15}$). (B) Parameter stability across quality control filtering ($0, \ge 500, \ge 1,000$ UMI) and spatial neighborhood radii ($k \in \{6, 12, 18\}$). (C) Replicate concordance across independent consecutive serial histological sections ($\approx 10\,\mu\text{m}$ spacing, $r = +0.811$, $p = 0.0079$) and game classification preservation. (D) Blind Out-Of-Sample (OOS) validation on held-out serial section ($R^2_{OOS} = 10.20\%$, DOR $= 2.30$, exact Fisher $p = 4.82 \times 10^{-12}$).](../figures/figure_reproducibility_battery.png){width=84%}
 
 ### 3.5 Independent Ground-Truth Literature Concordance
 To calibrate our in situ findings against external biological ground truth, we benchmarked the inferred game matrices against independent published studies (Table 1 and Figure 2):
-- **Breast Cancer Coexistence:** In a landmark in vitro study, Kaznatcheev et al. (*Nature Ecology & Evolution* 2019, 3:450-456) tracked co-cultures of sensitive (MCF-7) and resistant (MDA-MB-231) breast cancer cells under chemotherapy using robotic time-lapse imaging, discovering that cell-cell interactions followed a **Hawk-Dove / Snowdrift game** where cross-phenotype interactions exceed self-interactions ($A_{SR} > A_{RR}$ and $A_{RS} > A_{SS}$). Our *InSituGame* assay, operating on intact human FFPE clinical biopsies, discovered the exact same game dynamic ($A_{SR} - A_{RR} = +4.576 > 0$, $A_{RS} - A_{SS} = +2.987 > 0$), validating that in situ spatial transcriptomics recapitulates genuine cellular game biology.
-- **Lung & Melanoma Bistability:** In NSCLC and melanoma models, Gallaher et al. (*Cancer Res* 2018) and Marusyk et al. (*Nature* 2014) reported that resistant clones suffer significant growth deficits at low frequency ($A_{RS} < A_{SS}$), creating non-autonomous frequency thresholds below which sensitive populations naturally suppress resistance. *InSituGame* identified this exact bistable threshold ($x_{sep} = 20.0\%$ in Lung, $52.8\%$ in Melanoma).
+- **Breast Cancer Coexistence & Clonal Mutualism:** Seminal studies in clonal cooperation established that subclonal cancer populations can maintain non-cell-autonomous equilibrium through paracrine cross-talk (Marusyk et al., 2014). In parallel, landmark in vitro evolutionary game co-cultures in NSCLC demonstrated that cell-cell interactions follow matrix games such as Hawk-Dove and Stag Hunt that are heavily modulated by CAFs (Kaznatcheev et al., 2019). Our *InSituGame* assay, operating on intact human clinical biopsies, empirically discovered **Hawk-Dove / Snowdrift dynamics** in breast IDC ($A_{SR} - A_{RR} = +4.576 > 0$, $A_{RS} - A_{SS} = +2.987 > 0$, stable internal ESS $x^* = 60.5\%$), validating that intact human spatial transcriptomics autonomously recapitulates genuine cellular game ecology.
+- **Lung & Melanoma Bistability:** In NSCLC and melanoma models, spatial competition constrains resistance outgrowth under targeted therapy (Bacevic et al., 2017; Kemper et al., 2014; Gallaher et al., 2018). *InSituGame* identified this exact coordination/bistable structure (Stag Hunt with tipping separatrices $x_{sep} = 20.0\%$ in Lung SCC and $52.8\%$ in Melanoma SKCM).
 
 ### 3.6 In Silico Adaptive Therapy vs Continuous MTD
-Coupling the inferred payoff matrices with non-linear replicator dynamics demonstrated the therapeutic utility of *InSituGame* (Figure 1, bottom panels). Under continuous MTD chemotherapy ($d_S = 1.2, d_R = 0.7$), sensitive clones were rapidly eradicated within $t = 25$ cycles, causing competitive release and 100% resistant outgrowth. In contrast, patient-specific adaptive dosing—pulsing treatment only when sensitive fraction exceeded the patient's critical threshold—successfully stabilized the sensitive population above the separatrix tipping point ($x_{sep}$), sustaining long-term tumor control and preventing treatment failure.
+Coupling the inferred payoff matrices with non-linear replicator dynamics demonstrated the therapeutic utility of *InSituGame* (Figure 2, right-most column). Under continuous MTD chemotherapy ($d_S = 1.2, d_R = 0.7$), sensitive clones were rapidly eradicated within $t = 25$ cycles, causing competitive release and 100% resistant outgrowth. In contrast, patient-specific adaptive dosing—pulsing treatment only when sensitive fraction exceeded the patient's critical threshold—successfully stabilized the sensitive population above the separatrix tipping point ($x_{sep}$), sustaining long-term tumor control and preventing treatment failure.
 
 ---
 

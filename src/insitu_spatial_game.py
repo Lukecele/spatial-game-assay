@@ -26,7 +26,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-DATA_DIR = "/home/luca/spatial-game-assay/data"
+DATA_DIR = "/home/luca/spatial-game-assay/data/lung"
 RESULTS_DIR = "/home/luca/spatial-game-assay/results"
 FIGURES_DIR = "/home/luca/spatial-game-assay/figures"
 
@@ -253,20 +253,19 @@ def solve_payoff_matrix(data):
     print(f"  A(Resistant vs Sensitive): {A_RS:+.4f} | A(Resistant vs Resistant): {A_RR:+.4f}")
 
     # Diagnosi della classe di gioco
-    game_class = "Indeterminato"
+    game_class = "Indeterminate"
     if A_SS > A_RS and A_SR > A_RR:
-        game_class = "Dominanza Sensitive (Il clone sensibile è dominante)"
+        game_class = "Sensitive Dominance"
     elif A_RS > A_SS and A_RR > A_SR:
-        game_class = "Deadlock / Dominanza Resistente (I resistenti dominano ovunque)"
+        game_class = "Resistant Dominance"
     elif A_RS > A_SS and A_SR > A_RR:
-        game_class = "Coesistenza / Falco-Colomba (Equilibrio di Nash interno stabile!)"
-        # Calcolo equilibrio di Nash interno x* (frazione di Sensitive)
+        game_class = "Hawk-Dove (Coexistence)"
         x_star = (A_SR - A_RR) / ((A_SS - A_RS) + (A_SR - A_RR))
-        print(f"  [★] EQUILIBRIO DI NASH INTERNO (ESS): x*(Sensitive) = {x_star:.3f}")
+        print(f"  [★] INTERNAL NASH EQUILIBRIUM (ESS): x*(Sensitive) = {x_star:.3f}")
     elif A_SS > A_RS and A_RR > A_SR:
-        game_class = "Bistabile / Coordinazione (Chi inizia in maggioranza vince)"
+        game_class = "Stag Hunt (Bistable)"
     
-    print(f"  [>] CLASSIFICAZIONE DEL GIOCO: {game_class}")
+    print(f"  [>] GAME CLASSIFICATION: {game_class}")
 
     # Salva referto JSON
     report_data = {
@@ -285,47 +284,52 @@ def solve_payoff_matrix(data):
 
 
 def generate_figures(data, A_matrix, game_class):
-    print("\n[*] Generazione delle figure scientifiche per il manoscritto...")
+    print("\n[*] Generating publication-ready scientific figures...")
     os.makedirs(FIGURES_DIR, exist_ok=True)
     coords = data["coords"]
     
-    fig, axes = plt.subplots(1, 3, figsize=(18, 5), dpi=300)
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5.2), dpi=300)
     
-    # 1. Mappa Spaziale delle Strategie Clonali (RGB Composite)
+    # 1. Spatial Map of Clonal Phenotypes (RGB Composite)
     # R=Resistant, G=Sensitive, B=Stroma
     rgb = np.column_stack([data["f_R"], data["f_S"], data["f_C"]])
     rgb = np.clip(rgb, 0, 1)
     
     sc0 = axes[0].scatter(coords[:, 1], -coords[:, 0], c=rgb, s=6, alpha=0.85)
-    axes[0].set_title("Mappa Spaziale delle Strategie\n(Rosso=Resistenti, Verde=Sensibili, Blu=Stroma)", fontsize=11, fontweight='bold')
+    axes[0].set_title("A. Spatial Phenotype Architecture\n(Red=Resistant, Green=Sensitive, Blue=Stroma)", fontsize=11, fontweight='bold')
     axes[0].axis('off')
 
-    # 2. Mappa Spaziale della Fitness Purificata
+    # 2. Decoupled Proliferation Fitness
     sc1 = axes[1].scatter(coords[:, 1], -coords[:, 0], c=data["w_purified"], cmap="coolwarm", s=6, alpha=0.85)
-    axes[1].set_title("Fitness Replicativa Depurata (W_res)\n(Al netto dello stress da ipossia e vasi)", fontsize=11, fontweight='bold')
+    axes[1].set_title("B. Decoupled Proliferation Fitness ($w_{purified}$)\n(Decoupled from Hypoxia & Vascular Covariates)", fontsize=11, fontweight='bold')
     axes[1].axis('off')
-    plt.colorbar(sc1, ax=axes[1], fraction=0.046, pad=0.04)
+    cbar1 = plt.colorbar(sc1, ax=axes[1], fraction=0.046, pad=0.04)
+    cbar1.ax.tick_params(labelsize=9)
 
-    # 3. Heatmap della Matrice dei Payoff di Nash
+    # 3. Payoff Heatmap
     strategies = ["T_Sens", "T_Res", "Stroma"]
     im = axes[2].imshow(A_matrix, cmap="RdBu_r", vmin=-np.max(np.abs(A_matrix)), vmax=np.max(np.abs(A_matrix)))
     axes[2].set_xticks([0, 1, 2])
     axes[2].set_yticks([0, 1, 2])
     axes[2].set_xticklabels(strategies, fontsize=10, fontweight='bold')
     axes[2].set_yticklabels(strategies, fontsize=10, fontweight='bold')
-    axes[2].set_title(f"Matrice dei Payoff in Situ (A_ij)\nClasse: {game_class.split('(')[0]}", fontsize=11, fontweight='bold')
-    plt.colorbar(im, ax=axes[2], fraction=0.046, pad=0.04)
+    clean_game = game_class.split('(')[0].strip()
+    axes[2].set_title(f"C. In Situ Payoff Matrix ($A_{{ij}}$)\nGame Regime: {clean_game}", fontsize=11, fontweight='bold')
+    cbar2 = plt.colorbar(im, ax=axes[2], fraction=0.046, pad=0.04)
+    cbar2.ax.tick_params(labelsize=9)
     
     for i in range(3):
         for j in range(3):
             val = A_matrix[i, j]
-            axes[2].text(j, i, f"{val:+.3f}", ha="center", va="center", color="black" if abs(val)<0.5*np.max(np.abs(A_matrix)) else "white", fontweight='bold')
+            axes[2].text(j, i, f"{val:+.3f}", ha="center", va="center", 
+                         color="black" if abs(val)<0.5*np.max(np.abs(A_matrix)) else "white", 
+                         fontweight='bold', fontsize=10)
 
     plt.tight_layout()
     out_fig = os.path.join(FIGURES_DIR, "figure1_spatial_game_decomposition.png")
-    plt.savefig(out_fig)
+    plt.savefig(out_fig, dpi=300, bbox_inches='tight')
     plt.close()
-    print(f"  [+] Figura 1 salvata con successo: {out_fig}")
+    print(f"  [+] Figure 1 successfully saved: {out_fig}")
 
 
 def main():

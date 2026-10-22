@@ -237,15 +237,15 @@ def process_tumor_dataset(cancer_key, n_perm=1000, n_boot=1000):
     A_RS, A_RR = A_matrix[1, 0], A_matrix[1, 1]
 
     if A_SS > A_RS and A_SR > A_RR:
-        game_class = "Dominanza Sensitive"
+        game_class = "Sensitive Dominance"
     elif A_RS > A_SS and A_RR > A_SR:
-        game_class = "Dominanza Resistente"
+        game_class = "Resistant Dominance"
     elif A_RS > A_SS and A_SR > A_RR:
-        game_class = "Falco-Colomba (Coesistenza)"
+        game_class = "Hawk-Dove (Coexistence)"
     elif A_SS > A_RS and A_RR > A_SR:
-        game_class = "Stag Hunt (Bistabile / Coordinazione)"
+        game_class = "Stag Hunt (Bistable)"
     else:
-        game_class = "Trascendente / Indeterminato"
+        game_class = "Indeterminate / Boundary"
 
     # Exact Nash Equilibrium / Separatrix Computation:
     # Equilibrium condition on 2x2: (Ax)_S = (Ax)_R
@@ -448,7 +448,7 @@ def plot_pan_cancer_figure(all_data, all_results, sim_outputs):
             nx = res["subgame_2x2"]["nash_internal_x_Sensitive"]
             nash_info = f"\nNash x*={nx:.2f}"
             
-        axes[row_idx, 2].set_title(f"In Situ Payoff Matrix (A_ij)\nGame: {res['game_classification'].split('(')[0]}{nash_info}", fontsize=10, fontweight='bold')
+        axes[row_idx, 2].set_title(f"In Situ Payoff Matrix (A_ij)\nGame: {res['game_classification'].split('(')[0].strip()}{nash_info}", fontsize=10, fontweight='bold')
         plt.colorbar(im, ax=axes[row_idx, 2], fraction=0.046, pad=0.04)
         for i in range(3):
             for j in range(3):

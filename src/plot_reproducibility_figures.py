@@ -78,10 +78,10 @@ a_rs = [audit_data["breast"]["qc_sensitivity"][k]["payoff_2x2"]["A_RS"] for k in
 a_rr = [audit_data["breast"]["qc_sensitivity"][k]["payoff_2x2"]["A_RR"] for k in ["cut_0", "cut_500", "cut_1000"]]
 
 x_b = np.arange(len(cutoffs))
-ax_b.plot(x_b, a_sr, 'o-', color="#2E7D32", lw=2, ms=7, label="$A_{SR}$ (S vs R)")
-ax_b.plot(x_b, a_rs, 's-', color="#1565C0", lw=2, ms=7, label="$A_{RS}$ (R vs S)")
-ax_b.plot(x_b, a_ss, '^-', color="#C62828", lw=2, ms=7, label="$A_{SS}$ (S vs S)")
-ax_b.plot(x_b, a_rr, 'd-', color="#6A1B9A", lw=2, ms=7, label="$A_{RR}$ (R vs R)")
+ax_b.plot(x_b, a_sr, 'o-', color="#2E7D32", lw=2, ms=7, label="$A_{SR}$ (Sens vs Res)")
+ax_b.plot(x_b, a_rs, 's-', color="#1565C0", lw=2, ms=7, label="$A_{RS}$ (Res vs Sens)")
+ax_b.plot(x_b, a_ss, '^-', color="#C62828", lw=2, ms=7, label="$A_{SS}$ (Sens vs Sens)")
+ax_b.plot(x_b, a_rr, 'd-', color="#6A1B9A", lw=2, ms=7, label="$A_{RR}$ (Res vs Res)")
 ax_b.axhline(0, color="grey", linestyle="--", alpha=0.7)
 
 ax_b.set_ylabel("Payoff Parameter Magnitude", fontsize=11, fontweight="bold")
@@ -123,7 +123,7 @@ r_pearson = oos_data["parameter_concordance"]["payoff_matrix_pearson_r"]
 p_pearson = oos_data["parameter_concordance"]["payoff_matrix_pearson_p"]
 ax_c.set_xlabel("Section 1 Payoff Parameters ($A^{(1)}$)", fontsize=11, fontweight="bold")
 ax_c.set_ylabel("Section 2 Payoff Parameters ($A^{(2)}$)", fontsize=11, fontweight="bold")
-ax_c.set_title(f"C. Replicate Concordance Across Consecutive Slices (~10 um)\n(Pearson r = +{r_pearson:.3f}, p = {p_pearson:.4f} ★)", fontsize=11, fontweight="bold", loc="left")
+ax_c.set_title(f"C. Replicate Concordance Across Consecutive Slices (~10 um)\n(Pearson r = +{r_pearson:.3f}, p = {p_pearson:.4f})", fontsize=11, fontweight="bold", loc="left")
 ax_c.legend(frameon=True, fontsize=9, loc="upper left")
 
 # =============================================================================
