@@ -37,62 +37,60 @@ def solve_subgame_nash(A_SS: float, A_SR: float, A_RS: float, A_RR: float) -> Tu
 
 
 def simulate_adaptive_therapy(
-    A_mat: np.ndarray,
-    b_vec: np.ndarray,
+    A_2x2: np.ndarray,
     x0: float = 0.8,
-    T_max: float = 120.0,
-    dt: float = 0.05,
-    threshold: float = 0.5,
-    d_S: float = 1.2,
-    d_R: float = 0.7
+    T_max: float = 15.0,
+    dt: float = 0.01,
+    threshold: float = 0.4,
+    d_S_mtd: float = 1.2,
+    d_S_adt: float = 0.7
 ) -> Dict[str, Any]:
     """
-    Simulates Replicator Dynamics comparing:
-    1. Maximum Tolerated Dose (MTD, continuous drug)
-    2. Adaptive Therapy (pulsed drug when sensitive fraction > threshold)
+    Simulates canonical Replicator Dynamics:
+    dx_i / dt = x_i * [ (Ax)_i - x^T A x - drug_i(t) ]
+    comparing continuous Maximum Tolerated Dose (MTD) vs Adaptive Therapy.
     """
-    time_steps = int(T_max / dt)
-    t_span = np.linspace(0, T_max, time_steps)
+    n_steps = int(T_max / dt)
+    t_span = np.linspace(0, T_max, n_steps)
     
-    # 1. Continuous MTD
-    x_mtd = np.zeros(time_steps)
-    x_mtd[0] = x0
-    for t in range(time_steps - 1):
-        x = x_mtd[t]
-        y = 1.0 - x
-        f_S = b_vec[0] + A_mat[0, 0] * x + A_mat[0, 1] * y - d_S
-        f_R = b_vec[1] + A_mat[1, 0] * x + A_mat[1, 1] * y - d_R
-        phi = x * f_S + y * f_R
-        dx = x * (f_S - phi) * dt
-        x_mtd[t + 1] = np.clip(x + dx, 1e-4, 1.0 - 1e-4)
+    # Initial vector [x_S, x_R]
+    x_init = np.array([x0, 1.0 - x0])
+    
+    # 1. Continuous MTD Chemotherapy
+    x_mtd = np.zeros((n_steps, 2))
+    x_mtd[0] = x_init
+    drug_mtd = np.array([d_S_mtd, 0.0])
+    
+    for k in range(n_steps - 1):
+        fit_mtd = A_2x2 @ x_mtd[k] - drug_mtd
+        avg_fit_mtd = np.dot(x_mtd[k], fit_mtd)
+        dx_mtd = x_mtd[k] * (fit_mtd - avg_fit_mtd)
+        x_mtd[k + 1] = np.clip(x_mtd[k] + dt * dx_mtd, 1e-4, 1.0)
+        x_mtd[k + 1] /= np.sum(x_mtd[k + 1])
         
     # 2. Adaptive Therapy
-    x_adp = np.zeros(time_steps)
-    x_adp[0] = x0
-    drug_on = np.zeros(time_steps, dtype=bool)
+    x_adt = np.zeros((n_steps, 2))
+    x_adt[0] = x_init
+    drug_on = np.zeros(n_steps, dtype=bool)
     
-    for t in range(time_steps - 1):
-        x = x_adp[t]
-        y = 1.0 - x
-        is_drug = (x > threshold)
-        drug_on[t] = is_drug
+    for k in range(n_steps - 1):
+        is_drug = (x_adt[k, 0] > threshold)
+        drug_on[k] = is_drug
+        drug_adt = np.array([d_S_adt, 0.0]) if is_drug else np.array([0.0, 0.0])
         
-        kill_S = d_S if is_drug else 0.0
-        kill_R = d_R if is_drug else 0.0
+        fit_adt = A_2x2 @ x_adt[k] - drug_adt
+        avg_fit_adt = np.dot(x_adt[k], fit_adt)
+        dx_adt = x_adt[k] * (fit_adt - avg_fit_adt)
+        x_adt[k + 1] = np.clip(x_adt[k] + dt * dx_adt, 1e-4, 1.0)
+        x_adt[k + 1] /= np.sum(x_adt[k + 1])
         
-        f_S = b_vec[0] + A_mat[0, 0] * x + A_mat[0, 1] * y - kill_S
-        f_R = b_vec[1] + A_mat[1, 0] * x + A_mat[1, 1] * y - kill_R
-        phi = x * f_S + y * f_R
-        dx = x * (f_S - phi) * dt
-        x_adp[t + 1] = np.clip(x + dx, 1e-4, 1.0 - 1e-4)
-        
-    drug_on[-1] = (x_adp[-1] > threshold)
+    drug_on[-1] = (x_adt[-1, 0] > threshold)
     
     return {
         "time": t_span.tolist(),
-        "x_mtd": x_mtd.tolist(),
-        "x_adaptive": x_adp.tolist(),
+        "x_mtd_sensitive": x_mtd[:, 0].tolist(),
+        "x_adaptive_sensitive": x_adt[:, 0].tolist(),
         "drug_active": drug_on.tolist(),
-        "final_sensitive_mtd": float(x_mtd[-1]),
-        "final_sensitive_adaptive": float(x_adp[-1])
+        "final_sensitive_mtd": float(x_mtd[-1, 0]),
+        "final_sensitive_adaptive": float(x_adt[-1, 0])
     }
