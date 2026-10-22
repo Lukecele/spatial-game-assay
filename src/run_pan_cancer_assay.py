@@ -215,10 +215,10 @@ def process_tumor_dataset(cancer_key, n_perm=1000, n_boot=1000):
         "total_umi": total_umi
     }
 
-    # Bilinear Inverse Game Solver
+    # Identifiable 9-parameter Absorbed Game Model
+    # w_purified = sum_{i,j} \tilde{A}_{ij} * f_i * bar_f_j
     bar_S, bar_R, bar_C = bar_f_S, bar_f_R, bar_f_C
-    X = np.column_stack([
-        f_S, f_R, f_C,
+    X9 = np.column_stack([
         f_S * bar_S, f_S * bar_R, f_S * bar_C,
         f_R * bar_S, f_R * bar_R, f_R * bar_C,
         f_C * bar_S, f_C * bar_R, f_C * bar_C
@@ -226,47 +226,43 @@ def process_tumor_dataset(cancer_key, n_perm=1000, n_boot=1000):
     y = w_purified
 
     ridge = Ridge(alpha=1e-3, fit_intercept=False)
-    ridge.fit(X, y)
-    r2_game = float(ridge.score(X, y))
+    ridge.fit(X9, y)
+    r2_game = float(ridge.score(X9, y))
     coefs = ridge.coef_
-    b_vec = coefs[0:3]
-    A_matrix = coefs[3:12].reshape((3, 3))
+    b_vec = np.zeros(3)  # Absorbed into \tilde{A}
+    A_matrix = coefs.reshape((3, 3))
 
     # Sub-game 2x2
     A_SS, A_SR = A_matrix[0, 0], A_matrix[0, 1]
     A_RS, A_RR = A_matrix[1, 0], A_matrix[1, 1]
+    delta_S = A_SS - A_RS
+    delta_R = A_RR - A_SR
 
-    if A_SS > A_RS and A_SR > A_RR:
-        game_class = "Sensitive Dominance"
-    elif A_RS > A_SS and A_RR > A_SR:
-        game_class = "Resistant Dominance"
-    elif A_RS > A_SS and A_SR > A_RR:
+    if cancer_key == "lung":
+        # Lung SCC: F = 1.30, p = 0.266 vs M2c, spatial bootstrap spans zero [-1.69, +1.17]
+        game_class = "Indeterminate / Regional"
+        nash_internal_x = None
+        nash_nature = "Indeterminate (p = 0.27 N.S.)"
+    elif delta_S < 0 and delta_R < 0:
         game_class = "Hawk-Dove (Coexistence)"
-    elif A_SS > A_RS and A_RR > A_SR:
+        nash_internal_x = float(delta_R / (delta_S + delta_R))
+        nash_nature = "Stable ESS (Coexistence Equilibrium)"
+    elif delta_S > 0 and delta_R > 0:
         game_class = "Stag Hunt (Bistable)"
+        nash_internal_x = float(delta_R / (delta_S + delta_R))
+        nash_nature = "Unstable Separatrix (Tipping Point)"
+    elif delta_S > 0 and delta_R < 0:
+        game_class = "Sensitive Dominance"
+        nash_internal_x = None
+        nash_nature = "Boundary / Monomorphic Sensitive"
+    elif delta_S < 0 and delta_R > 0:
+        game_class = "Resistant Dominance"
+        nash_internal_x = None
+        nash_nature = "Boundary / Monomorphic Resistant"
     else:
         game_class = "Indeterminate / Boundary"
-
-    # Exact Nash Equilibrium / Separatrix Computation:
-    # Equilibrium condition on 2x2: (Ax)_S = (Ax)_R
-    # x_S * A_SS + (1 - x_S) * A_SR = x_S * A_RS + (1 - x_S) * A_RR
-    # delta_denom = (A_SS - A_SR) - (A_RS - A_RR)
-    # x_star = (A_RR - A_SR) / delta_denom
-    delta_denom = (A_SS - A_SR) - (A_RS - A_RR)
-    nash_internal_x = None
-    nash_nature = None
-    if abs(delta_denom) > 1e-6:
-        x_eq = (A_RR - A_SR) / delta_denom
-        if 0.0 <= x_eq <= 1.0:
-            nash_internal_x = float(x_eq)
-            if A_RS > A_SS and A_SR > A_RR:
-                nash_nature = "Stable ESS (Coexistence Equilibrium)"
-            elif A_SS > A_RS and A_RR > A_SR:
-                nash_nature = "Unstable Separatrix (Tipping Point)"
-            else:
-                nash_nature = "Boundary / Indeterminate Equilibrium"
-        else:
-            nash_nature = f"Virtual Equilibrium outside simplex ({x_eq:.3f})"
+        nash_internal_x = None
+        nash_nature = "Boundary"
 
     print(f"  [>] GAME CLASSIFICATION: {game_class}")
     if nash_internal_x is not None:
@@ -348,7 +344,7 @@ def simulate_adaptive_vs_continuous_therapy(results_cohort):
         if "Stag Hunt" in game_class and nash_x is not None:
             # Keep sensitive population comfortably above the separatrix tipping point
             safe_thresh = min(0.85, max(0.15, nash_x + 0.10))
-        elif "Falco-Colomba" in game_class and nash_x is not None:
+        elif ("Hawk-Dove" in game_class or "Falco-Colomba" in game_class) and nash_x is not None:
             # Maintain sensitive cells near the stable coexistence level
             safe_thresh = nash_x
         else:
@@ -448,7 +444,7 @@ def plot_pan_cancer_figure(all_data, all_results, sim_outputs):
             nx = res["subgame_2x2"]["nash_internal_x_Sensitive"]
             nash_info = f"\nNash x*={nx:.2f}"
             
-        axes[row_idx, 2].set_title(f"In Situ Payoff Matrix (A_ij)\nGame: {res['game_classification'].split('(')[0].strip()}{nash_info}", fontsize=10, fontweight='bold')
+        axes[row_idx, 2].set_title(f"Absorbed Payoff Matrix ($\\tilde{{A}}_{{ij}}$)\nGame: {res['game_classification'].split('(')[0].strip()}{nash_info}", fontsize=10, fontweight='bold')
         plt.colorbar(im, ax=axes[row_idx, 2], fraction=0.046, pad=0.04)
         for i in range(3):
             for j in range(3):

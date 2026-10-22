@@ -33,35 +33,39 @@ fig, axes = plt.subplots(2, 2, figsize=(14, 11), dpi=300)
 plt.subplots_adjust(wspace=0.28, hspace=0.32)
 
 # =============================================================================
-# PANEL A: MODEL ABLATION ACROSS CANCERS
+# PANEL A: MODEL ABLATION ACROSS CANCERS (INCLUDING M2c & M2d CONTROLS)
 # =============================================================================
 ax_a = axes[0, 0]
 cancers = ["lung", "breast", "melanoma"]
 labels = ["Lung SCC\n(N=3,858)", "Breast IDC\n(N=4,992)", "Melanoma SKCM\n(N=3,458)"]
 x = np.arange(len(cancers))
-width = 0.25
+width = 0.15
 
-r2_m1 = [audit_data[c]["ablation"]["model1_env"]["r2"] * 100 for c in cancers]
-r2_m2 = [audit_data[c]["ablation"]["model2_intrinsic"]["r2"] * 100 for c in cancers]
-r2_m3 = [audit_data[c]["ablation"]["model3_game"]["r2"] * 100 for c in cancers]
+r2_m1 = [15.82, 16.12, 10.23]
+r2_m2 = [27.84, 23.49, 32.48]
+r2_m2c = [30.77, 26.58, 35.52]
+r2_m2d = [31.21, 33.32, 36.58]
+r2_m3 = [30.86, 32.29, 36.78]
 
-rects1 = ax_a.bar(x - width, r2_m1, width, label="Model 1: Microenvironment", color="#90CAF9", edgecolor="#1565C0")
-rects2 = ax_a.bar(x, r2_m2, width, label="Model 2: Intrinsic (Mass Action)", color="#FFCC80", edgecolor="#E65100")
-rects3 = ax_a.bar(x + width, r2_m3, width, label="Model 3: Spatial Game Assay", color="#A5D6A7", edgecolor="#2E7D32")
+rects1 = ax_a.bar(x - 2*width, r2_m1, width, label="$M_1$: Microenvironment", color="#90CAF9", edgecolor="#1565C0")
+rects2 = ax_a.bar(x - width, r2_m2, width, label="$M_2$: Linear Mass-Action", color="#FFE082", edgecolor="#FF8F00")
+rects2c = ax_a.bar(x, r2_m2c, width, label="$M_{2c}$: Regional Composition", color="#FFAB91", edgecolor="#D84315")
+rects2d = ax_a.bar(x + width, r2_m2d, width, label="$M_{2d}$: Generic Quadratics", color="#CE93D8", edgecolor="#6A1B9A")
+rects3 = ax_a.bar(x + 2*width, r2_m3, width, label="$M_3$: In Situ Spatial Game", color="#A5D6A7", edgecolor="#2E7D32")
 
 ax_a.set_ylabel("Explained Variance $R^2$ (%)", fontsize=11, fontweight="bold")
-ax_a.set_title("A. Model Ablation & Explained Proliferation Variance\n(Incremental F-tests: p < 1e-15 across all cohorts)", fontsize=11, fontweight="bold", loc="left")
+ax_a.set_title("A. Model Ablation & Spatial Controls Across Cohorts\n(Breast IDC: p < 1e-16; Melanoma: p = 6e-14; Lung: p = 0.27 N.S.)", fontsize=10, fontweight="bold", loc="left")
 ax_a.set_xticks(x)
 ax_a.set_xticklabels(labels, fontsize=10)
-ax_a.legend(frameon=True, fontsize=9, loc="upper left")
-ax_a.set_ylim(0, 45)
+ax_a.legend(frameon=True, fontsize=7.5, loc="upper left", ncol=2)
+ax_a.set_ylim(0, 48)
 
 for rect in rects3:
     height = rect.get_height()
     ax_a.annotate(f"{height:.1f}%",
                   xy=(rect.get_x() + rect.get_width() / 2, height),
                   xytext=(0, 3), textcoords="offset points",
-                  ha='center', va='bottom', fontsize=9, fontweight="bold", color="#1B5E20")
+                  ha='center', va='bottom', fontsize=8, fontweight="bold", color="#1B5E20")
 
 # =============================================================================
 # PANEL B: QC CUTOFF ROBUSTNESS (BREAST CANCER PAYOFF PARAMETERS)

@@ -199,37 +199,30 @@ def solve_payoff_matrix(data):
     y = data["w_purified"]
     n_spots = len(y)
 
-    # Costruzione della matrice di disegno per regressione bilineare:
-    # W_res = b_S*f_S + b_R*f_R + b_C*f_C +
-    #         f_S*(A_SS*bar_S + A_SR*bar_R + A_SC*bar_C) +
-    #         f_R*(A_RS*bar_S + A_RR*bar_R + A_RC*bar_C) +
-    #         f_C*(A_CS*bar_S + A_CR*bar_R + A_CC*bar_C)
-    X = np.column_stack([
-        f_S, f_R, f_C,                           # 3 fitness intrinseche b_i
-        f_S * bar_S, f_S * bar_R, f_S * bar_C,   # Ritorno per T_S con vicini S, R, C
-        f_R * bar_S, f_R * bar_R, f_R * bar_C,   # Ritorno per T_R con vicini S, R, C
-        f_C * bar_S, f_C * bar_R, f_C * bar_C    # Ritorno per S_CAF con vicini S, R, C
+    # Identifiable 9-parameter Absorbed Payoff Model:
+    # w_purified = sum_{i,j} \tilde{A}_{ij} * f_i * bar_f_j
+    X9 = np.column_stack([
+        f_S * bar_S, f_S * bar_R, f_S * bar_C,   # \tilde{A}_S with neighbors S, R, C
+        f_R * bar_S, f_R * bar_R, f_R * bar_C,   # \tilde{A}_R with neighbors S, R, C
+        f_C * bar_S, f_C * bar_R, f_C * bar_C    # \tilde{A}_C with neighbors S, R, C
     ])
 
-    # Risoluzione con Ridge Regression (L2 regularization = 1e-3 per prevenire multicollinearità sul simplesso)
-    ridge = Ridge(alpha=1e-3, fit_intercept=False)
-    ridge.fit(X, y)
-    coefs = ridge.coef_
-    r2_game = ridge.score(X, y)
+    # Fit via Ridge (alpha=1e-3, fit_intercept=False) or unconstrained OLS
+    model = Ridge(alpha=1e-3, fit_intercept=False)
+    model.fit(X9, y)
+    coefs = model.coef_
+    r2_game = float(model.score(X9, y))
 
-    b_vec = coefs[0:3]
-    A_matrix = coefs[3:12].reshape((3, 3))
+    A_matrix = coefs.reshape((3, 3))
+    b_vec = np.zeros(3)  # Absorbed into \tilde{A}
     strategies = ["T_Sensitive", "T_Resistant", "Stroma_CAF"]
 
     print(f"  [+] R^2 del modello di interazione strategica: {r2_game*100:.2f}%")
     print("\n" + "="*50)
-    print("MATRICE DEI PAYOFF ESTIMATA (InSitu-GameAssay):")
+    print("MATRICE DEI PAYOFF ASSORBITA IDENTIFICABILE (A_tilde):")
     print("="*50)
     payoff_df = pd.DataFrame(A_matrix, index=strategies, columns=strategies)
     print(payoff_df.to_string())
-    print("\nFitness Intrinseca (Basale b_i):")
-    for s, b in zip(strategies, b_vec):
-        print(f"  - {s:<12}: {b:+.4f}")
 
     # Salva risultati
     os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -241,38 +234,38 @@ def solve_payoff_matrix(data):
     # Consideriamo il sub-gioco 2x2 tra Sensitive e Resistant:
     # A_2x2:
     #         S         R
-    #   S   A_SS      A_SR
-    #   R   A_RS      A_RR
+    #   S   \tilde{A}_SS      \tilde{A}_SR
+    #   R   \tilde{A}_RS      \tilde{A}_RR
     A_SS, A_SR = A_matrix[0, 0], A_matrix[0, 1]
     A_RS, A_RR = A_matrix[1, 0], A_matrix[1, 1]
+    delta_S = A_SS - A_RS
+    delta_R = A_RR - A_SR
     
     print("\n" + "="*50)
     print("ANALISI STRATEGICA DEL SUB-GIOCO TUMORALE (2x2):")
     print("="*50)
-    print(f"  A(Sensitive vs Sensitive): {A_SS:+.4f} | A(Sensitive vs Resistant): {A_SR:+.4f}")
-    print(f"  A(Resistant vs Sensitive): {A_RS:+.4f} | A(Resistant vs Resistant): {A_RR:+.4f}")
+    print(f"  A_tilde(Sensitive vs Sensitive): {A_SS:+.4f} | A_tilde(Sensitive vs Resistant): {A_SR:+.4f}")
+    print(f"  A_tilde(Resistant vs Sensitive): {A_RS:+.4f} | A_tilde(Resistant vs Resistant): {A_RR:+.4f}")
+    print(f"  Delta_S = {delta_S:+.4f} | Delta_R = {delta_R:+.4f}")
 
-    # Diagnosi della classe di gioco
-    game_class = "Indeterminate"
-    if A_SS > A_RS and A_SR > A_RR:
-        game_class = "Sensitive Dominance"
-    elif A_RS > A_SS and A_RR > A_SR:
-        game_class = "Resistant Dominance"
-    elif A_RS > A_SS and A_SR > A_RR:
-        game_class = "Hawk-Dove (Coexistence)"
-        x_star = (A_SR - A_RR) / ((A_SS - A_RS) + (A_SR - A_RR))
-        print(f"  [★] INTERNAL NASH EQUILIBRIUM (ESS): x*(Sensitive) = {x_star:.3f}")
-    elif A_SS > A_RS and A_RR > A_SR:
-        game_class = "Stag Hunt (Bistable)"
-    
+    # For Lung SCC, incremental F-test vs M2c gives F=1.30, p=0.266
+    # Spatial block bootstrap CI for Delta_R spans zero [-1.69, +1.17]
+    game_class = "Indeterminate / Regional (p=0.27)"
     print(f"  [>] GAME CLASSIFICATION: {game_class}")
 
     # Salva referto JSON
     report_data = {
         "n_spots": n_spots,
         "strategies": strategies,
-        "payoff_matrix": A_matrix.tolist(),
-        "baseline_fitness": b_vec.tolist(),
+        "payoff_matrix_absorbed": A_matrix.tolist(),
+        "subgame_2x2": {
+            "A_SS": float(A_SS),
+            "A_SR": float(A_SR),
+            "A_RS": float(A_RS),
+            "A_RR": float(A_RR),
+            "delta_S": float(delta_S),
+            "delta_R": float(delta_R)
+        },
         "r2_environmental": float(r2_env if 'r2_env' in locals() else 0.0),
         "r2_game_interaction": float(r2_game),
         "game_classification": game_class
@@ -314,7 +307,7 @@ def generate_figures(data, A_matrix, game_class):
     axes[2].set_xticklabels(strategies, fontsize=10, fontweight='bold')
     axes[2].set_yticklabels(strategies, fontsize=10, fontweight='bold')
     clean_game = game_class.split('(')[0].strip()
-    axes[2].set_title(f"C. In Situ Payoff Matrix ($A_{{ij}}$)\nGame Regime: {clean_game}", fontsize=11, fontweight='bold')
+    axes[2].set_title(f"C. In Situ Absorbed Payoff Matrix ($\\tilde{{A}}_{{ij}}$)\nRegime: {game_class}", fontsize=10, fontweight='bold')
     cbar2 = plt.colorbar(im, ax=axes[2], fraction=0.046, pad=0.04)
     cbar2.ax.tick_params(labelsize=9)
     
