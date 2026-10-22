@@ -1,9 +1,8 @@
 # InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Designing Adaptive Chemotherapy in Intact Human Biopsies
 
-**Luca Celebrano**$^{1,2,*}$
+**Luca Celebrano**$^{1,*}$
 
 $^{1}$ Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, 80131 Naples, Italy  
-$^{2}$ Telethon Institute of Genetics and Medicine (TIGEM), 80078 Pozzuoli, Naples, Italy  
 $^{*}$ **Corresponding Author:** Luca Celebrano  
 Email: `l.celebrano@studenti.unina.it` | Public ORCID: [`0009-0007-0931-3555`](https://orcid.org/0009-0007-0931-3555)  
 Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay)  
@@ -197,6 +196,9 @@ The clinical failure of oncology drug regimens is fundamentally an evolutionary 
 In conclusion, *InSituGame* provides an open-source, mathematically grounded, and clinically audited framework that unlocks personalized evolutionary game theory for precision oncology.
 
 ---
+
+## Acknowledgments
+The author warmly acknowledges the Telethon Institute of Genetics and Medicine (TIGEM), Pozzuoli, Italy, for scientific hospitality and providing a stimulating research environment during experimental degree thesis investigations.
 
 ## Conflict of Interest Statement
 The author declares no competing financial or personal interests.
