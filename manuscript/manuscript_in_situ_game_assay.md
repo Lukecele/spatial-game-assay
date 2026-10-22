@@ -124,6 +124,8 @@ To ensure epidemiological rigor, all continuous predictions were audited using L
 ### 3.1 Pan-Cancer Empirical Game Landscape
 Applying *InSituGame* across the three primary clinical cancer cohorts revealed distinct, lineage-specific evolutionary game regimes (Table 1 and Figure 1).
 
+![**Figure 1 | Spatial Game Decomposition and In Silico Adaptive Therapy Dynamics.** (A) Spot-level subclonal phenotypic deconvolution (Sensitive $T_S$, Resistant $T_R$, and Stroma/CAF $S_{CAF}$) across intact tumor tissue. (B) Delaunay triangulation graph capturing physical spatial contact neighborhoods ($\sim 55\,\mu\text{m}$). (C) Microenvironmental decoupling separating intrinsic game proliferation from extrinsic hypoxia ($Z_{hyp}$) and vascular ($Z_{vasc}$) gradients. (D) Forward replicator simulation comparing standard Maximum Tolerated Dose (MTD) chemotherapy against patient-tailored Adaptive Chemotherapy guided by the inferred payoff matrix.](../figures/figure1_spatial_game_decomposition.png){width=95%}
+
 **Table 1 | In Situ Game Assay Pan-Cancer Parameter Summary and Diagnostic Performance.**
 | Cancer Cohort | Primary Histology | In-Tissue Spots ($N$) | Reconstructed Payoff Matrix $A_{2 \times 2}$ | Inferred Game Dynamics | Critical Nash Equilibrium | Explained Variance $R^2$ (%) | Diagnostic Odds Ratio [95% CI] | Fisher Exact $p$-value |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -134,6 +136,8 @@ Applying *InSituGame* across the three primary clinical cancer cohorts revealed 
 In Human Lung SCC, sensitive tumor cells strongly facilitate one another ($A_{SS} = +0.547, p = 0.001$), while resistant cells exert mutual facilitation ($A_{RR} = +0.070$), producing a classic Stag Hunt coordination game with an unstable tipping point at $x_{sep} = 20.0\%$. If chemotherapy drives sensitive clone frequency below 20%, resistant dominance becomes evolutionary inevitable.
 
 In Human Breast IDC, we observed strong negative diagonal payoffs ($A_{SS} = -0.996, A_{RR} = -1.970$) and positive cross-interaction payoffs ($A_{SR} = +2.606, A_{RS} = +1.991$). This fulfills the canonical conditions of a **Hawk-Dove / Snowdrift game**, yielding a stable interior coexistence equilibrium at $x^* = 60.5\%$ sensitive and $39.5\%$ resistant clones.
+
+![**Figure 2 | Pan-Cancer In Situ Spatial Evolutionary Game Atlas.** Comprehensive spatial game interaction landscapes across human Lung Squamous Cell Carcinoma (Lung SCC, $N=3,858$), Invasive Ductal Breast Carcinoma (Breast IDC, $N=4,992$), and Cutaneous Malignant Melanoma (Melanoma SKCM, $N=3,458$). Inferred subclonal payoff matrices $A_{2 \times 2}$, simplex phase portraits, replicator vector fields, and clinical Nash equilibria (Hawk-Dove coexistence in breast IDC; Stag Hunt bistable tipping separatrices in lung SCC and melanoma).](../figures/figure_pan_cancer_spatial_game_atlas.png){width=95%}
 
 ### 3.2 Model Ablation: Proving the Non-Redundancy of Spatial Games
 To rigorously prove that spatial game theory provides genuine biological information beyond simple cell fraction or microenvironmental gradients, we conducted an incremental model ablation (Table 2 and Figure 2A).
@@ -169,6 +173,8 @@ Independently fitting Section 1 and Section 2 demonstrated strong parameter conc
 Next, we executed a rigorous **Blind Out-Of-Sample (OOS) Generalization Test**: the spatial game model was trained exclusively on Section 1, and then applied blindly to predict spot-level proliferation on the unseen, held-out Section 2 (Figure 2D):
 - **Blind OOS Explained Variance:** The Spatial Game Assay achieved **$\text{OOS } R^2 = 10.20\%$**, substantially outperforming the non-spatial intrinsic baseline ($\text{OOS } R^2 = 6.21\%$, a **$+3.99\%$ variance gain** out-of-sample).
 - **Blind Diagnostic Performance:** Blind Diagnostic Odds Ratio $= 2.30$ [95% CI: $2.03 - 2.61$], exact Fisher $p = 4.82 \times 10^{-12}$, ROC-AUC $= 0.653$, Sensitivity $= 60.3\%$, Specificity $= 60.3\%$.
+
+![**Figure 3 | Reproducibility Battery, Serial Section Concordance, and Blind Out-Of-Sample Validation.** (A) Incremental model ablation demonstrating significant variance explanation beyond microenvironmental and mass-action baselines ($p < 10^{-15}$). (B) Parameter stability across quality control filtering ($0, \ge 500, \ge 1,000$ UMI) and spatial neighborhood radii ($k \in \{6, 12, 18\}$). (C) Replicate concordance across independent consecutive serial histological sections ($\approx 10\,\mu\text{m}$ spacing, $r = +0.811$, $p = 0.0079$) and game classification preservation. (D) Blind Out-Of-Sample (OOS) validation on held-out serial section ($R^2_{OOS} = 10.20\%$, DOR $= 2.30$, exact Fisher $p = 4.82 \times 10^{-12}$).](../figures/figure_reproducibility_battery.png){width=95%}
 
 ### 3.5 Independent Ground-Truth Literature Concordance
 To calibrate our in situ findings against external biological ground truth, we benchmarked the inferred game matrices against independent published studies (Table 3):
