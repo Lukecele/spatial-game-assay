@@ -1,0 +1,42 @@
+{
+  "mtd": {
+    "median_pfs_days": 75.0,
+    "mean_pfs_days": 78.074,
+    "pfs_gain_vs_mtd_days": 0.0,
+    "pfs_gain_pct": 0.0,
+    "hazard_ratio_vs_mtd": 1.0,
+    "logrank_p_value": 1.0,
+    "mean_cumulative_dose": 78.074,
+    "dose_reduction_vs_mtd_pct": 0.0
+  },
+  "metronomic": {
+    "median_pfs_days": 25.0,
+    "mean_pfs_days": 38.248,
+    "pfs_gain_vs_mtd_days": -50.0,
+    "pfs_gain_pct": -66.66666666666666,
+    "hazard_ratio_vs_mtd": 2.041257059192638,
+    "logrank_p_value": 1.0,
+    "mean_cumulative_dose": 13.386800000000013,
+    "dose_reduction_vs_mtd_pct": 82.85370289725131
+  },
+  "heuristic_adaptive": {
+    "median_pfs_days": 76.0,
+    "mean_pfs_days": 79.1765,
+    "pfs_gain_vs_mtd_days": 1.0,
+    "pfs_gain_pct": 1.3333333333333335,
+    "hazard_ratio_vs_mtd": 0.9860754137907082,
+    "logrank_p_value": 0.12024002105697784,
+    "mean_cumulative_dose": 73.5065,
+    "dose_reduction_vs_mtd_pct": 5.850219022978198
+  },
+  "pontryagin_optimal": {
+    "median_pfs_days": 86.0,
+    "mean_pfs_days": 90.073,
+    "pfs_gain_vs_mtd_days": 11.0,
+    "pfs_gain_pct": 14.666666666666666,
+    "hazard_ratio_vs_mtd": 0.8667858292718128,
+    "logrank_p_value": 7.208884909965656e-34,
+    "mean_cumulative_dose": 55.84020000000002,
+    "dose_reduction_vs_mtd_pct": 28.47785434331529
+  }
+}

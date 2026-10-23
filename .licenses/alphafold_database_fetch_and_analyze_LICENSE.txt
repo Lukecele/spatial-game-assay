@@ -1,0 +1,5 @@
+AlphaFold Database Terms of Use Notification
+Timestamp: 2026-10-23T02:58:45+02:00
+URL: https://alphafold.ebi.ac.uk/
+The user has been notified to check the terms of use at https://alphafold.ebi.ac.uk/.
+AlphaFold DB data is provided under the CC-BY-4.0 license.
