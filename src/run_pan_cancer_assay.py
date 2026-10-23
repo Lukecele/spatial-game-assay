@@ -28,15 +28,19 @@ import matplotlib.pyplot as plt
 
 sys.stdout.reconfigure(line_buffering=True)
 
-sys.path.append("/home/luca/spatial-game-assay/src")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+if SCRIPT_DIR not in sys.path:
+    sys.path.append(SCRIPT_DIR)
+
 from validation_battery import (
     compute_morans_i, run_permutation_test, run_spatial_block_cv, run_spatial_bootstrap,
     run_full_validation_battery
 )
 
-BASE_DATA_DIR = "/home/luca/spatial-game-assay/data"
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
-FIGURES_DIR = "/home/luca/spatial-game-assay/figures"
+BASE_DATA_DIR = os.path.join(REPO_ROOT, "data")
+RESULTS_DIR = os.path.join(REPO_ROOT, "results")
+FIGURES_DIR = os.path.join(REPO_ROOT, "figures")
 
 # Certified Pan-Cancer and Tumor-Specific Gene Signatures
 COHORT_SPECS = {
@@ -248,10 +252,10 @@ def process_tumor_dataset(cancer_key, n_perm=1000, n_boot=1000):
     ])
     y = w_purified
 
-    ridge = Ridge(alpha=1e-3, fit_intercept=False)
-    ridge.fit(X9, y)
-    r2_game = float(ridge.score(X9, y))
-    coefs = ridge.coef_
+    ols = LinearRegression(fit_intercept=False)
+    ols.fit(X9, y)
+    r2_game = float(ols.score(X9, y))
+    coefs = ols.coef_
     b_vec = np.zeros(3)  # Absorbed into \tilde{A}
     A_matrix = coefs.reshape((3, 3))
 

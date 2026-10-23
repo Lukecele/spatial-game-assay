@@ -13,7 +13,7 @@ import tarfile
 import urllib.request
 import time
 
-DATA_DIR = "/home/luca/spatial-game-assay/data"
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 
 URLS = {
     "spatial": (

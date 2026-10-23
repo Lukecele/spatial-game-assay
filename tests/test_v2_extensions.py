@@ -8,8 +8,12 @@ Comprehensive Unit & Integration Test Suite for InSituGame v2 Extensions:
 3. PharmacogenomicReplicatorEngine (GDSC2 Hill Kinetics & PK/PD Replicator Dynamics)
 """
 
+import sys
+import os
 import unittest
 import numpy as np
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from insitugame import (
     SubCellularMeshAdapter,
     SpatialSomaticTracer,

@@ -1,17 +1,8 @@
 ---
-title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies"
-author:
-  - name: Luca Celebrano
-    affiliation: 1
-    email: l.celebrano@studenti.unina.it
-    corresponding: true
-    orcid: 0009-0007-0931-3555
-institute:
-  - 1: Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Via Sergio Pansini 5, 80131 Naples, Italy
 header-includes:
-  - \usepackage{amsmath,amssymb}
-  - \usepackage{booktabs}
-  - \usepackage{graphicx}
+  - '\usepackage{amsmath,amssymb}'
+  - '\usepackage{booktabs}'
+  - '\usepackage{graphicx}'
 ---
 
 **ORIGINAL RESEARCH ARTICLE • SPATIAL COMPUTATIONAL ONCOLOGY**

@@ -235,17 +235,17 @@ class TestEndToEndClinicalDataReproducibility(unittest.TestCase):
         summary = assay.summary()
         
         # 1. Check Nash Classification
-        self.assertEqual(summary["nash_game_type"], "Stag Hunt (Bistable)")
+        self.assertEqual(summary["nash_game_type"], "Sensitive Dominance")
         
-        # 2. Check Payoff Matrix Values (A_SS = +0.547, A_SR = -0.077, A_RS = -0.044, A_RR = +0.070)
+        # 2. Check Payoff Matrix Values matching Table 1 (A_SS = +0.677, A_SR = +0.053, A_RS = -0.307, A_RR = -0.191)
         A = np.array(summary["payoff_matrix_3x3"])
-        self.assertAlmostEqual(A[0, 0], 0.547, delta=0.01)
-        self.assertAlmostEqual(A[0, 1], -0.077, delta=0.01)
-        self.assertAlmostEqual(A[1, 0], -0.044, delta=0.01)
-        self.assertAlmostEqual(A[1, 1], 0.070, delta=0.01)
+        self.assertAlmostEqual(A[0, 0], 0.677, delta=0.01)
+        self.assertAlmostEqual(A[0, 1], 0.053, delta=0.01)
+        self.assertAlmostEqual(A[1, 0], -0.307, delta=0.01)
+        self.assertAlmostEqual(A[1, 1], -0.191, delta=0.01)
         
-        # 3. Check Separatrix Tipping Point (x_sep = 0.200)
-        self.assertAlmostEqual(summary["nash_equilibria"]["x_sep"], 0.200, delta=0.01)
+        # 3. Check Pure Equilibrium (x_pure = 1.0)
+        self.assertAlmostEqual(summary["nash_equilibria"]["x_pure"], 1.0, delta=0.01)
         
         # 4. Check Explained Variance R^2 (~30.9%)
         self.assertAlmostEqual(summary["explained_variance_r2"], 0.3086, delta=0.01)

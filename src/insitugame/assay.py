@@ -35,12 +35,10 @@ class InSituGameAssay:
         1. Log-CPM normalization and softmax phenotypic frequency projection onto the frequency simplex.
         2. Delaunay spatial neighborhood graph construction.
         3. Microenvironmental decoupling via Frisch-Waugh-Lovell orthogonalization (hypoxia + vasculature).
-        4. Estimation of the 9-parameter absorbed payoff matrix A_tilde (b_i + A_ij) via Ridge regression
-           on the 12-column design matrix [f_i, f_i * bar_f_j]. The 3 intrinsic regressors f_i are
-           algebraically collinear with the 9 bilinear interaction terms under the simplex constraint
-           (sum bar_f_j = 1), so the absorbed parameterization A_tilde_ij = b_i + A_ij is the
-           identifiable quantity. Ridge(alpha=1e-3) provides numerical stability without materially
-           altering the estimated regime classification.
+        4. Estimation of the 9-parameter absorbed payoff matrix A_tilde (b_i + A_ij) via Ordinary Least Squares (OLS)
+           regression on the 9-column design matrix [f_i * bar_f_j]. The 3 intrinsic regressors f_i are
+           algebraically absorbed into the 9 bilinear interaction terms under the simplex constraint
+           (sum bar_f_j = 1), yielding a fully identifiable rank-9 model without collinearity.
         5. Nash equilibrium classification of the 2x2 (T_S vs T_R) subgame.
 
         Parameters
@@ -102,20 +100,19 @@ class InSituGameAssay:
         # Environmental decoupling
         w_purified = self.decoupler.fit_transform(w_raw, z_hyp, z_vasc)
         
-        # Game design matrix
+        # Game design matrix (Identifiable 9-parameter Absorbed Model: \tilde{A}_ij = b_i + A_ij)
         X_game = np.column_stack([
-            f_S, f_R, f_C,
             f_S * bar_f_S, f_S * bar_f_R, f_S * bar_f_C,
             f_R * bar_f_S, f_R * bar_f_R, f_R * bar_f_C,
             f_C * bar_f_S, f_C * bar_f_R, f_C * bar_f_C
         ])
         
-        # Ridge regression
-        model = Ridge(alpha=1e-3, fit_intercept=False).fit(X_game, w_purified)
+        # Pure Ordinary Least Squares (OLS) without intercept
+        model = LinearRegression(fit_intercept=False).fit(X_game, w_purified)
         coefs = model.coef_
         
-        self.intrinsic_vector = coefs[:3]
-        self.payoff_matrix = coefs[3:].reshape((3, 3))
+        self.intrinsic_vector = np.zeros(3)  # Fully absorbed into \tilde{A}
+        self.payoff_matrix = coefs.reshape((3, 3))
         
         A = self.payoff_matrix
         self.nash_classification, self.nash_details = solve_subgame_nash(A[0, 0], A[0, 1], A[1, 0], A[1, 1])

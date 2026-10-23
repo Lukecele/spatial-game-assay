@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "insitugame"
-version = "1.0.0"
+version = "1.0.5"
 description = "In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Adaptive Therapy Regimens"
 readme = "README.md"
 authors = [
