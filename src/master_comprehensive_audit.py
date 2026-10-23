@@ -22,7 +22,7 @@ from sklearn.linear_model import Ridge, LinearRegression
 
 sys.stdout.reconfigure(line_buffering=True)
 
-BASE_DIR = "/home/luca/spatial-game-assay"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 RESULTS_DIR = os.path.join(BASE_DIR, "results")
 LOG_FILE = os.path.join(RESULTS_DIR, "MASTER_SYSTEM_AUDIT_LOG.txt")
@@ -137,6 +137,10 @@ def run_full_pipeline_audit():
         logger.log("#" * 88)
         
         cohort_dir = os.path.join(DATA_DIR, cancer_key)
+        if not os.path.exists(cohort_dir):
+            logger.log(f"  [!] Clinical dataset directory not found at: {cohort_dir}")
+            logger.log("  [i] Skipping raw streaming for this cohort (data not present in local clone).")
+            continue
         
         # -------------------------------------------------------------
         # STEP 1: Spatial Coordinate Alignment and Tissue Masking
