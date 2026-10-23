@@ -1,0 +1,12 @@
+{
+  "dataset": "Human Invasive Breast Carcinoma Block A Consecutive Sections (10 um)",
+  "n_spots_sec1": 3798,
+  "n_spots_sec2": 3987,
+  "sinkhorn_anchors": 1500,
+  "sinkhorn_epsilon": 0.02,
+  "pearson_r": -0.6725743652667481,
+  "pearson_p": 4.179354541451454e-198,
+  "spearman_rho": -0.6885923344854822,
+  "spearman_p": 2.4863316997531912e-211,
+  "concordance_verdict": "Statistically Significant Geodesic Alignment"
+}

@@ -1,0 +1,17 @@
+{
+  "simulation": "2D Cellular Lattice Simulation (N=2,025 spots per trial)",
+  "n_monte_carlo_trials": 100,
+  "condition_A_true_game": {
+    "tpr_sensitivity_pct": 100.0,
+    "mean_r2_pct": 30.379303252535543,
+    "mean_f_stat": 90.5193243050182,
+    "matrix_relative_recovery_error_pct": 14.936061360358801
+  },
+  "condition_B_pure_crowding_null": {
+    "fpr_specificity_pct": 5.0,
+    "mean_r2_pct": 10.24923819292393,
+    "mean_f_stat": 0.9406474181564775,
+    "nominal_alpha_pct": 5.0
+  },
+  "verdict": "In Silico Specificity Validated: FPR = 5.0% (<= 5.0%), TPR = 100.0%"
+}

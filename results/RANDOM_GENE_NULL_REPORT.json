@@ -1,0 +1,16 @@
+{
+  "dataset": "Human Invasive Breast Carcinoma (N=4,992 spots)",
+  "n_permutations": 500,
+  "n_matched_genes_pool": 260,
+  "real_m3_r2": 0.32291115343298893,
+  "real_f_stat": 104.99147720737348,
+  "null_r2_mean": 0.12843096153696365,
+  "null_r2_std": 0.08591997251548375,
+  "null_r2_95th_percentile": 0.2814269698649334,
+  "null_r2_max": 0.3545867530266755,
+  "null_f_mean": 17.934759761850707,
+  "p_empirical_r2": 0.017964071856287425,
+  "p_empirical_f": 0.001996007984031936,
+  "indeterminate_null_rate_pct": 15.6,
+  "biological_specificity_verdict": "Confirmed High Biological Specificity (p < 0.0180)"
+}
