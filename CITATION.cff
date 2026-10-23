@@ -1,8 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software, methodology, or assay in your clinical research, please cite it as below."
 title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy"
-version: 1.0.0
-date-released: 2026-10-22
+version: 1.0.5
+doi: 10.5281/zenodo.23585216
+date-released: 2026-10-23
 url: "https://github.com/Lukecele/spatial-game-assay"
 repository-code: "https://github.com/Lukecele/spatial-game-assay"
 license: GPL-3.0-or-later

@@ -1,7 +1,7 @@
 # InSituGame: In Situ Spatial Evolutionary Game Assay
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![DOI](https://img.shields.io/badge/DOI-Zenodo%20%28pending%29-lightgrey)](https://zenodo.org)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
 [![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](https://github.com/Lukecele/spatial-game-assay/tree/main/results)
