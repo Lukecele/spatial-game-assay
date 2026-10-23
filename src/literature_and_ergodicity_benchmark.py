@@ -19,7 +19,7 @@ import os
 import json
 import numpy as np
 
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 LITERATURE_GROUND_TRUTH = {
     "breast_cancer": {

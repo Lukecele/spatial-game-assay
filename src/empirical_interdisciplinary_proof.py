@@ -18,7 +18,7 @@ from scipy.spatial import Delaunay
 from scipy.spatial.distance import cdist
 from sklearn.linear_model import LinearRegression, Ridge
 
-BASE_DATA_DIR = "/home/luca/spatial-game-assay/data"
+BASE_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 COHORT_SPECS = {
     "lung": {
         "title": "Human Lung Squamous Carcinoma",

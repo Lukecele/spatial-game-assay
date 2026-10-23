@@ -2,6 +2,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
+[![CI](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml/badge.svg)](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
 [![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](https://github.com/Lukecele/spatial-game-assay/tree/main/results)
@@ -91,6 +92,19 @@ print(assay.summary())
 
 ---
 
+## Data Access & Reproducibility
+
+To ensure both immediate verification and full provenance:
+1. **Instant Offline Cache:** The repository bundles `data/cache/clinical_pan_cancer_cache.npz` (713 KB), containing the exact normalized gene expression matrices and spot coordinates for all 20,093 clinical spots. All tests and primary analyses run immediately without network access.
+2. **End-to-End Raw 10x Datasets (~5 GB):** To download and unpack the full raw FASTQ/BAM/MTX archives from official 10x Genomics servers:
+   ```bash
+   python src/download_data.py        # Human Lung SCC (CytAssist FFPE)
+   python src/download_cohort.py      # Human Breast IDC & Cutaneous Melanoma (CytAssist FFPE)
+   python src/download_replicates.py  # Consecutive serial sections 1 & 2 (Visium Block A)
+   ```
+
+---
+
 ## Citation & Authorship
 
 If you utilize this methodology, assay software, or empirical matrices in your research or clinical trials, please cite the official specification via [`CITATION.cff`](./CITATION.cff):
@@ -101,7 +115,7 @@ If you utilize this methodology, assay software, or empirical matrices in your r
   title = {{InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy}},
   year = {2026},
   url = {https://github.com/Lukecele/spatial-game-assay},
-  version = {1.0.0},
+  version = {1.0.5},
   institution = {School of Medicine and Surgery, Università degli Studi di Napoli Federico II}
 }
 ```

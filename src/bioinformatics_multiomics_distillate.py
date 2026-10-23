@@ -23,7 +23,7 @@ from sklearn.linear_model import Ridge, LinearRegression
 
 sys.stdout.reconfigure(line_buffering=True)
 
-BASE_DATA_DIR = "/home/luca/spatial-game-assay/data"
+BASE_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 
 SPECS = {
     "breast": {

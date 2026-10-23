@@ -23,8 +23,8 @@ from scipy.stats import pearsonr, spearmanr
 
 sys.stdout.reconfigure(line_buffering=True)
 
-BASE_DATA_DIR = "/home/luca/spatial-game-assay/data"
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+BASE_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 BREAST_SPEC = {
     "title": "Human Invasive Breast Carcinoma (10x Visium Serial Sections Block A)",

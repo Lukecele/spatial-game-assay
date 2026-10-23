@@ -24,7 +24,7 @@ from scipy.spatial import Delaunay
 from scipy.stats import f as f_dist
 
 sys.stdout.reconfigure(line_buffering=True)
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 def generate_lattice(grid_size=45, noise_std=0.05):
     x = np.linspace(0, 10, grid_size)

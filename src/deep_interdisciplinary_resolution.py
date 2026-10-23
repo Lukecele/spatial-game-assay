@@ -16,7 +16,7 @@ import pandas as pd
 from scipy.spatial.distance import pdist, squareform
 from sklearn.linear_model import LinearRegression
 
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 def load_summary():
     with open(os.path.join(RESULTS_DIR, "pan_cancer_game_atlas_summary.json")) as f:

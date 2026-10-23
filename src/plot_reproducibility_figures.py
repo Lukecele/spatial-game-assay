@@ -16,8 +16,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
-FIGURES_DIR = "/home/luca/spatial-game-assay/figures"
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
+FIGURES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "figures"))
 os.makedirs(FIGURES_DIR, exist_ok=True)
 
 # 1. Load results

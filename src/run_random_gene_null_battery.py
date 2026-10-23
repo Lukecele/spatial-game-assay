@@ -26,11 +26,11 @@ from scipy.stats import f as f_dist
 from sklearn.linear_model import Ridge, LinearRegression
 
 sys.stdout.reconfigure(line_buffering=True)
-sys.path.append("/home/luca/spatial-game-assay/src")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from run_pan_cancer_assay import load_sample_stream
 
-DATA_DIR = "/home/luca/spatial-game-assay/data/breast"
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "breast"))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 def main():
     print("=" * 80)

@@ -41,14 +41,14 @@ from sklearn.linear_model import Ridge, LinearRegression
 
 sys.stdout.reconfigure(line_buffering=True)
 
-sys.path.append("/home/luca/spatial-game-assay/src")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from clinical_diagnostic_metrics import (
     ContingencyTable2x2, calculate_fisher_exact_p_value,
     calculate_odds_ratio, compute_roc_auc, evaluate_clinical_classification
 )
 
-BASE_DATA_DIR = "/home/luca/spatial-game-assay/data"
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+BASE_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 COHORT_SPECS = {
     "lung": {

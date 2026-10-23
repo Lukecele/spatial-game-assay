@@ -16,11 +16,11 @@ from scipy.spatial import Delaunay
 from sklearn.linear_model import LinearRegression
 
 # Import validation functions
-sys.path.append("/home/luca/spatial-game-assay/src")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from validation_battery import run_full_validation_battery
 
-DATA_DIR = "/home/luca/spatial-game-assay/data/lung"
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "lung"))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 MARKER_GENES = {
     "T_S": ["EGFR", "KRT5", "TP63", "EPCAM"],

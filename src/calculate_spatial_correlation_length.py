@@ -17,7 +17,7 @@ def exp_decay(r, A, xi, c):
     return A * np.exp(-r / xi) + c
 
 def compute_correlation_length(cancer_key, n_samples=1500):
-    data_dir = f"/home/luca/spatial-game-assay/data/{cancer_key}"
+    data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", cancer_key))
     # Read tissue positions
     pos_file = os.path.join(data_dir, "spatial", "tissue_positions_list.csv")
     if not os.path.exists(pos_file):

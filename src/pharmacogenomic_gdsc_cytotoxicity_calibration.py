@@ -19,7 +19,7 @@ import math
 import numpy as np
 
 sys.stdout.reconfigure(line_buffering=True)
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
 
 # 1. Pharmacogenomic GDSC2 Benchmark Calibration Data
 # Empirically curated from Genomics of Drug Sensitivity in Cancer (GDSC2, Iorio et al. Cell 2016)

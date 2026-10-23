@@ -26,9 +26,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-DATA_DIR = "/home/luca/spatial-game-assay/data/lung"
-RESULTS_DIR = "/home/luca/spatial-game-assay/results"
-FIGURES_DIR = "/home/luca/spatial-game-assay/figures"
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "lung"))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "results"))
+FIGURES_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "figures"))
 
 # -------------------------------------------------------------
 # 1. Definizione dei Marker Biologici Certificati
