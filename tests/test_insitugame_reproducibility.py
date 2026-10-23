@@ -152,8 +152,13 @@ class TestEndToEndClinicalDataReproducibility(unittest.TestCase):
         import pandas as pd
         
         cls.data_dir = os.path.join(BASE_DIR, "data/lung")
-        if not os.path.exists(cls.data_dir):
-            raise unittest.SkipTest("Clinical data/lung directory not found.")
+        cls.cache_path = os.path.join(BASE_DIR, "data/cache/clinical_pan_cancer_cache.npz")
+        
+        has_raw = os.path.exists(cls.data_dir)
+        has_cache = os.path.exists(cls.cache_path)
+        
+        if not has_raw and not has_cache:
+            raise unittest.SkipTest("Neither clinical data/lung directory nor clinical cache found.")
             
         spec = {
             "T_S": ["EGFR", "KRT5", "TP63", "EPCAM"],
@@ -164,14 +169,25 @@ class TestEndToEndClinicalDataReproducibility(unittest.TestCase):
             "VASCULAR": ["PECAM1", "VWF"]
         }
         cls.spec = spec
+        all_genes = sorted(list(set(spec["T_S"] + spec["T_R"] + spec["S_CAF"] + spec["FITNESS"] + spec["HYPOXIA"] + spec["VASCULAR"])))
         
+        if not has_raw and has_cache:
+            cache = np.load(cls.cache_path)
+            cls.coords = cache["lung_coords"]
+            cls.total_umi = cache["lung_total_umi"]
+            cls.barcodes = [f"spot_{i:05d}" for i in range(len(cls.coords))]
+            cls.raw_counts = {
+                g: (np.expm1(cache[f"lung_gene_{g}"]) * np.maximum(cls.total_umi, 1.0)) / 1e4
+                for g in all_genes if f"lung_gene_{g}" in cache
+            }
+            return
+            
         # 1. Barcodes
         with gzip.open(os.path.join(cls.data_dir, "filtered_feature_bc_matrix/barcodes.tsv.gz"), "rt") as fp:
             cls.barcodes = [line.strip() for line in fp]
         n_spots = len(cls.barcodes)
         
         # 2. Features
-        all_genes = sorted(list(set(spec["T_S"] + spec["T_R"] + spec["S_CAF"] + spec["FITNESS"] + spec["HYPOXIA"] + spec["VASCULAR"])))
         gene_to_row = {}
         with gzip.open(os.path.join(cls.data_dir, "filtered_feature_bc_matrix/features.tsv.gz"), "rt") as fp:
             for r_idx, line in enumerate(fp):

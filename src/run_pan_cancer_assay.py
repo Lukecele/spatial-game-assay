@@ -76,6 +76,29 @@ COHORT_SPECS = {
 def load_sample_stream(cancer_key):
     spec = COHORT_SPECS[cancer_key]
     data_dir = os.path.join(BASE_DATA_DIR, cancer_key)
+    cache_path = os.path.join(BASE_DATA_DIR, "cache", "clinical_pan_cancer_cache.npz")
+    
+    if not os.path.exists(data_dir) and os.path.exists(cache_path):
+        print(f"\n[*] Raw directory absent. Loading {spec['title']} from compact cache ({cache_path})...")
+        cache = np.load(cache_path)
+        coords = cache[f"{cancer_key}_coords"]
+        total_umi = cache[f"{cancer_key}_total_umi"]
+        n_spots = len(coords)
+        barcodes = [f"spot_{i:05d}" for i in range(n_spots)]
+        
+        all_genes = sorted(list(set(
+            spec["T_S"] + spec["T_R"] + spec["S_CAF"] +
+            spec["FITNESS"] + spec["HYPOXIA"] + spec["VASCULAR"]
+        )))
+        norm_exp = {}
+        for g in all_genes:
+            k = f"{cancer_key}_gene_{g}"
+            if k in cache:
+                norm_exp[g] = cache[k]
+        print(f"  [+] Spots: {n_spots:,} | Marker genes mapped from cache: {len(norm_exp)}/{len(all_genes)}")
+        print(f"  [+] Total UMIs in tissue: {np.sum(total_umi):,.0f} (Mean: {np.mean(total_umi):,.1f} UMI/spot)")
+        return barcodes, coords, norm_exp, spec, total_umi
+
     print(f"\n[*] Streaming 10x Genomics CytAssist for {spec['title']}...")
     
     # 1. Barcodes

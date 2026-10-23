@@ -137,88 +137,117 @@ def run_full_pipeline_audit():
         logger.log("#" * 88)
         
         cohort_dir = os.path.join(DATA_DIR, cancer_key)
-        if not os.path.exists(cohort_dir):
-            logger.log(f"  [!] Clinical dataset directory not found at: {cohort_dir}")
-            logger.log("  [i] Skipping raw streaming for this cohort (data not present in local clone).")
+        cache_path = os.path.join(DATA_DIR, "cache", "clinical_pan_cancer_cache.npz")
+        
+        has_raw = os.path.exists(cohort_dir)
+        has_cache = os.path.exists(cache_path)
+        
+        if not has_raw and not has_cache:
+            logger.log(f"  [!] Neither raw dataset ({cohort_dir}) nor cache ({cache_path}) found.")
+            logger.log("  [i] Skipping this cohort.")
             continue
-        
-        # -------------------------------------------------------------
-        # STEP 1: Spatial Coordinate Alignment and Tissue Masking
-        # -------------------------------------------------------------
-        logger.log("\n--- STEP 1: Spatial Coordinate Alignment & Barcode Masking ---")
-        pos_file = os.path.join(cohort_dir, "spatial/tissue_positions.csv")
-        pos_df = pd.read_csv(pos_file)
-        n_total_spots = len(pos_df)
-        pos_tissue = pos_df[pos_df["in_tissue"] == 1].set_index("barcode")
-        n_tissue_spots = len(pos_tissue)
-        
-        logger.log(f"  [1.1] Positions file: {pos_file}")
-        logger.log(f"  [1.2] Total array positions: {n_total_spots:,}")
-        logger.log(f"  [1.3] Tissue spots identified: {n_tissue_spots:,} ({n_tissue_spots/n_total_spots*100:.2f}% coverage)")
-        
-        barcodes_file = os.path.join(cohort_dir, "filtered_feature_bc_matrix/barcodes.tsv.gz")
-        with gzip.open(barcodes_file, "rt") as fp:
-            barcodes = [line.strip() for line in fp]
-        logger.log(f"  [1.4] Feature matrix barcodes: {len(barcodes):,}")
-        
-        pos_aligned = pos_tissue.loc[barcodes]
-        coords = pos_aligned[["pxl_row_in_fullres", "pxl_col_in_fullres"]].values
-        n_spots = len(coords)
-        logger.log(f"  [1.5] Exact coordinate alignment verified: N = {n_spots:,} spots")
-        logger.log(f"  [1.6] Spatial bounds: Row [{coords[:,0].min():.0f}, {coords[:,0].max():.0f}], Col [{coords[:,1].min():.0f}, {coords[:,1].max():.0f}]")
-        
-        # -------------------------------------------------------------
-        # STEP 2: Streaming Gene Expression Read & Library Size Stats
-        # -------------------------------------------------------------
-        logger.log("\n--- STEP 2: Streaming Matrix Read & CPM Normalization ---")
-        features_file = os.path.join(cohort_dir, "filtered_feature_bc_matrix/features.tsv.gz")
-        all_target_genes = sorted(list(set(
-            spec["T_S"] + spec["T_R"] + spec["S_CAF"] +
-            spec["FITNESS"] + spec["HYPOXIA"] + spec["VASCULAR"]
-        )))
-        gene_to_row = {}
-        with gzip.open(features_file, "rt") as fp:
-            for r_idx, line in enumerate(fp):
-                parts = line.strip().split("\t")
-                if parts[1] in all_target_genes:
-                    gene_to_row[parts[1]] = r_idx
-                    
-        logger.log(f"  [2.1] Target marker genes defined: {len(all_target_genes)}")
-        logger.log(f"  [2.2] Markers mapped in features.tsv: {len(gene_to_row)}/{len(all_target_genes)}")
-        missing = [g for g in all_target_genes if g not in gene_to_row]
-        if missing:
-            logger.log(f"  [2.3] Unmapped markers (handled gracefully): {missing}")
-        else:
-            logger.log("  [2.3] Unmapped markers: None (100% mapped)")
             
-        target_rows = set(gene_to_row.values())
-        raw_counts = {g: np.zeros(n_spots, dtype=np.float32) for g in gene_to_row}
-        total_umi = np.zeros(n_spots, dtype=np.float32)
-        matrix_file = os.path.join(cohort_dir, "filtered_feature_bc_matrix/matrix.mtx.gz")
-        row_to_gene = {r: g for g, r in gene_to_row.items()}
-        
-        t0 = time.time()
-        with gzip.open(matrix_file, "rt") as fp:
-            for line in fp:
-                if not line.startswith("%"):
-                    break
-            for line in fp:
-                parts = line.split()
-                if len(parts) == 3:
-                    r_idx = int(parts[0]) - 1
-                    s_idx = int(parts[1]) - 1
-                    val = float(parts[2])
-                    total_umi[s_idx] += val
-                    if r_idx in target_rows:
-                        raw_counts[row_to_gene[r_idx]][s_idx] = val
-        dt_stream = time.time() - t0
-        logger.log(f"  [2.4] Streamed matrix.mtx.gz in {dt_stream:.2f}s")
-        logger.log(f"  [2.5] UMI Distribution: Mean = {np.mean(total_umi):,.1f}, Median = {np.median(total_umi):,.1f}, Min = {np.min(total_umi):,.0f}, Max = {np.max(total_umi):,.0f}")
-        
-        # Log-CPM
-        cpm_scale = 1e4
-        norm_exp = {g: np.log1p((c / np.maximum(total_umi, 1.0)) * cpm_scale) for g, c in raw_counts.items()}
-        logger.log(f"  [2.6] Expression values log1p-CPM transformed with scale = {cpm_scale:.0e}")
+        if not has_raw and has_cache:
+            logger.log(f"  [*] Clinical raw directory absent. Loading pre-streamed clinical data from compact cache: {cache_path}")
+            cache = np.load(cache_path)
+            coords = cache[f"{cancer_key}_coords"]
+            total_umi = cache[f"{cancer_key}_total_umi"]
+            n_spots = len(coords)
+            logger.log(f"  [1.1] Compact clinical cache: {cache_path}")
+            logger.log(f"  [1.5] Exact coordinate alignment loaded: N = {n_spots:,} spots")
+            logger.log(f"  [1.6] Spatial bounds: Row [{coords[:,0].min():.0f}, {coords[:,0].max():.0f}], Col [{coords[:,1].min():.0f}, {coords[:,1].max():.0f}]")
+            
+            all_target_genes = sorted(list(set(
+                spec["T_S"] + spec["T_R"] + spec["S_CAF"] +
+                spec["FITNESS"] + spec["HYPOXIA"] + spec["VASCULAR"]
+            )))
+            norm_exp = {}
+            for g in all_target_genes:
+                k = f"{cancer_key}_gene_{g}"
+                if k in cache:
+                    norm_exp[g] = cache[k]
+            logger.log(f"  [2.1] Target marker genes defined: {len(all_target_genes)}")
+            logger.log(f"  [2.2] Markers mapped in cache: {len(norm_exp)}/{len(all_target_genes)}")
+            logger.log(f"  [2.5] UMI Distribution: Mean = {np.mean(total_umi):,.1f}, Median = {np.median(total_umi):,.1f}, Min = {np.min(total_umi):,.0f}, Max = {np.max(total_umi):,.0f}")
+            logger.log(f"  [2.6] Expression values log1p-CPM transformed with scale = 1e+04")
+        else:
+            # -------------------------------------------------------------
+            # STEP 1: Spatial Coordinate Alignment and Tissue Masking
+            # -------------------------------------------------------------
+            logger.log("\n--- STEP 1: Spatial Coordinate Alignment & Barcode Masking ---")
+            pos_file = os.path.join(cohort_dir, "spatial/tissue_positions.csv")
+            pos_df = pd.read_csv(pos_file)
+            n_total_spots = len(pos_df)
+            pos_tissue = pos_df[pos_df["in_tissue"] == 1].set_index("barcode")
+            n_tissue_spots = len(pos_tissue)
+            
+            logger.log(f"  [1.1] Positions file: {pos_file}")
+            logger.log(f"  [1.2] Total array positions: {n_total_spots:,}")
+            logger.log(f"  [1.3] Tissue spots identified: {n_tissue_spots:,} ({n_tissue_spots/n_total_spots*100:.2f}% coverage)")
+            
+            barcodes_file = os.path.join(cohort_dir, "filtered_feature_bc_matrix/barcodes.tsv.gz")
+            with gzip.open(barcodes_file, "rt") as fp:
+                barcodes = [line.strip() for line in fp]
+            logger.log(f"  [1.4] Feature matrix barcodes: {len(barcodes):,}")
+            
+            pos_aligned = pos_tissue.loc[barcodes]
+            coords = pos_aligned[["pxl_row_in_fullres", "pxl_col_in_fullres"]].values
+            n_spots = len(coords)
+            logger.log(f"  [1.5] Exact coordinate alignment verified: N = {n_spots:,} spots")
+            logger.log(f"  [1.6] Spatial bounds: Row [{coords[:,0].min():.0f}, {coords[:,0].max():.0f}], Col [{coords[:,1].min():.0f}, {coords[:,1].max():.0f}]")
+            
+            # -------------------------------------------------------------
+            # STEP 2: Streaming Gene Expression Read & Library Size Stats
+            # -------------------------------------------------------------
+            logger.log("\n--- STEP 2: Streaming Matrix Read & CPM Normalization ---")
+            features_file = os.path.join(cohort_dir, "filtered_feature_bc_matrix/features.tsv.gz")
+            all_target_genes = sorted(list(set(
+                spec["T_S"] + spec["T_R"] + spec["S_CAF"] +
+                spec["FITNESS"] + spec["HYPOXIA"] + spec["VASCULAR"]
+            )))
+            gene_to_row = {}
+            with gzip.open(features_file, "rt") as fp:
+                for r_idx, line in enumerate(fp):
+                    parts = line.strip().split("\t")
+                    if parts[1] in all_target_genes:
+                        gene_to_row[parts[1]] = r_idx
+                        
+            logger.log(f"  [2.1] Target marker genes defined: {len(all_target_genes)}")
+            logger.log(f"  [2.2] Markers mapped in features.tsv: {len(gene_to_row)}/{len(all_target_genes)}")
+            missing = [g for g in all_target_genes if g not in gene_to_row]
+            if missing:
+                logger.log(f"  [2.3] Unmapped markers (handled gracefully): {missing}")
+            else:
+                logger.log("  [2.3] Unmapped markers: None (100% mapped)")
+                
+            target_rows = set(gene_to_row.values())
+            raw_counts = {g: np.zeros(n_spots, dtype=np.float32) for g in gene_to_row}
+            total_umi = np.zeros(n_spots, dtype=np.float32)
+            matrix_file = os.path.join(cohort_dir, "filtered_feature_bc_matrix/matrix.mtx.gz")
+            row_to_gene = {r: g for g, r in gene_to_row.items()}
+            
+            t0 = time.time()
+            with gzip.open(matrix_file, "rt") as fp:
+                for line in fp:
+                    if not line.startswith("%"):
+                        break
+                for line in fp:
+                    parts = line.split()
+                    if len(parts) == 3:
+                        r_idx = int(parts[0]) - 1
+                        s_idx = int(parts[1]) - 1
+                        val = float(parts[2])
+                        total_umi[s_idx] += val
+                        if r_idx in target_rows:
+                            raw_counts[row_to_gene[r_idx]][s_idx] = val
+            dt_stream = time.time() - t0
+            logger.log(f"  [2.4] Streamed matrix.mtx.gz in {dt_stream:.2f}s")
+            logger.log(f"  [2.5] UMI Distribution: Mean = {np.mean(total_umi):,.1f}, Median = {np.median(total_umi):,.1f}, Min = {np.min(total_umi):,.0f}, Max = {np.max(total_umi):,.0f}")
+            
+            # Log-CPM
+            cpm_scale = 1e4
+            norm_exp = {g: np.log1p((c / np.maximum(total_umi, 1.0)) * cpm_scale) for g, c in raw_counts.items()}
+            logger.log(f"  [2.6] Expression values log1p-CPM transformed with scale = {cpm_scale:.0e}")
         
         # -------------------------------------------------------------
         # STEP 3: Phenotypic Module Scoring & Simplex Softmax Projection

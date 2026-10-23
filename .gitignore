@@ -27,7 +27,9 @@ share/python-wheels/
 MANIFEST
 
 # Large raw sequencing datasets (preserve scripts & results, download data on demand)
-data/
+data/*
+!data/cache/
+!data/cache/**
 *.tar.gz
 *.mtx.gz
 
