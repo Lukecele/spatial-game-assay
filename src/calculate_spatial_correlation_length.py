@@ -47,8 +47,9 @@ def compute_correlation_length(cancer_key, n_samples=1500):
 
     return np.median(nn_dist), pixel_to_um
 
-print("Computing spatial scales...")
-med_lung, scale_lung = compute_correlation_length("lung")
-med_breast, scale_breast = compute_correlation_length("breast")
-print(f"Lung: scale = {scale_lung:.4f} um/px | Nearest neighbor = {med_lung:.1f} px")
-print(f"Breast: scale = {scale_breast:.4f} um/px | Nearest neighbor = {med_breast:.1f} px")
+if __name__ == "__main__":
+    print("Computing spatial scales...")
+    med_lung, scale_lung = compute_correlation_length("lung")
+    med_breast, scale_breast = compute_correlation_length("breast")
+    print(f"Lung: scale = {scale_lung:.4f} um/px | Nearest neighbor = {med_lung:.1f} px")
+    print(f"Breast: scale = {scale_breast:.4f} um/px | Nearest neighbor = {med_breast:.1f} px")

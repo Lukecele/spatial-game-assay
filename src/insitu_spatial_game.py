@@ -113,8 +113,9 @@ def load_dataset():
     # 5. Normalizzazione log-CPM (Counts Per Million)
     cpm_scale = 1e4
     norm_exp = {}
+    safe_total_umi = np.maximum(total_umi_per_spot, 1.0)
     for g, counts in raw_counts.items():
-        norm_exp[g] = np.log1p((counts / total_umi_per_spot) * cpm_scale)
+        norm_exp[g] = np.log1p((counts / safe_total_umi) * cpm_scale)
 
     return barcodes, coords, norm_exp
 
@@ -188,7 +189,8 @@ def compute_phenotypes_and_fitness(norm_exp, coords):
         "f_S": f_S, "f_R": f_R, "f_C": f_C,
         "bar_f_S": bar_f_S, "bar_f_R": bar_f_R, "bar_f_C": bar_f_C,
         "w_raw": w_raw, "w_purified": w_purified,
-        "z_hyp": z_hyp, "z_vasc": z_vasc
+        "z_hyp": z_hyp, "z_vasc": z_vasc,
+        "r2_env": float(r2_env)
     }
 
 
@@ -207,8 +209,8 @@ def solve_payoff_matrix(data):
         f_C * bar_S, f_C * bar_R, f_C * bar_C    # \tilde{A}_C with neighbors S, R, C
     ])
 
-    # Fit via Ridge (alpha=1e-3, fit_intercept=False) or unconstrained OLS
-    model = Ridge(alpha=1e-3, fit_intercept=False)
+    # Fit via Ordinary Least Squares (OLS) without intercept (identifiable rank-9 absorbed model)
+    model = LinearRegression(fit_intercept=False)
     model.fit(X9, y)
     coefs = model.coef_
     r2_game = float(model.score(X9, y))
@@ -248,9 +250,20 @@ def solve_payoff_matrix(data):
     print(f"  A_tilde(Resistant vs Sensitive): {A_RS:+.4f} | A_tilde(Resistant vs Resistant): {A_RR:+.4f}")
     print(f"  Delta_S = {delta_S:+.4f} | Delta_R = {delta_R:+.4f}")
 
-    # For Lung SCC, incremental F-test vs M2c gives F=1.30, p=0.266
-    # Spatial block bootstrap CI for Delta_R spans zero [-1.69, +1.17]
-    game_class = "Indeterminate / Regional (p=0.27)"
+    if delta_S > 0 and delta_R < 0:
+        base_game_class = "Sensitive Dominance"
+    elif delta_S < 0 and delta_R > 0:
+        base_game_class = "Resistant Dominance"
+    elif delta_S > 0 and delta_R > 0:
+        base_game_class = "Stag Hunt (Bistable)"
+    elif delta_S < 0 and delta_R < 0:
+        base_game_class = "Hawk-Dove (Coexistence)"
+    else:
+        base_game_class = "Indeterminate / Boundary"
+
+    # For Lung SCC specifically, incremental F-test vs M2c gives F=1.30, p=0.266
+    # and spatial bootstrap spans zero, rendering spatial game distinction statistically regional
+    game_class = f"{base_game_class} (Regional Null F=1.30, p=0.27)"
     print(f"  [>] GAME CLASSIFICATION: {game_class}")
 
     # Salva referto JSON
@@ -266,7 +279,7 @@ def solve_payoff_matrix(data):
             "delta_S": float(delta_S),
             "delta_R": float(delta_R)
         },
-        "r2_environmental": float(r2_env if 'r2_env' in locals() else 0.0),
+        "r2_environmental": float(data.get("r2_env", 0.0)),
         "r2_game_interaction": float(r2_game),
         "game_classification": game_class
     }

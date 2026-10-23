@@ -85,22 +85,24 @@ def calculate_odds_ratio(t: ContingencyTable2x2) -> Tuple[float, Tuple[float, fl
 
 def compute_roc_auc(y_true_binary: np.ndarray, y_score: np.ndarray) -> float:
     """
-    Computes exact Area Under the ROC Curve (AUC) via rank statistic (Wilcoxon-Mann-Whitney).
+    Computes exact Area Under the ROC Curve (AUC) via Wilcoxon-Mann-Whitney U statistic,
+    handling score ties with mid-ranks.
     """
-    pos = y_score[y_true_binary == 1]
-    neg = y_score[y_true_binary == 0]
-    n_pos = len(pos)
-    n_neg = len(neg)
+    pos_mask = (y_true_binary == 1)
+    neg_mask = (y_true_binary == 0)
+    n_pos = int(np.sum(pos_mask))
+    n_neg = int(np.sum(neg_mask))
     if n_pos == 0 or n_neg == 0:
         return 0.5
 
-    # Efficient rank-sum
-    all_scores = np.concatenate([pos, neg])
-    ranks = np.argsort(np.argsort(all_scores)) + 1
-    rank_sum_pos = np.sum(ranks[:n_pos])
-    u = rank_sum_pos - (n_pos * (n_pos + 1)) / 2.0
-    auc = u / (n_pos * n_neg)
-    return float(auc)
+    pos_scores = y_score[pos_mask]
+    neg_scores = y_score[neg_mask]
+
+    n_concordant = 0.0
+    for ps in pos_scores:
+        n_concordant += np.sum(ps > neg_scores) + 0.5 * np.sum(ps == neg_scores)
+
+    return float(n_concordant / (n_pos * n_neg))
 
 
 def evaluate_clinical_classification(y_true: np.ndarray, y_pred_score: np.ndarray,
