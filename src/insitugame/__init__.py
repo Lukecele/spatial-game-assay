@@ -22,6 +22,13 @@ from .metrics import (
     compute_roc_auc,
     evaluate_clinical_classification
 )
+from .xenium_adapter import SubCellularMeshAdapter
+from .somatic_vaf_tracer import SpatialSomaticTracer, LocusPileup
+from .pharmacogenomic_pkpd import (
+    PharmacogenomicReplicatorEngine,
+    DrugPKPDProfile,
+    PRESET_PROFILES
+)
 
 __all__ = [
     "InSituGameAssay",
@@ -32,5 +39,11 @@ __all__ = [
     "calculate_odds_ratio",
     "calculate_fisher_exact_p_value",
     "compute_roc_auc",
-    "evaluate_clinical_classification"
+    "evaluate_clinical_classification",
+    "SubCellularMeshAdapter",
+    "SpatialSomaticTracer",
+    "LocusPileup",
+    "PharmacogenomicReplicatorEngine",
+    "DrugPKPDProfile",
+    "PRESET_PROFILES"
 ]
