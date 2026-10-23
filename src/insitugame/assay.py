@@ -28,6 +28,35 @@ class InSituGameAssay:
         self.nash_details = None
         
     def fit(self, coords: np.ndarray, raw_counts: Dict[str, np.ndarray], total_umi: np.ndarray):
+        """
+        Fit the InSituGame assay on spatial transcriptomics data.
+
+        Implements the full pipeline:
+        1. Log-CPM normalization and softmax phenotypic frequency projection onto the frequency simplex.
+        2. Delaunay spatial neighborhood graph construction.
+        3. Microenvironmental decoupling via Frisch-Waugh-Lovell orthogonalization (hypoxia + vasculature).
+        4. Estimation of the 9-parameter absorbed payoff matrix A_tilde (b_i + A_ij) via Ridge regression
+           on the 12-column design matrix [f_i, f_i * bar_f_j]. The 3 intrinsic regressors f_i are
+           algebraically collinear with the 9 bilinear interaction terms under the simplex constraint
+           (sum bar_f_j = 1), so the absorbed parameterization A_tilde_ij = b_i + A_ij is the
+           identifiable quantity. Ridge(alpha=1e-3) provides numerical stability without materially
+           altering the estimated regime classification.
+        5. Nash equilibrium classification of the 2x2 (T_S vs T_R) subgame.
+
+        Parameters
+        ----------
+        coords : np.ndarray, shape (n_spots, 2)
+            Pixel coordinates (row, col) for each spatial spot.
+        raw_counts : dict of str -> np.ndarray, shape (n_spots,)
+            Raw UMI counts per gene per spot.
+        total_umi : np.ndarray, shape (n_spots,)
+            Total UMI count per spot for library-size normalization.
+
+        Returns
+        -------
+        self : InSituGameAssay
+            Fitted assay instance.
+        """
         n_spots = len(coords)
         norm_exp = {g: np.log1p((raw_counts[g] / np.maximum(total_umi, 1.0)) * 1e4) for g in raw_counts}
         
@@ -99,6 +128,33 @@ class InSituGameAssay:
         return self
         
     def summary(self) -> Dict[str, Any]:
+        """
+        Return a structured summary of the fitted assay results.
+
+        Returns
+        -------
+        dict with keys:
+            nash_game_type : str
+                Classified game regime (e.g. 'Hawk-Dove / Coexistence', 'Stag Hunt / Bistable',
+                'Dominant Strategy', 'Indeterminate').
+            nash_equilibria : dict
+                Interior equilibrium x* (Hawk-Dove) or separatrix x_sep (Stag Hunt), where x
+                denotes the fraction of sensitive clones T_S within the T_S + T_R subspace.
+            payoff_matrix_3x3 : list of list
+                Inferred 3x3 absorbed payoff matrix A_tilde (rows = focal clone, cols = neighbor clone).
+                Note: these are absorbed parameters A_tilde_ij = b_i + A_ij, not raw A_ij.
+            intrinsic_fitness_vector : list
+                Intrinsic fitness coefficients b_i for each phenotype [T_S, T_R, S_CAF].
+            explained_variance_r2 : float
+                OLS R^2 of the full game model on w_purified.
+            diagnostic_metrics : dict
+                Clinical classification metrics (AUC, sensitivity, specificity, DOR, Fisher p).
+
+        Raises
+        ------
+        RuntimeError
+            If called before fit().
+        """
         if not self.fitted:
             raise RuntimeError("Assay has not been fitted yet.")
         return {

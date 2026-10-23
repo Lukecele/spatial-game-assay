@@ -291,11 +291,6 @@ We note that when exploring therapy-induced game shifts (e.g. converting sensiti
 $$x_{sep}(\delta) = \frac{\tilde{\Delta}_R + \delta}{\tilde{\Delta}_S + \tilde{\Delta}_R}$$
 In the Lung SCC specimen ($\tilde{\Delta}_S = +0.983, \tilde{\Delta}_R = -0.244$), setting $\delta = 0.30$ yields $x_{sep} = 0.076$, $\delta = 0.50$ yields $x_{sep} = 0.346$, and $\delta = 0.80$ yields $x_{sep} = 0.752$. Because this threshold varies widely as a function of the user-specified drug differential $\delta$, and because the baseline specimen is indeterminate ($p=0.266$), therapeutic modulation must be interpreted strictly as an illustrative parametric exploration rather than an established clinical regimen. We emphasize that cytotoxicity parameters ($d_S, d_R$) represent heuristic illustrative values and must be calibrated in vivo before translational use.
 
-#### Sensitivity of Induced Separatrices to Assumed Cytotoxicity Differentials
-We note that when exploring therapy-induced game shifts (e.g. converting sensitive dominance to an induced Stag Hunt regime), effective selective advantages follow $\tilde{\Delta}_S(D) = \tilde{\Delta}_S - \delta$ and $\tilde{\Delta}_R(D) = \tilde{\Delta}_R + \delta$, where $\delta = d_S - d_R$. The induced tipping separatrix satisfies:
-$$x_{sep}(\delta) = \frac{\tilde{\Delta}_R + \delta}{\tilde{\Delta}_S + \tilde{\Delta}_R}$$
-In the Lung SCC specimen ($\tilde{\Delta}_S = +0.983, \tilde{\Delta}_R = -0.244$), setting $\delta = 0.30$ yields $x_{sep} = 0.076$, $\delta = 0.50$ yields $x_{sep} = 0.346$, and $\delta = 0.80$ yields $x_{sep} = 0.752$. Because this threshold varies widely as a function of the user-specified drug differential $\delta$, and because the baseline specimen is indeterminate ($p=0.266$), therapeutic modulation must be interpreted strictly as an illustrative parametric exploration rather than an established clinical regimen. We emphasize that cytotoxicity parameters ($d_S, d_R$) represent heuristic illustrative values and must be calibrated in vivo before translational use.
-
 ---
 
 ## 4. Discussion

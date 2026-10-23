@@ -4,7 +4,7 @@
 [![DOI](https://img.shields.io/badge/DOI-Zenodo%20%28pending%29-lightgrey)](https://zenodo.org)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
-[![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](file:///home/luca/spatial-game-assay/results)
+[![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](https://github.com/Lukecele/spatial-game-assay/tree/main/results)
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy  
@@ -41,13 +41,13 @@ Unlike traditional mathematical oncology models that rely on arbitrary parameter
 ## Key Scientific Findings & Benchmarking
 
 - **Human Breast Invasive Ductal Carcinoma ($N = 4,992$ spots):**
-  - Empirically discovered **Hawk-Dove / Snowdrift (Coexistence)** dynamics ($A_{SS}=-0.996, A_{SR}=+2.606, A_{RS}=+1.991, A_{RR}=-1.970$).
-  - Stable internal coexistence equilibrium at $x^* = 60.5\%$ sensitive clones.
+  - Empirically discovered **Hawk-Dove / Snowdrift (Coexistence)** dynamics ($\tilde{A}_{SS}=-0.736, \tilde{A}_{SR}=+2.866, \tilde{A}_{RS}=+2.188, \tilde{A}_{RR}=-1.772$).
+  - Stable internal coexistence equilibrium at $x^* = 61.3\%$ sensitive clones (95% bootstrap CI: [52.6%, 72.5%]).
   - **Independent Ground-Truth Concordance:** Replicates the in vitro co-culture findings of Kaznatcheev et al. (*Nature Ecology & Evolution* 2019, 3:450-456) directly *in situ*.
 - **Human Lung Squamous Cell Carcinoma ($N = 3,858$ spots):**
-  - **Stag Hunt (Bistable)** dynamics with unstable separatrix tipping point at $x_{sep} = 20.0\%$.
+  - **Indeterminate / Regional Composition** — incremental game test non-significant ($F = 1.30$, $p = 0.266$); bootstrap CI for $\tilde{\Delta}_R$ spans zero. Spatial proliferation predominantly governed by regional subclonal composition rather than frequency-dependent interactions.
 - **Human Cutaneous Malignant Melanoma ($N = 3,458$ spots):**
-  - **Stag Hunt (Bistable)** dynamics with critical threshold tipping point at $x_{sep} = 52.8\%$.
+  - **Suggestive Stag Hunt (Bistability)** — point estimate tipping separatrix $x_{sep} = 48.1\%$; bootstrap CI for $\tilde{\Delta}_R$ spans zero ($[-0.97, +3.57]$), Bayesian MCMC (50k Gibbs draws) confirms $P(\text{Stag Hunt} \mid \text{Data}) = 99.874\%$.
 - **Technical & Biological Replicate Concordance ($\approx 10\,\mu\text{m}$ Serial Cuts):**
   - Payoff matrix Pearson correlation: **$r = +0.811$ ($p = 0.0079$)**.
   - Replicated Stag Hunt classification on both independent consecutive slices.
