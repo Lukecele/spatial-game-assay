@@ -33,7 +33,7 @@ fig, axes = plt.subplots(2, 2, figsize=(14, 11), dpi=300)
 plt.subplots_adjust(wspace=0.28, hspace=0.32)
 
 # =============================================================================
-# PANEL A: MODEL ABLATION ACROSS CANCERS (INCLUDING M2c & M2d CONTROLS)
+# PANEL A: MODEL ABLATION ON IDENTICAL TARGET (w_purified) ACROSS COHORTS
 # =============================================================================
 ax_a = axes[0, 0]
 cancers = ["lung", "breast", "melanoma"]
@@ -41,24 +41,24 @@ labels = ["Lung SCC\n(N=3,858)", "Breast IDC\n(N=4,992)", "Melanoma SKCM\n(N=3,4
 x = np.arange(len(cancers))
 width = 0.15
 
-r2_m1 = [15.82, 16.12, 10.23]
 r2_m2 = [27.84, 23.49, 32.48]
+r2_m2b = [28.26, 28.38, 33.44]
 r2_m2c = [30.77, 26.58, 35.52]
 r2_m2d = [31.21, 33.32, 36.58]
 r2_m3 = [30.86, 32.29, 36.78]
 
-rects1 = ax_a.bar(x - 2*width, r2_m1, width, label="$M_1$: Microenvironment", color="#90CAF9", edgecolor="#1565C0")
-rects2 = ax_a.bar(x - width, r2_m2, width, label="$M_2$: Linear Mass-Action", color="#FFE082", edgecolor="#FF8F00")
-rects2c = ax_a.bar(x, r2_m2c, width, label="$M_{2c}$: Regional Composition", color="#FFAB91", edgecolor="#D84315")
-rects2d = ax_a.bar(x + width, r2_m2d, width, label="$M_{2d}$: Generic Quadratics", color="#CE93D8", edgecolor="#6A1B9A")
-rects3 = ax_a.bar(x + 2*width, r2_m3, width, label="$M_3$: In Situ Spatial Game", color="#A5D6A7", edgecolor="#2E7D32")
+rects2 = ax_a.bar(x - 2*width, r2_m2, width, label="$M_2$: Mass Action ($f_i$)", color="#FFE082", edgecolor="#FF8F00")
+rects2b = ax_a.bar(x - width, r2_m2b, width, label="$M_{2b}$: Co-localization ($f_i f_j$)", color="#B3E5FC", edgecolor="#0288D1")
+rects2c = ax_a.bar(x, r2_m2c, width, label="$M_{2c}$: Regional ($f_i + \\bar{f}_i$)", color="#FFAB91", edgecolor="#D84315")
+rects2d = ax_a.bar(x + width, r2_m2d, width, label="$M_{2d}$: Quadratics ($f_i f_j + \\bar{f}_i \\bar{f}_j$)", color="#CE93D8", edgecolor="#6A1B9A")
+rects3 = ax_a.bar(x + 2*width, r2_m3, width, label="$M_3$: Spatial Game ($f_i \\bar{f}_j$)", color="#A5D6A7", edgecolor="#2E7D32")
 
-ax_a.set_ylabel("Explained Variance $R^2$ (%)", fontsize=11, fontweight="bold")
-ax_a.set_title("A. Model Ablation & Spatial Controls Across Cohorts\n(Breast IDC: p < 1e-16; Melanoma: p = 6e-14; Lung: p = 0.27 N.S.)", fontsize=10, fontweight="bold", loc="left")
+ax_a.set_ylabel("Explained Variance on $w_{purified}$ ($R^2$, %)", fontsize=11, fontweight="bold")
+ax_a.set_title("A. Model Ablation on Decoupled Target ($w_{purified}$)\n(Breast: p < 1e-16; Melanoma: p = 6e-14; Lung: p = 0.27 N.S.)", fontsize=10, fontweight="bold", loc="left")
 ax_a.set_xticks(x)
 ax_a.set_xticklabels(labels, fontsize=10)
 ax_a.legend(frameon=True, fontsize=7.5, loc="upper left", ncol=2)
-ax_a.set_ylim(0, 48)
+ax_a.set_ylim(0, 45)
 
 for rect in rects3:
     height = rect.get_height()
@@ -68,7 +68,7 @@ for rect in rects3:
                   ha='center', va='bottom', fontsize=8, fontweight="bold", color="#1B5E20")
 
 # =============================================================================
-# PANEL B: QC CUTOFF ROBUSTNESS (BREAST CANCER PAYOFF PARAMETERS)
+# PANEL B: QC CUTOFF ROBUSTNESS (BREAST CANCER ABSORBED PAYOFFS)
 # =============================================================================
 ax_b = axes[0, 1]
 cutoffs = ["Unfiltered\n(0 UMI)", "Standard QC\n(>=500 UMI)", "High Stringency\n(>=1000 UMI)"]
@@ -82,17 +82,17 @@ a_rs = [audit_data["breast"]["qc_sensitivity"][k]["payoff_2x2"]["A_RS"] for k in
 a_rr = [audit_data["breast"]["qc_sensitivity"][k]["payoff_2x2"]["A_RR"] for k in ["cut_0", "cut_500", "cut_1000"]]
 
 x_b = np.arange(len(cutoffs))
-ax_b.plot(x_b, a_sr, 'o-', color="#2E7D32", lw=2, ms=7, label="$A_{SR}$ (Sens vs Res)")
-ax_b.plot(x_b, a_rs, 's-', color="#1565C0", lw=2, ms=7, label="$A_{RS}$ (Res vs Sens)")
-ax_b.plot(x_b, a_ss, '^-', color="#C62828", lw=2, ms=7, label="$A_{SS}$ (Sens vs Sens)")
-ax_b.plot(x_b, a_rr, 'd-', color="#6A1B9A", lw=2, ms=7, label="$A_{RR}$ (Res vs Res)")
+ax_b.plot(x_b, a_sr, 'o-', color="#2E7D32", lw=2, ms=7, label=r"$\tilde{A}_{SR}$ (Sens vs Res)")
+ax_b.plot(x_b, a_rs, 's-', color="#1565C0", lw=2, ms=7, label=r"$\tilde{A}_{RS}$ (Res vs Sens)")
+ax_b.plot(x_b, a_ss, '^-', color="#C62828", lw=2, ms=7, label=r"$\tilde{A}_{SS}$ (Sens vs Sens)")
+ax_b.plot(x_b, a_rr, 'd-', color="#6A1B9A", lw=2, ms=7, label=r"$\tilde{A}_{RR}$ (Res vs Res)")
 ax_b.axhline(0, color="grey", linestyle="--", alpha=0.7)
 
-ax_b.set_ylabel("Payoff Parameter Magnitude", fontsize=11, fontweight="bold")
-ax_b.set_title("B. Quality Control (QC) Stringency Sensitivity (Breast IDC)\n(Stable Hawk-Dove Sign Pattern Across Thresholds)", fontsize=11, fontweight="bold", loc="left")
+ax_b.set_ylabel(r"Absorbed Payoff Magnitude ($\tilde{A}_{ij}$)", fontsize=11, fontweight="bold")
+ax_b.set_title("B. Quality Control Stringency Sensitivity (Breast IDC)\n(Stable Hawk-Dove Absorbed Sign Pattern Across Thresholds)", fontsize=10, fontweight="bold", loc="left")
 ax_b.set_xticks(x_b)
 ax_b.set_xticklabels([f"{c}\nN={s}" for c, s in zip(cutoffs, spots_cnt)], fontsize=9)
-ax_b.legend(frameon=True, fontsize=9, loc="center right")
+ax_b.legend(frameon=True, fontsize=8.5, loc="center right")
 ax_b.set_ylim(-2.5, 3.5)
 
 # =============================================================================

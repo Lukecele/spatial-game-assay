@@ -93,46 +93,63 @@ $$\tilde{A}_{ij} = b_i + A_{ij} \implies w_{purified,s} = \sum_{i} \sum_{j} \til
 Nella dinamica continua $\dot{x}_i = x_i [F_i(\mathbf{x}) - \bar{F}(\mathbf{x})]$, il campo vettoriale dipende unicamente dalla matrice assorbita $\tilde{A}$:
 $$\tilde{\Delta}_S = \tilde{A}_{SS} - \tilde{A}_{RS}, \quad \tilde{\Delta}_R = \tilde{A}_{RR} - \tilde{A}_{SR}$$
 
-I risultati canonici riportati in Tabella 1 sono:
+I risultati canonici riportati in Tabella 1 e verificati con **Spatial Block Bootstrap (200 resample su cluster geografici)** sono:
 1. **Breast IDC:** $\tilde{A}_{2 \times 2} = \begin{pmatrix} -0.74 & +2.87 \\ +2.19 & -1.77 \end{pmatrix}$.  
    $\tilde{\Delta}_S = -2.924 < 0, \tilde{\Delta}_R = -4.638 < 0 \implies$ **Hawk-Dove / Snowdrift (Coesistenza)** con equilibrio interno stabile:
    $$x^* = \frac{\tilde{\Delta}_R}{\tilde{\Delta}_S + \tilde{\Delta}_R} = \frac{-4.638}{-7.562} = \mathbf{61.3\%}$$
-2. **Melanoma SKCM:** $\tilde{A}_{2 \times 2} = \begin{pmatrix} +0.93 & -1.78 \\ -0.70 & -0.27 \end{pmatrix}$.  
+   - **Intervalli di confidenza 95% da Spatial Block Bootstrap:**
+     - $\tilde{\Delta}_S \in [-3.929, -1.551]$ (strettamente negativo)
+     - $\tilde{\Delta}_R \in [-6.366, -2.582]$ (strettamente negativo)
+     - $x^* \in [0.526, 0.725]$ (strettamente confinato all'interno del simplesso).
+     *Il regime di Hawk-Dove è confermato al 100% in tutti i resample di bootstrap spaziale.*
+2. **Melanoma SKCM (Stag Hunt Suggestivo con Incertezza Parametrica):** $\tilde{A}_{2 \times 2} = \begin{pmatrix} +0.93 & -1.78 \\ -0.70 & -0.27 \end{pmatrix}$.  
    $\tilde{\Delta}_S = +1.633 > 0, \tilde{\Delta}_R = +1.515 > 0 \implies$ **Stag Hunt / Bistabile** con separatice critica instabile:
    $$x_{sep} = \frac{\tilde{\Delta}_R}{\tilde{\Delta}_S + \tilde{\Delta}_R} = \frac{1.515}{3.148} = \mathbf{48.1\%}$$
-3. **Lung SCC:** $\tilde{A}_{2 \times 2} = \begin{pmatrix} +0.68 & +0.05 \\ -0.31 & -0.19 \end{pmatrix}$.  
-   $\tilde{\Delta}_S = +0.983 > 0, \tilde{\Delta}_R = -0.244 < 0 \implies$ **Sensitive Dominance** nel tessuto baseline non trattato.  
-   Sotto terapia citotossica ($F_i^{\text{treat}} = \sum_j \tilde{A}_{ij}x_j - u(t)d_i$, con differenziale citotossico $d_S - d_R = 0.50$), le selective advantage diventano:
-   $$\tilde{\Delta}_S(D) = 0.983 - 0.500 = +0.483, \quad \tilde{\Delta}_R(D) = -0.244 + 0.500 = +0.256$$
-   facendo emergere una dinamica di **Stag Hunt terapia-indotta** con separatice critica:
-   $$x_{sep}(D) = \frac{0.256}{0.483 + 0.256} = \frac{0.256}{0.739} = \mathbf{34.6\%}$$
+   - **Intervalli di confidenza 95% da Spatial Block Bootstrap:**
+     - $\tilde{\Delta}_S \in [+0.465, +2.601]$
+     - $\tilde{\Delta}_R \in [-0.973, +3.571]$ (attraversa lo zero)
+     - $x_{sep} \in [0.168, 0.637]$.
+   *Nota di rigore metodologico:* Poiché l'intervallo di bootstrap al 95% per $\tilde{\Delta}_R$ attraversa lo zero ($[-0.973, +3.571]$), trattiamo il melanoma esattamente con lo stesso rigore applicato al polmone: la classificazione in Stag Hunt è da intendersi come **suggestiva** con incertezza parametrica sul segno di $\tilde{\Delta}_R$, piuttosto che categoricamente "confermata".
+3. **Lung SCC (Indeterminato / Dominato da Composizione Regionale):** $\tilde{A}_{2 \times 2} = \begin{pmatrix} +0.68 & +0.05 \\ -0.31 & -0.19 \end{pmatrix}$.  
+   - Stime puntuali: $\tilde{\Delta}_S = +0.983, \tilde{\Delta}_R = -0.244$.
+   - **Intervalli di confidenza 95% da Spatial Block Bootstrap:**
+     - $\tilde{\Delta}_S \in [+0.455, +1.563]$
+     - $\tilde{\Delta}_R \in [-1.685, +1.168]$ (**attraversa ampiamente lo zero!**).
+   - Poiché il test incrementale contro la composizione regionale non è significativo ($F = 1.30, p = 0.266$) e la Cross-Validation a blocchi spaziali è inferiore al modello regionale ($26.07\%$ vs $27.06\%$), **questo campione viene formalmente classificato come "Indeterminato / Dominato da Composizione Regionale"**.
+   - **DOR elevata ($7.04, p < 10^{-11}$) nonostante l'indeterminatezza:**  
+     La forte capacità diagnostica binarizzata ($\text{DOR} = 7.04$) riflette il potere predittivo della composizione regionale grezza ($M_{2c} = 30.77\%$) nel separare zone proliferanti da zone quiescenti nel tessuto, e **non** un contributo incrementale dei termini di gioco bilineari ($F = 1.30, p = 0.266$).
+   - **Sensibilità della separatice indotta sotto terapia ipotetica:**
+     Sotto una terapia citotossica ipotetica con differenziale $\delta = d_S - d_R$, la separatice indotta soddisfa $x_{sep}(\delta) = (\tilde{\Delta}_R + \delta)/(\tilde{\Delta}_S + \tilde{\Delta}_R)$. Per il polmone:
+     - $\delta = 0.30 \implies x_{sep} = 0.076$
+     - $\delta = 0.50 \implies x_{sep} = 0.346$
+     - $\delta = 0.80 \implies x_{sep} = 0.752$  
+     Questo dimostra che la soglia del $34.6\%$ dipende interamente dalla scelta arbitraria di $\delta = 0.50$ e va presentata unicamente come simulazione parametrica illustrativa.
 
 ---
 
 ## 7. La Batteria di Validazione Empirica e i Controlli Nulli
 
-### A. Benchmark In Silico di Recupero Parametrico:
-Per dimostrare l'identificabilità numerica, abbiamo generato un tessuto sintetico ($N = 1.000$ spot su simplesso Dirichlet con smoothing spaziale) governato da una matrice nota Hawk-Dove ($x^* = 60.53\%$) con il $20\%$ di rumore gaussiano additivo.
+### A. Benchmark In Silico di Consistenza del Codice e Identificabilità:
+Per verificare che l'estimatore a 9 parametri non incorra in singolarità algebriche sul simplesso, abbiamo generato un tessuto sintetico ($N = 1.000$ spot su simplesso Dirichlet con smoothing spaziale) governato da una matrice nota Hawk-Dove ($x^* = 60.53\%$) con il $20\%$ di rumore gaussiano additivo.
 - **Correlazione matrice recuperata vs vera:** Pearson $r = 0.9997$ ($p = 1.13 \times 10^{-12}$), MAE $= 0.0227$.
 - **Recupero dell'equilibrio di Nash:** $x^* = 60.53\%$ vero vs $x^* = 60.30\%$ stimato (errore $< 0.25\%$).
+- *Significato metodologico:* È un sanity check numerico fondamentale per confermare che la formulazione a 9 parametri assorbiti risolve matematicamente la collinearità del simplesso senza artefatti di rango, e non costituisce una validazione biologica a priori.
 
-### B. Il Controllo Nullo $M_{2c}$ (Composizione Regionale Lineare):
-Per isolare se il guadagno spaziale derivi dalle **interazioni di gioco bilineari ($f_i \bar{f}_j$)** o dalla sola **composizione regionale liscia ($\bar{f}_i$)**, abbiamo confrontato l'intera gerarchia di modelli:
-- $M_2$: Lineare mass-action ($f_S, f_R, f_C$)
-- $M_{2b}$: Quadratico Locale non-spaziale ($f_i \cdot f_j$)
-- $M_{2c}$: Composizione Regionale Lineare ($f_i$ + $\bar{f}_i$, senza termini di prodotto)
-- $M_3$: InSituGame Spaziale ($\tilde{A}_{ij} f_i \bar{f}_j$)
+### B. La Gerarchia Completa dei Controlli Nulli ($M_{2c}$ ed $M_{2d}$):
+Per isolare se il guadagno predittivo derivi dalle **interazioni ecologiche bilineari ($f_i \bar{f}_j$)**, dalla **composizione regionale liscia ($f_i + \bar{f}_i$)** o da **non-linearità quadratiche generiche ($f_i f_j + \bar{f}_i \bar{f}_j$)**, abbiamo testato la gerarchia completa in-sample e in 5-fold Spatial Block Cross-Validation (su cluster $k$-means geograficamente disgiunti):
 
-| Coorte | $M_2$ ($R^2$ in / OOF) | $M_{2b}$ ($R^2$ in / OOF) | $M_{2c}$ ($R^2$ in / OOF) | **$M_3$ Game ($R^2$ in / OOF)** | Nested $F$-test $M_3$ vs $M_{2c}$ | Moran $I$ Residui ($M_1 \to M_3$) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Breast IDC** | 23.49% / 17.02% | 28.38% / 20.93% | 26.58% / 19.76% | **32.29% / 27.02%** | **$F = 104.99, p < 1.11 \times 10^{-16}$** | $0.470 \to \mathbf{0.220}$ |
-| **Melanoma** | 32.48% / 29.06% | 33.44% / 29.32% | 35.52% / 32.88% | **36.78% / 33.42%** | **$F = 17.16, p = 6.04 \times 10^{-14}$** | $0.524 \to \mathbf{0.256}$ |
-| **Lung SCC** | 27.84% / 23.75% | 28.26% / 23.60% | 30.77% / 27.06% | **30.86% / 26.07%** | **$F = 1.30, p = 0.266$ (N.S.)** | $0.459 \to \mathbf{0.250}$ |
+| Coorte | $M_1$ Env ($w_{raw}$) | $M_2$ Mass-Action ($w_{pur}$) | $M_{2b}$ Quad Local | $M_{2c}$ Reg Comp | $M_{2d}$ Quad Gen | **$M_3$ Game Spaziale** | $F$-test vs $M_{2c}$ ($df_1=4$) | Block CV $R^2_{\text{OOF}}$ ($M_{2c} \to M_3$) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Breast IDC** | 16.12% | 23.49% | 28.38% | 26.58% | **33.32%** | **32.29%** | **$F = 104.99, p < 10^{-16}$** | $19.76\% \to \mathbf{27.02\%}$ (+$7.26\%$) |
+| **Melanoma** | 10.23% | 32.48% | 33.44% | 35.52% | 36.58% | **36.78%** | **$F = 17.16, p = 6.04 \times 10^{-14}$** | $32.88\% \to \mathbf{33.42\%}$ (+$0.54\%$) |
+| **Lung SCC** | 15.82% | 27.84% | 28.26% | 30.77% | 31.21% | **30.86%** | **$F = 1.30, p = 0.266$ (N.S.)** | $27.06\% \to \mathbf{26.07\%}$ ($-0.99\%$) |
 
-**Conclusioni Biologiche e Metodologiche:**
-1. Nel **Carcinoma Mammario (Breast IDC)**, il gioco spaziale bilineare $M_3$ batte nettamente la composizione regionale $M_{2c}$ ($F = 104.99, p < 10^{-16}$) e ottiene un incremento out-of-fold massiccio di **$+7.26\%$ in Spatial Block CV** ($27.02\%$ vs $19.76\%$). L'interazione non-lineare è indispensabile.
-2. Nel **Melanoma SKCM**, l'interazione di gioco batte significativamente la composizione regionale ($F = 17.16, p = 6.04 \times 10^{-14}$).
-3. Nel **Carcinoma Polmonare (Lung SCC)**, la variazione spaziale è dominata dalla composizione regionale liscia ($M_{2c} = 30.77\%$), e i termini di gioco aggiuntivi non raggiungono la significatività statistica ($F = 1.30, p = 0.266$). Riconoscere questa distinzione histotype-specifica nel manoscritto conferisce totale trasparenza e credibilità accademica.
+**Analisi Comparativa Rigorosa:**
+1. **Breast IDC:** $M_3$ supera ampiamente la composizione regionale lineare $M_{2c}$ ($F = 104.99, p < 10^{-16}$, $+7.26\%$ fuori fold). Il controllo quadratico generico $M_{2d}$ raggiunge $R^2_{\text{OOF}} = 28.46\%$, confermando che sia termini quadratici generici sia termini di interazione bilineare spiegano varianza non-lineare considerevole. $M_3$ offre il vantaggio di essere una formulazione biologicamente interpretabile e parsimoniosa (8 gradi di libertà effettivi contro 10 di $M_{2d}$).
+2. **Melanoma SKCM:** $M_3$ supera sia la composizione regionale $M_{2c}$ ($33.42\%$ vs $32.88\%$) sia i quadratici generici $M_{2d}$ ($32.99\%$).
+3. **Lung SCC:** La variazione è interamente spiegata dalla composizione regionale $M_{2c}$ ($30.77\%$), e $M_3$ non apporta alcun incremento significativo ($p = 0.266$, OOF peggiora di $0.99\%$). Dichiarare apertamente questo risultato tutela la reputazione scientifica dello studio.
+4. **Moran's I e Autocorrelazione Residua:**  
+   L'attenuazione dell'autocorrelazione spaziale avviene primariamente tra $M_1$ e $M_2$ ($0.459\text{--}0.524 \to 0.252\text{--}0.291$) grazie alla deconvoluzione fenotipica e alla purificazione ambientale. Nei residui di $M_3$, Moran's I rimane a $0.220\text{--}0.256$. Poiché la dipendenza spaziale residua viola l'assunzione di indipendenza i.i.d. dell'OLS standard (gonfiando i valori $F$ e $p$), la nostra validazione definitiva poggia sulla **Spatial Block Cross-Validation** e sullo **Spatial Block Bootstrap**, che preservano la struttura di dipendenza spaziale.
 
 ### C. Test di Permutazione delle Coordinate Spaziali:
 Rimescolando le coordinate spaziali dei vicini per 1.000 permutazioni Monte Carlo, il guadagno spaziale crolla interamente:
@@ -164,14 +181,15 @@ Tutti gli script sono documentati, modulari e versionati nel repository GitHub [
 ## 9. Riferimenti Bibliografici Puntuali e Corretti
 
 1. **Bacevic et al. (2017):** Spatial competition constrains resistance to targeted therapy in non-small cell lung cancer. *eLife*, 6, e27460.
-2. **Cliff & Ord (1981):** *Spatial processes: models & applications*. Pion, London.
-3. **Enriquez-Navas et al. (2016):** Exploiting evolutionary principles in cancer therapy. *Science Translational Medicine*, 8(327), 327ra24.
-4. **Gallaher et al. (2018):** Spatial heterogeneity and evolutionary dynamics modulate tumor response to adaptive therapy. *Cancer Research*, 78(8), 2029–2039.
-5. **Gatenby et al. (2009):** Adaptive therapy. *Cancer Research*, 69(11), 4894–4903.
-6. **Kaznatcheev et al. (2019):** Fibroblasts and alectinib switch the evolutionary games played by non-small cell lung cancer. *Nature Ecology & Evolution*, 3(3), 450–456.
-7. **Kemper et al. (2014):** BRAF inhibition induces reversible drug tolerance in melanoma through non-mutational adaptation. *Cancer Cell*, 26(1), 60–74.
-8. **Marusyk et al. (2014):** Non-cell-autonomous driving of tumour growth supports sub-clonal heterogeneity. *Nature*, 514(7520), 54–58.
-9. **Nowak (2006):** *Evolutionary dynamics: exploring the equations of life*. Harvard University Press.
-10. **Prahallad et al. (2012):** Unresponsiveness of colon cancer to BRAF(V600E) inhibition through feedback activation of EGFR. *Nature*, 483(7387), 100–103.
-11. **Sun et al. (2014):** Reversible and adaptive resistance to BRAF(V600E) inhibition in melanoma. *Nature*, 508(7494), 118–122.
-12. **Zhang et al. (2017):** Integrating evolutionary dynamics into treatment of metastatic castrate-resistant prostate cancer. *Nature Communications*, 8(1), 1816.
+2. **Basanta et al. (2012):** Investigating the role of the bone marrow microenvironment in multiple myeloma using an agent-based model. *Blood*, 120(21), 2112.
+3. **Cliff & Ord (1981):** *Spatial processes: models & applications*. Pion, London.
+4. **Enriquez-Navas et al. (2016):** Exploiting evolutionary principles in cancer therapy. *Science Translational Medicine*, 8(327), 327ra24.
+5. **Gallaher et al. (2018):** Spatial heterogeneity and evolutionary dynamics modulate tumor response to adaptive therapy. *Cancer Research*, 78(8), 2029–2039.
+6. **Gatenby et al. (2009):** Adaptive therapy. *Cancer Research*, 69(11), 4894–4903.
+7. **Kaznatcheev et al. (2019):** Fibroblasts and alectinib switch the evolutionary games played by non-small cell lung cancer. *Nature Ecology & Evolution*, 3(3), 450–456.
+8. **Kemper et al. (2014):** BRAF inhibition induces reversible drug tolerance in melanoma through non-mutational adaptation. *Cancer Cell*, 26(1), 60–74.
+9. **Marusyk et al. (2014):** Non-cell-autonomous driving of tumour growth supports sub-clonal heterogeneity. *Nature*, 514(7520), 54–58.
+10. **Nowak (2006):** *Evolutionary dynamics: exploring the equations of life*. Harvard University Press.
+11. **Prahallad et al. (2012):** Unresponsiveness of colon cancer to BRAF(V600E) inhibition through feedback activation of EGFR. *Nature*, 483(7387), 100–103.
+12. **Sun et al. (2014):** Reversible and adaptive resistance to BRAF(V600E) inhibition in melanoma. *Nature*, 508(7494), 118–122.
+13. **Zhang et al. (2017):** Integrating evolutionary dynamics into treatment of metastatic castrate-resistant prostate cancer. *Nature Communications*, 8(1), 1816.

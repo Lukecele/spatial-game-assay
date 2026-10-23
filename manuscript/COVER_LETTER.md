@@ -2,7 +2,8 @@
 
 **To:**  
 The Editor-in-Chief  
-*Bioinformatics* (Oxford University Press) / *Computers in Biology and Medicine* (Elsevier)
+*Bioinformatics*  
+Oxford University Press
 
 **Date:** October 23, 2026  
 **From:**  
@@ -16,7 +17,7 @@ $^{*}$ Corresponding Author: Luca Celebrano (`l.celebrano@studenti.unina.it`, OR
 
 Dear Editor-in-Chief and Editorial Board Members,
 
-I am pleased to submit our original research manuscript entitled **"InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies"** for consideration as an Original Article in your esteemed journal.
+I am pleased to submit our original research manuscript entitled **"InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies"** for consideration as an Original Article in *Bioinformatics*.
 
 ### Background and Scientific Rationale
 For over two decades since the founding formulations of evolutionary oncology, **evolutionary game theory (EGT)** has provided a compelling mathematical foundation to counter acquired cancer drug resistance. By modulating therapy to maintain a competing subpopulation of treatment-sensitive cells, adaptive therapy prevents competitive release of refractory subclones, substantially prolonging progression-free survival in clinical pilot trials.
@@ -24,15 +25,15 @@ For over two decades since the founding formulations of evolutionary oncology, *
 However, translation to bedside oncology has been constrained by a fundamental bottleneck: **how can we estimate the subclonal interaction payoff matrix ($A$) directly from a patient's intact clinical biopsy?** Historically, researchers were limited to either postulating mathematical heuristics or measuring interactions in artificial 2D in vitro co-cultures stripped of the native 3D extracellular matrix, stroma, and physical microenvironmental gradients.
 
 In this work, we address this translational bottleneck by developing **InSituGame** (*In Situ Spatial Evolutionary Game Assay*), an exploratory computational framework with five core contributions:
-1. **Mathematical Foundation & Ergodicity:** We prove the **Space-for-Time Ergodic Mapping Theorem**, establishing how single-cell-cycle transcriptional snapshots across spatial micro-neighborhoods formally identify continuous non-linear replicator vector fields without requiring sequential invasive biopsies.
+1. **Mathematical Foundation & Ergodicity:** We formulate the **Space-for-Time Ergodic Mapping Framework (Proposition 1)**, establishing how single-cell-cycle transcriptional snapshots across spatial micro-neighborhoods formally reconstruct continuous non-linear replicator vector fields without requiring sequential invasive biopsies.
 2. **Identifiable Formulation on the Simplex:** We identify the exact algebraic collinearity between intrinsic fitness and interaction terms on the unit simplex, and formulate a fully identifiable 9-parameter absorbed payoff matrix ($\tilde{A}_{ij} = b_i + A_{ij}$) with condition number reduced by seven orders of magnitude ($\approx 31\text{--}54$ vs $\sim 4 \times 10^8$).
-3. **Microenvironmental Decoupling & Spatial Null Controls:** We decouple hypoxia ($Z_{hyp}$) and vascular density ($Z_{vasc}$) confounders from cell proliferation, and benchmark spatial Delaunay interactions against a non-spatial within-spot quadratic co-localization control, demonstrating a statistically significant $+2.60\%$ to $+3.91\%$ increment in purified variance explanation ($p < 1.11 \times 10^{-16}$). When evaluated directly on raw proliferation, joint regression accounts for $49.60\%\text{--}54.30\%$ of total tissue variance.
+3. **Microenvironmental Decoupling & Spatial Controls:** We decouple hypoxia ($Z_{hyp}$) and vascular density ($Z_{vasc}$) confounders from cell proliferation, and benchmark spatial Delaunay interactions against linear regional composition ($M_{2c}$) and generic non-linear quadratics ($M_{2d}$), demonstrating a $+7.26\%$ gain in 5-fold spatial block cross-validation out-of-fold generalizability in breast carcinoma ($p < 1.11 \times 10^{-16}$) while establishing that lung SCC is predominantly governed by regional composition ($p = 0.266$). When evaluated directly on raw proliferation, joint regression accounts for $49.60\%\text{--}54.30\%$ of total tissue variance.
 4. **Reproducibility Across Serial Slices:** Evaluated across independent consecutive serial sections ($\approx 10\,\mu\text{m}$ apart), *InSituGame* demonstrates parameter concordance ($r = +0.811$, $p = 0.0079$), consistent game classification (Stag Hunt with tipping separatrix $x_{sep} \approx 0.80$), and blind out-of-sample predictive generalizability ($R^2_{\text{OOS}} = 10.20\%$ vs $6.21\%$ for mass-action baseline; Diagnostic Odds Ratio $= 2.30$ [95% CI: $2.03\text{--}2.61$], exact Fisher $p = 4.82 \times 10^{-12}$).
-5. **Patient-Specific Game Individuality:** While the primary CytAssist breast IDC cohort exhibits Hawk-Dove coexistence ($x^* = 60.5\%$), independent fresh-frozen breast serial cuts display Stag Hunt bistability, demonstrating that evolutionary games are patient-specific ecological architectures that warrant individual biopsy profiling.
+5. **Patient-Specific Game Individuality:** While the primary CytAssist breast IDC cohort exhibits Hawk-Dove coexistence ($x^* = 61.3\%$, 95% bootstrap CI: $0.526\text{--}0.725$) and cutaneous melanoma displays suggestive Stag Hunt bistability ($x_{sep} = 48.1\%$, with bootstrap 95% CI spanning zero for $\tilde{\Delta}_R$), lung SCC is categorized as indeterminate / regional ($p=0.266$). Fresh-frozen breast serial cuts independently display Stag Hunt bistability, demonstrating that evolutionary games are patient-specific ecological architectures that warrant individual biopsy profiling.
 
 ### Open Science, Software, and Ethical Declarations
 - **Software Implementation:** *InSituGame* is fully implemented as an open-source Python package (`insitugame`) with an automated test suite. All code, raw data streaming parsers, and figure generation scripts are publicly available on GitHub ([https://github.com/Lukecele/spatial-game-assay](https://github.com/Lukecele/spatial-game-assay)) under the copyleft GNU General Public License v3.0 (GPL-3.0) to ensure unencumbered access for research institutions and hospitals.
-- **Institutional Open Access Funding:** As an investigator affiliated with the School of Medicine, Università degli Studi di Napoli Federico II, open access publication is eligible for **0€ Article Processing Charges (APC)** through the national **CRUI-CARE (Conferenza dei Rettori delle Università Italiane)** Transformative Agreement with Oxford University Press and Elsevier.
+- **Institutional Open Access Funding:** As an investigator affiliated with the School of Medicine, Università degli Studi di Napoli Federico II, open access publication is eligible for **0€ Article Processing Charges (APC)** through the national **CRUI-CARE (Conferenza dei Rettori delle Università Italiane)** Transformative Agreement with Oxford University Press.
 - **Competing Interests:** The author declares no competing financial, personal, or commercial interests.
 - **Originality:** This manuscript is original, has not been published previously, and is not currently under consideration for publication elsewhere.
 
