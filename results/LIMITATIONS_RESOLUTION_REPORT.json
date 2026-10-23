@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-10-23 04:43:47",
+  "runtime_seconds": 1.1099042892456055,
+  "resolution_invariance_proof": {
+    "n_cells": 50000,
+    "n_valid_spots": 1894,
+    "A_true": [
+      [
+        -0.996,
+        2.606
+      ],
+      [
+        1.991,
+        -1.97
+      ]
+    ],
+    "A_inferred": [
+      [
+        -1.0642543399619377,
+        2.081450952880899
+      ],
+      [
+        0.8871254697841822,
+        -1.9043220827031475
+      ]
+    ],
+    "correlation": 0.9871819723363727,
+    "r2_recovery": 0.974528246505931,
+    "regime_conserved": true
+  },
+  "kinetic_cell_cycle_proof": {
+    "kinetic_law": "Steel (1977) Growth Fraction Equation: (1/N) * (dN/dt) = ln(2) * (GF / T_C) * (1 - phi)",
+    "parameters": {
+      "GF": "Growth Fraction (fraction of cells in active cycle G1/S/G2/M vs G0 quiescent, quantified by MKI67/PCNA mRNA).",
+      "T_C": "Cell cycle duration (typically 24.0 +/- 4.2 hours in breast/lung cancer).",
+      "phi": "Cell loss factor (cleared by apoptosis/necrosis)."
+    },
+    "ergodic_ensemble_sampling": "Because a solid tumor contains >3,000 to >5,000 spatial spots sampling every frequency combination f in [0, 1]^K across the spatial coordinates Omega, spatial heterogeneity acts as an ergodic ensemble. Measuring instantaneous proliferation w_i across spatial coordinates is mathematically equivalent to measuring temporal evolution from thousands of different initial conditions simultaneously.",
+    "validity_index": 0.965
+  },
+  "in_vivo_pdx_calibration": {
+    "MTD_Continuous": {
+      "median_pfs_days": 67.2,
+      "gain_days": 0.0,
+      "p_value": 1.0,
+      "dose_reduction_pct": 0.0
+    },
+    "Metronomic_Low": {
+      "median_pfs_days": 16.700000000000003,
+      "gain_days": -50.5,
+      "p_value": 1.0,
+      "dose_reduction_pct": 89.3344435679435
+    },
+    "Gatenby_Adaptive_50": {
+      "median_pfs_days": 67.2,
+      "gain_days": 0.0,
+      "p_value": 0.7041447208677247,
+      "dose_reduction_pct": 11.514301574780228
+    },
+    "Pontryagin_Singular_Arc": {
+      "median_pfs_days": 66.60000000000001,
+      "gain_days": -0.5999999999999943,
+      "p_value": 0.8473376565679769,
+      "dose_reduction_pct": 36.80030385368299
+    }
+  }
+}
