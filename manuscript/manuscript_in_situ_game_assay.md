@@ -1,11 +1,27 @@
+---
+title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies"
+author:
+  - name: Luca Celebrano
+    affiliation: 1
+    email: l.celebrano@studenti.unina.it
+    corresponding: true
+    orcid: 0009-0007-0931-3555
+institute:
+  - 1: Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Via Sergio Pansini 5, 80131 Naples, Italy
+header-includes:
+  - \usepackage{amsmath,amssymb}
+  - \usepackage{booktabs}
+  - \usepackage{graphicx}
+---
+
+**ORIGINAL RESEARCH ARTICLE • SPATIAL COMPUTATIONAL ONCOLOGY**
+
 # InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies
 
-**Luca Celebrano**$^{1,*}$
-
-$^{1}$ Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, 80131 Naples, Italy  
-$^{*}$ **Corresponding Author:** Luca Celebrano  
-Email: `l.celebrano@studenti.unina.it` | Public ORCID: [`0009-0007-0931-3555`](https://orcid.org/0009-0007-0931-3555)  
-Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay)
+**Luca Celebrano**$^{1,*}$  
+$^{1}$ Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Via Sergio Pansini 5, 80131 Naples, Italy  
+$^{*}$ **Corresponding Author:** Luca Celebrano • Email: `l.celebrano@studenti.unina.it` • Public ORCID: [`0009-0007-0931-3555`](https://orcid.org/0009-0007-0931-3555)  
+Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay) • Permanent Zenodo Archive: [`https://doi.org/10.5281/zenodo.23585216`](https://doi.org/10.5281/zenodo.23585216)
 
 ---
 
@@ -17,7 +33,7 @@ Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.co
 
 **Results:** We evaluated the framework across $N = 20,093$ in-tissue spatial spots spanning human lung squamous cell carcinoma ($N=3,858$), invasive ductal breast carcinoma ($N=4,992$), cutaneous malignant melanoma ($N=3,458$), and two consecutive serial histological sections ($\approx 10\,\mu\text{m}$ apart, $N=3,798$ and $N=3,987$). In an in silico numerical consistency benchmark, the 9-parameter bilinear estimator accurately recovered known payoff parameters under 20% additive noise (Pearson $r = 0.9997$, $p = 1.13 \times 10^{-12}$, MAE $= 0.023$) and recovered the interior Nash coexistence equilibrium ($x^* = 60.53\%$ true vs $60.30\%$ estimated), verifying algebraic code correctness and numerical identifiability without matrix singularities. In clinical tissue, comprehensive model ablations on the decoupled target $w_{purified}$ demonstrated lineage-specific interaction architectures: in breast IDC, the spatial game model ($M_3$, $R^2 = 32.29\%$) significantly improved over linear regional composition ($M_{2c}$, $R^2 = 26.58\%$; incremental $F = 104.99$, $p < 1.11 \times 10^{-16}$), yielding a $+7.26\%$ gain in 5-fold spatial block cross-validation out-of-fold generalizability ($R^2_{\text{OOF}} = 27.02\%$ vs $19.76\%$), while generic quadratics ($M_{2d}$, $R^2_{\text{OOF}} = 28.46\%$) showed comparable predictive capacity with higher parameterization (10 vs 8 parameters). In melanoma SKCM, spatial game interactions provided a modest increment over regional composition ($F = 17.16$, $p = 6.04 \times 10^{-14}$; $R^2_{\text{OOF}} = 33.42\%$ vs $32.88\%$). In lung SCC, spatial proliferation was predominantly governed by regional composition ($M_{2c} = 30.77\%$ vs $M_3 = 30.86\%$, $F = 1.30$, $p = 0.266$, $R^2_{\text{OOF}} = 26.07\%$ vs $27.06\%$), classifying this specimen as indeterminate / dominated by regional composition rather than robust frequency-dependent game interactions. Coordinate permutation null tests confirmed spatial structure dependence across all cohorts ($p < 0.001$). Under the identifiable absorbed matrix $\tilde{A}$, spatial block bootstrap 95% confidence intervals confirmed robust **Hawk-Dove / Snowdrift (Coexistence)** dynamics in primary breast IDC ($x^* \in [0.526, 0.725]$, point estimate $61.3\%$; $\tilde{\Delta}_S \in [-3.93, -1.55]$, $\tilde{\Delta}_R \in [-6.37, -2.58]$) and suggestive **Stag Hunt bistability** in melanoma (point estimate $x_{sep} = 48.1\%$, though the 95% bootstrap confidence interval for $\tilde{\Delta}_R$ spans zero: $[-0.97, +3.57]$, reflecting selective parameter uncertainty). In lung SCC, bootstrap confidence intervals for $\tilde{\Delta}_R$ likewise spanned zero ($[-1.685, +1.168]$), verifying that this specimen cannot be reliably classified into a discrete game. Consecutive serial sections demonstrated parameter concordance ($r = +0.811$, $p = 0.0079$) and blind out-of-sample generalizability ($R^2_{\text{OOS}} = 10.20\%$ vs $6.21\%$, exact Fisher $p = 4.82 \times 10^{-12}$).
 
-**Availability and Implementation:** *InSituGame* is implemented as an open-source Python library (`insitugame`) licensed under the GNU General Public License v3.0 (GPL-3.0). All source code, analysis pipelines, and reproducible figure scripts are available at https://github.com/Lukecele/spatial-game-assay.
+**Availability and Implementation:** *InSituGame* is implemented as an open-source Python library (`insitugame`) licensed under the GNU General Public License v3.0 (GPL-3.0). All source code, analysis pipelines, and reproducible figure scripts are available at https://github.com/Lukecele/spatial-game-assay and permanently archived on Zenodo at https://doi.org/10.5281/zenodo.23585216.
 
 ---
 
@@ -205,7 +221,7 @@ Applying *InSituGame* across the clinical cancer cohorts revealed distinct, line
 2. **Melanoma SKCM (Suggestive Stag Hunt / Bistability):** Point estimates of the absorbed matrix yield $\tilde{\Delta}_S = +1.633$ and $\tilde{\Delta}_R = +1.515$, suggesting a **Stag Hunt / Bistable game** with an unstable tipping threshold at $x_{sep} = 48.1\%$. However, non-parametric spatial block bootstrapping demonstrates that while $\tilde{\Delta}_S$ is robustly positive ($[+0.465, +2.601]$), the 95% confidence interval for $\tilde{\Delta}_R$ spans zero ($[-0.973, +3.571]$). While the upper portion of the resamples supports bistability, this parameter uncertainty indicates that discrete classification in melanoma remains suggestive rather than definitive.
 3. **Lung SCC (Indeterminate / Regional Composition):** In unperturbed baseline tissue, point estimates show $\tilde{\Delta}_S = +0.983$ and $\tilde{\Delta}_R = -0.244$. However, spatial block bootstrap reveals that the 95% confidence interval for $\tilde{\Delta}_R$ spans zero ($[-1.685, +1.168]$), and Model 3 does not significantly improve over linear regional composition ($F = 1.30, p = 0.266$; $R^2_{\text{OOF}} = 26.07\%$ vs $27.06\%$). Consequently, this specimen cannot be reliably classified into a discrete game regime, and its spatial proliferation variance is predominantly governed by regional composition rather than frequency-dependent subclonal cross-talk. Importantly, although Model 3 does not provide an incremental game benefit, the spatial feature set as a whole exhibits high binarized diagnostic discrimination for proliferative spots (DOR $= 7.04$ [6.11--8.11], $p < 10^{-11}$), driven by the strong baseline explanatory power of regional composition ($M_{2c} = 30.77\%$).
 
-![**Pan-Cancer In Situ Spatial Evolutionary Game Atlas.** Comprehensive spatial game interaction landscapes across human Lung Squamous Cell Carcinoma (Lung SCC, $N=3,858$), Invasive Ductal Breast Carcinoma (Breast IDC, $N=4,992$), and Cutaneous Malignant Melanoma (Melanoma SKCM, $N=3,458$). Inferred subclonal absorbed payoff matrices $\tilde{A}_{2 \times 2}$, simplex phase portraits, replicator vector fields, and clinical Nash equilibria (Hawk-Dove coexistence in breast IDC; Stag Hunt bistable tipping separatrix in melanoma; indeterminate / regional composition in lung SCC).](../figures/figure_pan_cancer_spatial_game_atlas.png){width=84%}
+![**Pan-Cancer In Situ Spatial Evolutionary Game Atlas and Adaptive Therapy Dynamics.** Pan-cancer spatial game interaction landscapes across human Lung Squamous Cell Carcinoma (Lung SCC, $N=3,858$), Invasive Ductal Breast Carcinoma (Breast IDC, $N=4,992$), and Cutaneous Malignant Melanoma (Melanoma SKCM, $N=3,458$). **Column 1:** Inferred empirical $3 \times 3$ absorbed payoff matrices ($\tilde{A}_{ij}$) capturing direct and stroma-mediated interactions between Sensitive ($T_S$), Resistant ($T_R$), and Stroma/CAF ($S_{CAF}$) phenotypes. **Column 2:** Simplex phase portraits and non-linear replicator vector fields depicting evolutionary trajectories and clinical Nash equilibria (Hawk-Dove coexistence in breast IDC; suggestive Stag Hunt bistability with tipping separatrix $x_{sep} = 48.1\%$ in melanoma; indeterminate / regional composition in lung SCC). **Column 3:** Spatial micro-neighborhood interaction density landscapes across intact biopsies. **Column 4:** In silico forward dynamical trajectories comparing continuous Maximum Tolerated Dose (MTD) chemotherapy against evolutionary adaptive therapy schedules.](../figures/figure_pan_cancer_spatial_game_atlas.png){width=84%}
 
 ### 3.3 Model Ablation Battery and Spatial Controls
 To establish whether the spatial game assay captures genuine game interaction beyond microenvironmental gradients, local spot co-localization, regional composition, and generic non-linearities, we conducted an incremental model ablation across all cohorts (Table 2 and Figure 3A).
@@ -328,7 +344,7 @@ The author declares no competing financial or personal interests.
 This research received no external grant funding. Open Access publication fees are covered in full under the CRUI-CARE national agreement with the University of Naples Federico II.
 
 ## Data and Code Availability
-All clinical spatial transcriptomics datasets analyzed in this study are publicly available from 10x Genomics. The open-source `insitugame` software library, complete pipeline scripts, and reproducibility benchmarks are archived on GitHub at [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay) under the GNU General Public License v3.0 (GPL-3.0).
+All clinical spatial transcriptomics datasets analyzed in this study are publicly available from 10x Genomics. The open-source `insitugame` software library, complete pipeline scripts, and reproducibility benchmarks are archived on GitHub at [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay) under the GNU General Public License v3.0 (GPL-3.0) and permanently archived on Zenodo at [`https://doi.org/10.5281/zenodo.23585216`](https://doi.org/10.5281/zenodo.23585216).
 
 ## Declaration of Generative AI and AI-Assisted Technologies in the Writing Process
 During the preparation of this work, the author utilized LLM-based agentic tools (Claude and Gemini via Antigravity) for code development, data analysis pipelines, and manuscript formatting assistance. The author reviewed, edited, and validated all analyses and text, and takes full responsibility for the scientific integrity and conclusions of the manuscript.
@@ -337,7 +353,7 @@ During the preparation of this work, the author utilized LLM-based agentic tools
 
 ## References
 
-1. Bacevic, K., et al. (2017). Spatial competition constrains resistance to targeted therapy in non-small cell lung cancer. *eLife*, 6, e27460.
+1. Bacevic, K., et al. (2017). Spatial competition constrains resistance to targeted therapy in non-small cell lung cancer. *Nature Communications*, 8(1), 1995. DOI: 10.1038/s41467-017-01516-1.
 2. Basanta, D., et al. (2012). Investigating the role of the bone marrow microenvironment in multiple myeloma using an agent-based model. *Blood*, 120(21), 2112.
 3. Cliff, A. D., & Ord, J. K. (1981). *Spatial processes: models & applications*. Pion, London.
 4. Enriquez-Navas, P. M., et al. (2016). Exploiting evolutionary principles in cancer therapy. *Science Translational Medicine*, 8(327), 327ra24.
