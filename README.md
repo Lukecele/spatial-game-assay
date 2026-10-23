@@ -1,7 +1,7 @@
 # InSituGame: In Situ Spatial Evolutionary Game Assay
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.insitugame-blue)](https://github.com/lucacelebrano/spatial-game-assay)
+[![DOI](https://img.shields.io/badge/DOI-Zenodo%20%28pending%29-lightgrey)](https://zenodo.org)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
 [![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](file:///home/luca/spatial-game-assay/results)
@@ -58,7 +58,7 @@ Unlike traditional mathematical oncology models that rely on arbitrary parameter
 ## Installation
 
 ```bash
-git clone https://github.com/lucacelebrano/spatial-game-assay.git
+git clone https://github.com/Lukecele/spatial-game-assay.git
 cd spatial-game-assay
 pip install -e .
 ```
@@ -100,7 +100,7 @@ If you utilize this methodology, assay software, or empirical matrices in your r
   author = {Celebrano, Luca},
   title = {{InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy}},
   year = {2026},
-  url = {https://github.com/lucacelebrano/spatial-game-assay},
+  url = {https://github.com/Lukecele/spatial-game-assay},
   version = {1.0.0},
   institution = {School of Medicine and Surgery, Università degli Studi di Napoli Federico II}
 }
