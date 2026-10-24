@@ -27,18 +27,20 @@ Unlike traditional mathematical oncology models that rely on arbitrary parameter
 3. Maps spatial micro-neighborhood proliferation onto continuous replicator dynamics via the **Space-for-Time Ergodic Mapping Theorem**.
 4. Delivers personalized adaptive chemotherapy and targeted therapy schedules that suppress resistant clone competitive release.
 
-```
-+-----------------------------------------------------------------------------------+
-|                            INSITUGAME ASSAY WORKFLOW                              |
-|                                                                                   |
-|  [Intact Biopsy] ---> [10x Visium / CytAssist] ---> [Phenotype Deconvolution]     |
-|                                                              |                    |
-|                                                              v                    |
-|  [Nash Solver]  <---  [Purified Payoff Matrix A] <--- [Microenvironmental Filter] |
-|        |                                                                          |
-|        v                                                                          |
-|  [Personalized Adaptive Dosing Protocol: Prolongs Progression-Free Survival (PFS)]|
-+-----------------------------------------------------------------------------------+
+```mermaid
+flowchart TD
+    Biopsy["Intact Human Biopsy<br>(10x Visium / CytAssist)"] --> Deconv["Cellular & Phenotype Deconvolution<br>(Sensitive vs Resistant Clones)"]
+    Deconv --> Filter["Microenvironmental Spatial Filter<br>(Hypoxia CA9 & Vascular PECAM1)"]
+    Filter --> Matrix["Purified Subclonal Payoff Matrix A<br>(Frequency-Dependent Interactions)"]
+    Matrix --> Nash["Exact Nash Equilibria & Replicator Dynamics<br>(Space-for-Time Ergodic Mapping)"]
+    Nash --> Therapy["Personalized Adaptive Therapy Protocol<br>(Extends Progression-Free Survival)"]
+    
+    style Biopsy fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style Deconv fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Filter fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Matrix fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style Nash fill:#ede7f6,stroke:#512da8,stroke-width:2px
+    style Therapy fill:#e0f2f1,stroke:#00796b,stroke-width:2px
 ```
 
 ---
