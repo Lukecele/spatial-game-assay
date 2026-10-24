@@ -11,6 +11,10 @@
 **Affiliation:** School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy  
 **Target Publication:** Status: Preprint / Manuscript under review (CRUI Open Access Agreement)
 
+> [!TIP]
+> **Support Open-Source Theoretical Biology:**  
+> If you find this spatial evolutionary game assay or our in situ payoff inference engine helpful in your research, please consider giving this repository a ⭐ **Star** on GitHub!
+
 ---
 
 ## Overview
