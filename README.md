@@ -9,7 +9,7 @@
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy  
-**Target Publication:** Q1 Computational Oncology & Bioinformatics (CRUI Open Access Agreement)
+**Target Publication:** Status: Preprint / Manuscript under review (CRUI Open Access Agreement)
 
 ---
 
