@@ -56,6 +56,30 @@ Unlike traditional mathematical oncology models that rely on arbitrary parameter
 
 ---
 
+## 📊 Empirical Findings & Visual Proof
+
+### 1. Spatial Game Decomposition & Tissue Deconvolution
+![Spatial Game Decomposition](figures/figure1_spatial_game_decomposition.png)
+
+### 2. Pan-Cancer Spatial Game Atlas (Breast, Lung & Melanoma)
+![Pan-Cancer Spatial Game Atlas](figures/figure_pan_cancer_spatial_game_atlas.png)
+
+### 3. Replicator Dynamics & In Silico Adaptive Scheduling
+![Replicator Dynamics Simulation](figures/colab_generated_replicator_dynamics.png)
+
+---
+
+## 🔗 The Spatial Oncology Research Continuum
+
+This project constitutes the foundational game-theoretic cornerstone of a 4-part open-source scientific investigation:
+
+1. **Study 1: InSituGame (This Repository)** • Evolutionary game assay inferring subclonal payoff matrices in situ • DOI: [`10.5281/zenodo.23585216`](https://doi.org/10.5281/zenodo.23585216)
+2. **[Study 2: Spatial Architecture & Biophysics](https://github.com/Lukecele/spatial-architecture-osimertinib)** • 10x Visium HD subcellular architecture & $\lambda \approx 624\,\mu\text{m}$ transport barrier • DOI: [`10.5281/zenodo.23620878`](https://doi.org/10.5281/zenodo.23620878)
+3. **[Study 3: Massive Validation ($N = 854$)](https://github.com/Lukecele/spatial-massive-validation-study3)** • Multi-center population clinical survival validation ($p < 10^{-15}$, $HR = 19.45$) • DOI: [`10.5281/zenodo.23620887`](https://doi.org/10.5281/zenodo.23620887)
+4. **[Study 4: InSituVision-AI (< 5 €)](https://github.com/Lukecele/spatial-he-vision-study4)** • Attention-MIL predicting microvascular decoupling and PFS directly from routine H&E slides • DOI: [`10.5281/zenodo.23621924`](https://doi.org/10.5281/zenodo.23621924)
+
+---
+
 ## Installation
 
 ```bash
