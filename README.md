@@ -8,10 +8,15 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
 [![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](https://github.com/Lukecele/spatial-game-assay/tree/main/results)
+[![Interactive Web Portal](https://img.shields.io/badge/Web%20Portal-Live%20Demo-brightgreen.svg)](https://lukecele.github.io/spatial-game-assay/)
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy  
-**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`) · **bioRxiv Preprint:** `BIORXIV/2026/761331` (Undergoing Screening)
+**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`) · **bioRxiv Preprint:** `BIORXIV/2026/761331` (Undergoing Screening)  
+**Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)
+
+> [!NOTE]
+> 🌐 **Interactive Scientific Portal:** Explore the live web application, clinical game matrices, and interactive manuscript visualization at [lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/).
 
 > [!TIP]
 > **Support Open-Source Theoretical Biology:**  
