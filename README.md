@@ -3,6 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
 [![AACR Under Review](https://img.shields.io/badge/AACR-CRC--26--0804%20Under%20Review-008080.svg)](https://crc.msubmit.net)
+[![Preprint: bioRxiv](https://img.shields.io/badge/bioRxiv-BIORXIV%2F2026%2F761331-b31b1b.svg)](https://submit.biorxiv.org/)
 [![CI](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml/badge.svg)](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
@@ -10,7 +11,7 @@
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy  
-**Publication Status:** Submitted to *Cancer Research Communications* (AACR, Tracking MS# `CRC-26-0804`, Oct 26, 2026)
+**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`) · **bioRxiv Preprint:** `BIORXIV/2026/761331` (Undergoing Screening)
 
 > [!TIP]
 > **Support Open-Source Theoretical Biology:**  
