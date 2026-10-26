@@ -47,3 +47,21 @@ __all__ = [
     "DrugPKPDProfile",
     "PRESET_PROFILES"
 ]
+
+import os as _os
+import sys as _sys
+
+def _display_star_tip():
+    if _os.environ.get("INSITUGAME_SILENT") or _os.environ.get("CI") or not _sys.stdout.isatty():
+        return
+    _sys.stdout.write(
+        "\n\033[1;33m⭐ Enjoying InSituGame?\033[0m Please star the repo on GitHub: "
+        "\033[4;34mhttps://github.com/Lukecele/spatial-game-assay\033[0m\n\n"
+    )
+    _sys.stdout.flush()
+
+try:
+    _display_star_tip()
+except Exception:
+    pass
+

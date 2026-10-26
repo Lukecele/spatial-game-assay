@@ -99,6 +99,9 @@ This project constitutes the foundational game-theoretic cornerstone of a 4-part
 git clone https://github.com/Lukecele/spatial-game-assay.git
 cd spatial-game-assay
 pip install -e .
+
+# Run instant quickstart verification
+./quickstart.sh
 ```
 
 ---
