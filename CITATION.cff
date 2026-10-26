@@ -1,10 +1,10 @@
 cff-version: 1.2.0
-message: "If you use this software, methodology, or assay in your clinical research, please cite it as below."
+message: "If you use this software, methodology, or assay in your clinical research, please cite both the software and the under-review manuscript."
 title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy"
 version: 1.0.5
-doi: 10.5281/zenodo.23585216
-date-released: 2026-10-23
-url: "https://github.com/Lukecele/spatial-game-assay"
+doi: "10.5281/zenodo.23585216"
+date-released: 2026-10-26
+url: "https://lukecele.github.io/spatial-game-assay/"
 repository-code: "https://github.com/Lukecele/spatial-game-assay"
 license: GPL-3.0-or-later
 keywords:
@@ -22,3 +22,15 @@ authors:
     orcid: "https://orcid.org/0009-0007-0931-3555"
     email: "l.celebrano@studenti.unina.it"
     affiliation: "Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Naples, Italy"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Celebrano"
+      given-names: "Luca"
+      orcid: "https://orcid.org/0009-0007-0931-3555"
+      affiliation: "Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Naples, Italy"
+  title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy"
+  journal: "bioRxiv"
+  year: 2026
+  doi: "10.5281/zenodo.23585216"
+  url: "https://doi.org/10.5281/zenodo.23585216"
