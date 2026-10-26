@@ -1,6 +1,6 @@
 # Official Manuscript Submission Metadata Sheet
 
-This metadata sheet contains all standardized fields required for submitting the manuscript to **Bioinformatics (Oxford Academic)** and uploading the preprint to **bioRxiv**.
+This metadata sheet contains all standardized fields required for submitting the manuscript to **Cancer Research Communications (AACR)** and uploading the preprint to **bioRxiv**.
 
 ---
 
@@ -10,12 +10,12 @@ This metadata sheet contains all standardized fields required for submitting the
 - **Short Title / Running Head:**  
   `In Situ Spatial Evolutionary Game Assay`
 - **Manuscript Type:**  
-  `Original Paper / Original Research Article`
+  `Research Article: General`
 - **Primary Journal:**  
-  `Bioinformatics (Oxford Academic)`
+  `Cancer Research Communications (AACR)` • **Tracking MS#:** `CRC-26-0804` (Submitted Oct 26, 2026)
 - **Subject Category / Track:**  
-  - For Bioinformatics (OUP): `Original Paper - Systems Biology & Evolutionary Dynamics`  
-  - For bioRxiv: `Bioinformatics` (or `Cancer Biology`)
+  - For AACR: `Tumor Biology`  
+  - For bioRxiv: `Bioinformatics` (or `Cancer Biology`, ID: `crc-761331-23102026`)
 - **Word Count (Main Text):** ~4,400 words  
 - **Number of Display Items:** 3 Figures, 2 Tables, 17 References.
 
