@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InSituGame: In Situ Spatial Evolutionary Game Assay</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --border: #1f2937;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #10b981;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    header {
+      background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%);
+      padding: 60px 20px 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      background: #1f2937;
+      color: #e5e7eb;
+      border: 1px solid #374151;
+    }
+    .badge.biorxiv { background: #7f1d1d; color: #fecaca; border-color: #991b1b; }
+    .badge.aacr { background: #064e3b; color: #a7f3d0; border-color: #047857; }
+    .badge.doi { background: #1e3a8a; color: #bfdbfe; border-color: #1d4ed8; }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      letter-spacing: -0.025em;
+      background: linear-gradient(to right, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 25px;
+    }
+    .author-bar {
+      font-size: 0.95rem;
+      color: #d1d5db;
+    }
+    .author-bar a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #3b82f6;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .interactive-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .interactive-box h2 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-secondary {
+      background: #374151;
+      color: white;
+    }
+    .btn-secondary:hover { background: #4b5563; }
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge-container">
+      <span class="badge biorxiv"><i class="fas fa-file-pdf"></i>&nbsp;bioRxiv: 761331 (Screening)</span>
+      <span class="badge aacr"><i class="fas fa-microscope"></i>&nbsp;AACR CRC: CRC-26-0804</span>
+      <a href="https://doi.org/10.5281/zenodo.23585216" class="badge doi"><i class="fas fa-fingerprint"></i>&nbsp;Zenodo DOI: 10.5281/zenodo.23585216</a>
+      <span class="badge"><i class="fab fa-github"></i>&nbsp;GPL-3.0 License</span>
+    </div>
+    <h1>InSituGame Assay</h1>
+    <p class="subtitle">In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy from Intact Biopsies</p>
+    <div class="author-bar">
+      <strong>Luca Celebrano</strong> · School of Medicine and Surgery, Università degli Studi di Napoli Federico II &amp; TIGEM
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <div class="interactive-box">
+      <h2>Transforming Spatial Biology into Evolutionary Game Theory</h2>
+      <p style="max-width: 750px; margin: 0 auto; color: #cbd5e1;">
+        InSituGame solves a historic bottleneck in mathematical oncology: rather than guessing game parameters or using artificial 2D in vitro petri dishes, it estimates subclonal frequency-dependent payoff matrices directly from intact patient biopsy microarchitectures (10x Genomics Visium).
+      </p>
+      <div class="btn-group">
+        <a href="https://github.com/Lukecele/spatial-game-assay" class="btn btn-primary"><i class="fab fa-github"></i> Explore GitHub Repository</a>
+        <a href="https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb" class="btn btn-secondary"><i class="fas fa-play"></i> Run in Google Colab</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3><i class="fas fa-filter"></i> Microenvironmental Decoupling</h3>
+        <p>Removes extrinsic physical confounders (hypoxia CA9 and endothelial vascular proximity PECAM1) via multivariable spatial regression to isolate true cell-intrinsic game interactions.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-cube"></i> Identifiable 9-Parameter Matrix</h3>
+        <p>Solves collinearity on the frequency simplex through an exact absorbed payoff formulation, ensuring numerical stability across thousands of spatial spots.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-clock"></i> Space-for-Time Ergodicity</h3>
+        <p>Formalizes Proposition 1, proving that static spatial snapshot transcriptomics rigorously maps the continuous velocity field of replicator differential equations.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-route"></i> Optimal Transport Validation</h3>
+        <p>Validates inferred subclonal trajectories against Monge-Kantorovich Wasserstein-2 mass transport across serial 3D histological tissue sections.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-balance-scale"></i> Lineage Specificity</h3>
+        <p>Demonstrates stable Hawk-Dove coexistence in Breast IDC (61.3% sensitive equilibrium) and Stag Hunt bistability in Cutaneous Melanoma (48.1% tipping point).</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-shield-alt"></i> Adaptive Therapy Design</h3>
+        <p>Simulates adaptive dosing schedules to suppress competitive release of drug-resistant clones, significantly extending simulated progression-free survival.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Luca Celebrano · Open Science Initiative under GNU General Public License v3.0</p>
+    <p style="margin-top: 5px;">Department of Clinical Medicine and Surgery, University of Naples Federico II &bull; TIGEM</p>
+  </footer>
+
+</body>
+</html>
