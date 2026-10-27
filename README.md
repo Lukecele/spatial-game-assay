@@ -2,8 +2,10 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
-[![AACR Under Review](https://img.shields.io/badge/AACR-CRC--26--0804%20Under%20Review-008080.svg)](https://crc.msubmit.net)
-[![Listed in Awesome Single-Cell](https://img.shields.io/badge/Awesome-Single--Cell-success?logo=github)](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)
+[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](https://anaconda.org/bioconda/insitugame)
+[![Bioconda Version](https://img.shields.io/conda/vn/bioconda/insitugame.svg?color=green)](https://anaconda.org/bioconda/insitugame)
+[![AACR Under Editorial Consideration](https://img.shields.io/badge/AACR-CRC--26--0804%20QC%20Passed%20%7C%20Under%20Editorial%20Consideration-008080.svg)](https://crc.msubmit.net)
+[![Listed in Awesome Single-Cell](https://img.shields.io/badge/Awesome-Single--Cell%20(3.9k%20%E2%AD%90)-success?logo=github)](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)
 [![CI](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml/badge.svg)](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
@@ -12,7 +14,7 @@
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** Department of Clinical Medicine and Surgery, School of Medicine, Università degli Studi di Napoli Federico II, Naples, Italy  
-**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)  
+**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://anaconda.org/bioconda/insitugame) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)  
 **Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)
 
 > [!NOTE]
