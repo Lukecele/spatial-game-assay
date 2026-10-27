@@ -3,17 +3,16 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
 [![AACR Under Review](https://img.shields.io/badge/AACR-CRC--26--0804%20Under%20Review-008080.svg)](https://crc.msubmit.net)
-[![Preprint: bioRxiv](https://img.shields.io/badge/bioRxiv-BIORXIV%2F2026%2F761331-b31b1b.svg)](https://submit.biorxiv.org/)
+[![Listed in Awesome Single-Cell](https://img.shields.io/badge/Awesome-Single--Cell-success?logo=github)](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)
 [![CI](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml/badge.svg)](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
 [![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](https://github.com/Lukecele/spatial-game-assay/tree/main/results)
 [![Interactive Web Portal](https://img.shields.io/badge/Web%20Portal-Live%20Demo-brightgreen.svg)](https://lukecele.github.io/spatial-game-assay/)
-[![Listed in Awesome Single-Cell](https://img.shields.io/badge/Awesome-Single--Cell-success?logo=github)](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)
 
 **Author & Principal Investigator:** Luca Celebrano  
-**Affiliation:** School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy  
-**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`) · **bioRxiv Preprint:** `BIORXIV/2026/761331` (Undergoing Screening)  
+**Affiliation:** Department of Clinical Medicine and Surgery, School of Medicine, Università degli Studi di Napoli Federico II, Naples, Italy  
+**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)  
 **Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)
 
 > [!NOTE]
