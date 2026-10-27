@@ -37,3 +37,5 @@ data/*
 .DS_Store
 .vscode/
 .idea/
+manuscript/arxiv_package/*.pdf
+manuscript/arxiv_package/*.tar.gz

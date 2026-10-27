@@ -1,0 +1,53 @@
+================================================================================
+                  ARXIV SUBMISSION METADATA SHEET (STUDY 1)
+               InSituGame: In Situ Spatial Evolutionary Game Assay
+================================================================================
+
+1. TITLE (Titolo da inserire nel portale arXiv):
+--------------------------------------------------------------------------------
+InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Adaptive Therapy Regimens in Spatial Transcriptomics
+
+[Opzione alternativa identica al journal AACR CRC]:
+InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies
+
+
+2. AUTHORS (Autore):
+--------------------------------------------------------------------------------
+Luca Celebrano
+
+
+3. AFFILIATION (Affiliazione nel profilo arXiv / TeX):
+--------------------------------------------------------------------------------
+Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Naples, Italy
+
+
+4. SUBJECT CLASSIFICATION (Categorie scientifiche):
+--------------------------------------------------------------------------------
+Primary Category:
+q-bio.QM (Quantitative Biology - Quantitative Methods)
+
+Cross-lists / Secondary Categories:
+q-bio.CB (Quantitative Biology - Cell Behavior)
+math.DS (Mathematics - Dynamical Systems)
+
+
+5. COMMENTS (Commenti / Descrizione tecnica):
+--------------------------------------------------------------------------------
+21 pages, 3 figures, 2 tables. Open-source Python package 'insitugame' available at https://github.com/Lukecele/spatial-game-assay
+
+
+6. REPORT NUMBER / DOI (Identificativo permanente):
+--------------------------------------------------------------------------------
+10.5281/zenodo.23585216
+
+
+7. LICENSE (Licenza):
+--------------------------------------------------------------------------------
+arXiv.org perpetual non-exclusive license (oppure Creative Commons Attribution 4.0 International)
+
+
+8. ABSTRACT (Pronto per arXiv - 1,886 caratteri, rigorosamente sotto il limite di 1,920):
+--------------------------------------------------------------------------------
+Evolutionary game theory (EGT) provides a mathematical foundation for cancer adaptive therapy: suppressing drug-resistant clones by maintaining a competing sensitive subpopulation. However, clinical translation has been constrained by the inability to infer frequency-dependent payoff matrices directly from human biopsies, relying instead on 2D in vitro co-cultures. Here, we introduce the In Situ Spatial Evolutionary Game Assay (InSituGame), a framework to estimate empirical subclonal payoff matrices, compute Nash equilibria, and simulate adaptive dosing directly from intact human tumor biopsies via spatial transcriptomics (10x Genomics Visium and CytAssist FFPE). InSituGame decouples local proliferation from extrinsic microenvironmental covariates (hypoxia and vascular density) prior to interaction modeling. Under the Space-for-Time Ergodic Mapping Framework, we bridge instantaneous spatial RNA transcription to continuous replicator dynamics, resolving mathematical collinearity on the frequency simplex through an identifiable 9-parameter absorbed payoff matrix ($\tilde{A}_{ij} = b_i + A_{ij}$). We evaluated InSituGame across $N = 20,093$ clinical spots in lung SCC, breast IDC, melanoma, and serial sections. In breast IDC, the spatial game model significantly outperformed linear regional composition (incremental $F = 104.99$, $p < 10^{-16}$; 5-fold cross-validation $R^2_{\text{OOF}} = 27.02\%$ vs $19.76\%$), identifying robust Hawk-Dove coexistence dynamics ($x^* = 61.3\%$; 95% bootstrap CI: $[0.526, 0.725]$). Consecutive serial sections ($\approx 10\,\mu\text{m}$) demonstrated parameter concordance ($r = +0.811$, $p = 0.0079$) and blind out-of-sample generalizability ($R^2_{\text{OOS}} = 10.20\%$, $p = 4.82 \times 10^{-12}$). InSituGame establishes an objective in situ methodology for parameterizing evolutionary games in human solid tumors.
+
+================================================================================
