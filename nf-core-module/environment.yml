@@ -1,0 +1,6 @@
+name: insitugame
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::insitugame =1.0.6

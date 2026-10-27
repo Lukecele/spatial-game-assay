@@ -1,0 +1,49 @@
+name: insitugame
+description: In situ spatial evolutionary game assay for inferring tumor subclonal payoff matrices and adaptive therapy regimens from intact spatial transcriptomics.
+keywords:
+  - spatial transcriptomics
+  - evolutionary game theory
+  - oncology
+  - visium
+  - deconvolution
+tools:
+  - insitugame:
+      description: Computational oncology assay for subclonal payoff matrices and evolutionary game dynamics from spatial transcriptomics.
+      homepage: https://lukecele.github.io/spatial-game-assay/
+      documentation: https://github.com/Lukecele/spatial-game-assay#readme
+      tool_dev_url: https://github.com/Lukecele/spatial-game-assay
+      doi: 10.5281/zenodo.23585216
+      licence: ["GPL-3.0-or-later"]
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'patient1', single_end:false ]
+  - visium_dir:
+      type: directory
+      description: Path to SpaceRanger filtered_feature_bc_matrix or spatial coordinate folder.
+output:
+  - meta:
+      type: map
+      description: Sample metadata
+  - figures:
+      type: file
+      description: Spatial payoff simplex and subclonal interaction figures.
+      pattern: "*.png"
+  - results:
+      type: file
+      description: Complete game payoff matrices and Nash equilibrium solutions.
+      pattern: "*.json"
+  - tables:
+      type: file
+      description: Quantitative subclonal frequencies and decoupled residual tables.
+      pattern: "*.csv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@Lukecele"
+maintainers:
+  - "@Lukecele"
