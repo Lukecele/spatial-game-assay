@@ -9,6 +9,7 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
 [![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](https://github.com/Lukecele/spatial-game-assay/tree/main/results)
 [![Interactive Web Portal](https://img.shields.io/badge/Web%20Portal-Live%20Demo-brightgreen.svg)](https://lukecele.github.io/spatial-game-assay/)
+[![Listed in Awesome Single-Cell](https://img.shields.io/badge/Awesome-Single--Cell-success?logo=github)](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** School of Medicine and Surgery, Università degli Studi di Napoli Federico II, Naples, Italy  
