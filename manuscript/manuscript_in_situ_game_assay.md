@@ -50,7 +50,7 @@ In this study, we present **InSituGame** (*In Situ Spatial Evolutionary Game Ass
 ## 2. Materials and Methods
 
 ### 2.1 Clinical Biopsy Cohorts & Provenance Verification
-All analyses were conducted on authentic, public-access clinical spatial transcriptomics datasets provided by 10x Genomics:
+All analyses were conducted on authentic, public-access clinical spatial transcriptomics datasets generated on the 10x Genomics Visium Spatial Gene Expression platform (RRID:SCR_023571) and provided by 10x Genomics:
 
 1. **Human Squamous Cell Lung Carcinoma (Lung SCC):** CytAssist FFPE section of primary lung squamous cell carcinoma ($N = 3,858$ in-tissue spots; $72,655,040$ sequenced UMIs; median UMI depth $= 12,883$ per spot).
 2. **Human Invasive Ductal Breast Carcinoma (Breast IDC):** CytAssist FFPE section of primary invasive ductal breast adenocarcinoma ($N = 4,992$ in-tissue spots; $115,297,808$ sequenced UMIs; median UMI depth $= 17,994$ per spot).
@@ -175,6 +175,9 @@ Statistical validation metrics include:
 - **Monte Carlo Coordinate Permutation Test:** Randomly shuffling spatial coordinates (1,000 permutations) while holding spot composition invariant to test topological dependence.
 - **Moran's I Autocorrelation of Residuals:** Computed using the exact Cliff & Ord (1981) variance formula across all model specifications.
 - **Nested $F$-Tests & Diagnostic Odds Ratios (DOR):** With Woolf 95% confidence intervals and exact Fisher's tests.
+
+### 2.11 Software Implementation, Computational Tooling and Research Resource Identifiers (RRIDs)
+All statistical, algebraic, and spatial modeling pipelines were developed in Python (version 3.10+, RRID:SCR_008394) utilizing NumPy (RRID:SCR_008633), SciPy (RRID:SCR_008058), pandas (RRID:SCR_018214), and scikit-learn (RRID:SCR_002577). High-resolution scientific figures and phase-space orbits were rendered using Matplotlib (RRID:SCR_008624). Clinical spatial transcriptomics datasets were generated on the 10x Genomics Visium Spatial Gene Expression platform (RRID:SCR_023571). The complete open-source code and analytical routines are maintained on GitHub (RRID:SCR_002630; https://github.com/Lukecele/spatial-game-assay) and archived on Zenodo (RRID:SCR_004129; DOI: 10.5281/zenodo.23585216). In accordance with AACR reproducibility and method transparency guidelines, no commercial antibodies, established cell lines, living model organisms, or external core facility services were utilized in this study.
 
 ---
 
@@ -352,7 +355,7 @@ The author declares no competing financial or personal interests.
 This research received no external grant funding. Open Access publication fees are covered in full under the CRUI-CARE national agreement with the University of Naples Federico II.
 
 ## Data and Code Availability
-All clinical spatial transcriptomics datasets analyzed in this study are publicly available from official 10x Genomics open repositories. Automated download scripts for the full-scale raw datasets (`download_data.py`, `download_cohort.py`, `download_replicates.py`) as well as the processed spatial coordinate and expression cache (`clinical_pan_cancer_cache.npz`) are provided in the repository to ensure both immediate offline verification and end-to-end raw data provenance. The open-source `insitugame` software library, complete pipeline scripts, and reproducibility benchmarks are archived on GitHub at [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay) under the GNU General Public License v3.0 (GPL-3.0) and permanently archived on Zenodo at [`https://doi.org/10.5281/zenodo.23585216`](https://doi.org/10.5281/zenodo.23585216).
+All clinical spatial transcriptomics datasets analyzed in this study are publicly available from official 10x Genomics open repositories. Automated download scripts for the full-scale raw datasets (`download_data.py`, `download_cohort.py`, `download_replicates.py`) as well as the processed spatial coordinate and expression cache (`clinical_pan_cancer_cache.npz`) are provided in the repository to ensure both immediate offline verification and end-to-end raw data provenance. The open-source `insitugame` software library, complete pipeline scripts, and reproducibility benchmarks are archived on GitHub at [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay) (RRID:SCR_002630) under the GNU General Public License v3.0 (GPL-3.0) and permanently archived on Zenodo at [`https://doi.org/10.5281/zenodo.23585216`](https://doi.org/10.5281/zenodo.23585216) (RRID:SCR_004129).
 
 ## Declaration of Generative AI and AI-Assisted Technologies in the Writing Process
 During the preparation of this work, the author utilized LLM-based agentic tools (Claude and Gemini via Antigravity) for code development, data analysis pipelines, and manuscript formatting assistance. The author reviewed, edited, and validated all analyses and text, and takes full responsibility for the scientific integrity and conclusions of the manuscript.
