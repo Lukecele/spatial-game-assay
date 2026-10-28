@@ -1,0 +1,15 @@
+.git
+.github
+data
+docs
+figures
+notebooks
+results
+tests
+*.ipynb
+*.pdf
+*.tar.gz
+*.tif
+*.png
+*.pyc
+__pycache__
