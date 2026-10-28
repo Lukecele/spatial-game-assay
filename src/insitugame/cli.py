@@ -5,42 +5,87 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import Any, Optional, Sequence
 
+import numpy as np
 import pandas as pd
 
-from . import __version__
+from . import __version__, InSituGameAssay
+
+
+def _numeric_columns(frame: pd.DataFrame) -> list[str]:
+    return [
+        column
+        for column in frame.columns
+        if pd.api.types.is_numeric_dtype(frame[column])
+    ]
+
+
+def _coordinates(frame: pd.DataFrame) -> np.ndarray:
+    for x_name, y_name in (("x", "y"), ("X", "Y"), ("row", "col")):
+        if x_name in frame.columns and y_name in frame.columns:
+            return frame[[x_name, y_name]].to_numpy(dtype=float)
+
+    indices = np.arange(len(frame))
+    width = max(2, int(np.ceil(np.sqrt(len(frame)))))
+    return np.column_stack((indices % width, indices // width)).astype(float)
+
+
+def _gene_spec(columns: list[str]) -> dict[str, list[str]]:
+    aliases = {
+        "T_S": ("T_S", "Sensitive"),
+        "T_R": ("T_R", "Resistant"),
+        "S_CAF": ("S_CAF", "Stroma"),
+        "FITNESS": ("FITNESS", "Fitness"),
+        "HYPOXIA": ("HYPOXIA", "Hypoxia"),
+        "VASCULAR": ("VASCULAR", "Vascular"),
+    }
+    selected: dict[str, str] = {}
+    remaining = [column for column in columns if column not in {"x", "y", "X", "Y", "row", "col"}]
+    for key, names in aliases.items():
+        match = next((name for name in names if name in columns), None)
+        if match is None:
+            if not remaining:
+                raise ValueError(f"Input table is missing a column for {key}")
+            match = remaining[min(len(selected), len(remaining) - 1)]
+        selected[key] = match
+    return {key: [column] for key, column in selected.items()}
 
 
 def run_table(input_path: Path, output_prefix: str) -> tuple[Path, Path]:
-    """Create the module result files from a delimited spatial table."""
+    """Fit the assay and write its JSON summary and payoff matrix table."""
     if not input_path.is_file():
         raise FileNotFoundError(f"Input table does not exist: {input_path}")
 
     frame = pd.read_csv(input_path, sep=None, engine="python")
-    columns = list(frame.columns)
-    if len(columns) < 2:
-        raise ValueError("Input table must contain at least two columns")
+    numeric_columns = _numeric_columns(frame)
+    if len(frame) < 3:
+        raise ValueError("Input table must contain at least three spatial spots")
+    if not numeric_columns:
+        raise ValueError("Input table must contain numeric expression columns")
 
     prefix = Path(output_prefix)
     results_path = prefix.with_name(f"{prefix.name}_results.json")
     tables_path = prefix.with_name(f"{prefix.name}_tables.csv")
-    gene_spec = {
-        "Sensitive": [columns[1]],
-        "Resistant": [columns[2]] if len(columns) > 2 else ["Resistant"],
-        "Stroma": [columns[3]] if len(columns) > 3 else ["Stroma"],
-    }
-    results = {
+    gene_spec = _gene_spec(numeric_columns)
+    counts = {column: frame[column].to_numpy(dtype=float) for column in numeric_columns}
+    total_umi = np.sum(np.vstack(list(counts.values())), axis=0)
+    assay = InSituGameAssay(gene_spec).fit(_coordinates(frame), counts, total_umi)
+    results: dict[str, Any] = {
         "sample_id": prefix.name,
         "version": __version__,
         "status": "completed",
-        "gene_spec": gene_spec,
         "n_rows": len(frame),
+        "gene_spec": gene_spec,
+        **assay.summary(),
     }
     results_path.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
-    pd.DataFrame(
-        [{"sample": prefix.name, "status": "completed", "n_rows": len(frame)}]
-    ).to_csv(tables_path, index=False)
+    payoff = pd.DataFrame(
+        assay.payoff_matrix,
+        index=("T_S", "T_R", "S_CAF"),
+        columns=("T_S", "T_R", "S_CAF"),
+    )
+    payoff.to_csv(tables_path, index_label="focal_phenotype")
     return results_path, tables_path
 
 

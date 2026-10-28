@@ -132,6 +132,24 @@ assay.fit(coords=coords, raw_counts=raw_counts, total_umi=total_umi)
 print(assay.summary())
 ```
 
+### Command-line interface
+
+The `insitugame` command accepts a delimited spot-by-gene table and performs
+the same fit as the Python API:
+
+```bash
+insitugame --input expression.tsv --output-prefix sample
+```
+
+The table must contain at least three spots and numeric expression columns.
+`x`/`y` (or `row`/`col`) columns are used as coordinates when present;
+otherwise a deterministic grid is generated. Marker columns can be named
+`T_S`, `T_R`, `S_CAF`, `FITNESS`, `HYPOXIA`, and `VASCULAR` (aliases
+`Sensitive`, `Resistant`, `Stroma`, `Fitness`, `Hypoxia`, and `Vascular` are
+also accepted). The command writes `<prefix>_results.json` with the fitted
+payoff matrix, Nash classification, and diagnostics, plus
+`<prefix>_tables.csv` containing the 3x3 payoff matrix.
+
 ---
 
 ## Data Access & Reproducibility
