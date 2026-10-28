@@ -9,7 +9,7 @@ solve Nash equilibria, decouple microenvironmental confounders,
 and simulate adaptive therapy regimens directly from intact spatial transcriptomic biopsies.
 """
 
-__version__ = "1.0.6"
+__version__ = "1.0.7"
 __author__ = "Luca Celebrano"
 
 from .assay import InSituGameAssay
@@ -64,4 +64,3 @@ try:
     _display_star_tip()
 except Exception:
     pass
-
