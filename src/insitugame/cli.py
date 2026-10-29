@@ -103,6 +103,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: Optional[Sequence[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     run_table(args.input, args.output_prefix)
+    sys.stderr.write("\n⭐ Support open-source oncology: Star this repo on GitHub -> https://github.com/Lukecele/spatial-game-assay\n")
     return 0
 
 

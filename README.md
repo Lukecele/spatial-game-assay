@@ -1,5 +1,6 @@
 # InSituGame: In Situ Spatial Evolutionary Game Assay
 
+[![GitHub stars](https://img.shields.io/github/stars/Lukecele/spatial-game-assay?style=for-the-badge&logo=github&color=gold)](https://github.com/Lukecele/spatial-game-assay)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
 [![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](https://anaconda.org/bioconda/insitugame)
@@ -15,7 +16,8 @@
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** Department of Clinical Medicine and Surgery, School of Medicine, Università degli Studi di Napoli Federico II, Naples, Italy  
 **Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://anaconda.org/bioconda/insitugame) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)  
-**Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)
+**Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)  
+> ⭐️ **Support Open Science:** If you find this spatial game assay or replicator dynamics framework useful, please consider giving this repository a star on GitHub!
 
 > [!NOTE]
 > 🌐 **Interactive Scientific Portal:** Explore the live web application, clinical game matrices, and interactive manuscript visualization at [lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/).
