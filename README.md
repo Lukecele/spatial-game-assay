@@ -15,7 +15,7 @@
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** Department of Clinical Medicine and Surgery, School of Medicine, Università degli Studi di Napoli Federico II, Naples, Italy  
-**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://anaconda.org/bioconda/insitugame) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell#spatial-transcriptomics)  
+**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://github.com/bioconda/bioconda-recipes/pull/70893) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell/pull/404)  
 **Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)  
 
 > [!TIP]
