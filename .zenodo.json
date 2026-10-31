@@ -3,7 +3,7 @@
   "description": "Computational and evolutionary game theory assay inferring subclonal payoff matrices in situ directly from spatial transcriptomics data to guide evolutionary-enlightened adaptive therapy in solid tumors.",
   "upload_type": "software",
   "access_right": "open",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "creators": [
     {
       "name": "Celebrano, Luca",
