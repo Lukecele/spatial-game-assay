@@ -1,0 +1,28 @@
+{
+  "title": "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy",
+  "description": "Computational and evolutionary game theory assay inferring subclonal payoff matrices in situ directly from spatial transcriptomics data to guide evolutionary-enlightened adaptive therapy in solid tumors.",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Celebrano, Luca",
+      "affiliation": "Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Naples, Italy",
+      "orcid": "0009-0007-0931-3555"
+    }
+  ],
+  "keywords": [
+    "evolutionary game theory",
+    "spatial transcriptomics",
+    "payoff matrix",
+    "replicator dynamics",
+    "adaptive therapy",
+    "subclonal competition",
+    "mathematical oncology"
+  ],
+  "communities": [
+    {
+      "identifier": "zenodo"
+    }
+  ]
+}
