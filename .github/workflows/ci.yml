@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -28,6 +28,6 @@ jobs:
         pip install numpy scipy pandas scikit-learn matplotlib
         pip install -e .
 
-    - name: Run Test Suite (19 tests)
+    - name: Run Test Suite (20 tests)
       run: |
         python -m unittest discover -s tests -v
