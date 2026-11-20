@@ -1,7 +1,7 @@
 # MASTER DOSSIER METODOLOGICO, MATEMATICO ED EMPIRICO (v2, corretto)
 ## Progetto *InSituGame* — Deconvoluzione spaziale della teoria dei giochi evolutivi nel microambiente tumorale
 
-**Autore:** Luca Celebrano (MD Candidate, Università degli Studi di Napoli Federico II)
+**Autore:** Luca Celebrano (Independent Researcher, Naples, Italy)
 **Rivista target:** *Bioinformatics* (OUP)
 **Repository:** https://github.com/Lukecele/spatial-game-assay
 **Zenodo:** https://doi.org/10.5281/zenodo.23585216

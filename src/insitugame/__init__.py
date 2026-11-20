@@ -1,7 +1,7 @@
 """
 insitugame: In Situ Spatial Evolutionary Game Assay
 ===================================================
-Author: Luca Celebrano (School of Medicine and Surgery, Università degli Studi di Napoli Federico II)
+Author: Luca Celebrano (Independent Researcher, Naples, Italy)
 License: GNU General Public License v3.0 (GPL-3.0)
 
 A computational oncology assay to infer subclonal payoff matrices,

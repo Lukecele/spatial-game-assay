@@ -1,6 +1,6 @@
 # DOSSIER DI CHIUSURA MATEMATICA E RISOLUZIONE DEI NODI STATISTICO-BIOLOGICI
 ## Progetto *InSituGame* — Deconvoluzione Spaziale della Teoria dei Giochi Evolutivi nel Microambiente Tumorale
-**Autore:** Luca Celebrano (MD Candidate, Università degli Studi di Napoli Federico II)  
+**Autore:** Luca Celebrano (Independent Researcher, Naples, Italy)  
 **Data di Compilazione:** 23 Ottobre 2026  
 **Dataset Analizzati:** 20.093 spot spaziali (CytAssist Visium HD / Spatial Transcriptomics) su 3 coorti cliniche primarie (*Breast IDC*, *Melanoma SKCM*, *Lung SCC*).
 

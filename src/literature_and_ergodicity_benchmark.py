@@ -3,7 +3,7 @@
 literature_and_ergodicity_benchmark.py
 ======================================
 Independent Ground-Truth Literature Benchmarking & Ergodic Space-for-Time Formalization.
-Author: Luca Celebrano (School of Medicine and Surgery, Università degli Studi di Napoli Federico II)
+Author: Luca Celebrano (Independent Researcher, Naples, Italy)
 
 1. Compares InSituGame empirical payoff matrices with published in vitro game theory studies:
    - Breast IDC vs Kaznatcheev et al. (Nature Ecology & Evolution 2019)

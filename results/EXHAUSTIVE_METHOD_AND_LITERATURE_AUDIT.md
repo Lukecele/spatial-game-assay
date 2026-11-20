@@ -1,6 +1,6 @@
 # AUDIT GLOBALE DI VERIFICA DEI DATI, METODOLOGIA, SCOPERTE, LIMITI E STATO DELLA LETTERATURA
 ## Progetto *InSituGame* — Deconvoluzione Spaziale della Teoria dei Giochi Evolutivi nel Microambiente Tumorale
-**Autore:** Luca Celebrano (MD Candidate, Università degli Studi di Napoli Federico II)  
+**Autore:** Luca Celebrano (Independent Researcher, Naples, Italy)  
 **Data dell'Audit:** 23 Ottobre 2026  
 **Ambiente di Verifica:** Linux Ubuntu, Python 3.13 / SciPy / NumPy / Scikit-Learn  
 **Dataset Analizzati:** 20.093 spot spaziali reali CytAssist/Visium HD 10x Genomics su 5 sezioni tissutali cliniche umane.

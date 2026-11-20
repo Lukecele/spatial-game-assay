@@ -20,15 +20,15 @@ authors:
   - family-names: "Celebrano"
     given-names: "Luca"
     orcid: "https://orcid.org/0009-0007-0931-3555"
-    email: "l.celebrano@studenti.unina.it"
-    affiliation: "Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Naples, Italy"
+    email: "luca.celebrano1@gmail.com"
+    affiliation: "Independent Researcher, Naples, Italy"
 preferred-citation:
   type: article
   authors:
     - family-names: "Celebrano"
       given-names: "Luca"
       orcid: "https://orcid.org/0009-0007-0931-3555"
-      affiliation: "Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Naples, Italy"
+      affiliation: "Independent Researcher, Naples, Italy"
   title: "InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Guiding Adaptive Therapy"
   journal: "bioRxiv"
   year: 2026

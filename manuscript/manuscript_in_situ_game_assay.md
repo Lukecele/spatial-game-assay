@@ -10,8 +10,8 @@ header-includes:
 # InSituGame: In Situ Spatial Evolutionary Game Assay for Inferring Tumor Subclonal Payoff Matrices and Exploring Adaptive Therapy in Intact Human Biopsies
 
 **Luca Celebrano**$^{1,*}$  
-$^{1}$ Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Via Sergio Pansini 5, 80131 Naples, Italy  
-$^{*}$ **Corresponding Author:** Luca Celebrano • Email: `l.celebrano@studenti.unina.it` • Public ORCID: [`0009-0007-0931-3555`](https://orcid.org/0009-0007-0931-3555)  
+$^{1}$ Independent Researcher, Naples, Italy  
+$^{*}$ **Corresponding Author:** Luca Celebrano • Email: `luca.celebrano1@gmail.com` • Public ORCID: [`0009-0007-0931-3555`](https://orcid.org/0009-0007-0931-3555)  
 Repository: [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay) • Permanent Zenodo Archive: [`https://doi.org/10.5281/zenodo.23585216`](https://doi.org/10.5281/zenodo.23585216)
 
 ---
@@ -346,13 +346,13 @@ In conclusion, *InSituGame* provides an open-source, mathematically grounded com
 Not applicable. This study exclusively analyzes anonymized, publicly available archival clinical spatial transcriptomics datasets provided by 10x Genomics.
 
 ## Acknowledgments
-The author warmly acknowledges the Telethon Institute of Genetics and Medicine (TIGEM), Pozzuoli, Italy, for scientific hospitality and providing a stimulating research environment during experimental degree thesis investigations.
+The author acknowledges the open-source biophysics and computational oncology community for foundational methodologies and reproducible software.
 
 ## Conflict of Interest Statement
 The author declares no competing financial or personal interests.
 
 ## Funding
-This research received no external grant funding. Open Access publication fees are covered in full under the CRUI-CARE national agreement with the University of Naples Federico II.
+This research received no external grant funding. All code and methodologies are released open-source under permissive licensing.
 
 ## Data and Code Availability
 All clinical spatial transcriptomics datasets analyzed in this study are publicly available from official 10x Genomics open repositories. Automated download scripts for the full-scale raw datasets (`download_data.py`, `download_cohort.py`, `download_replicates.py`) as well as the processed spatial coordinate and expression cache (`clinical_pan_cancer_cache.npz`) are provided in the repository to ensure both immediate offline verification and end-to-end raw data provenance. The open-source `insitugame` software library, complete pipeline scripts, and reproducibility benchmarks are archived on GitHub at [`https://github.com/Lukecele/spatial-game-assay`](https://github.com/Lukecele/spatial-game-assay) (RRID:SCR_002630) under the GNU General Public License v3.0 (GPL-3.0) and permanently archived on Zenodo at [`https://doi.org/10.5281/zenodo.23585216`](https://doi.org/10.5281/zenodo.23585216) (RRID:SCR_004129).

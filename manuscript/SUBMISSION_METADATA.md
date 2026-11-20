@@ -27,8 +27,8 @@ This metadata sheet contains all standardized fields required for submitting the
   - **Family Name:** `Celebrano`
   - **Academic Degree:** `MD Candidate / Medical Student`
   - **Institutional Affiliation:**  
-    `Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Via Sergio Pansini 5, 80131 Naples, Italy`
-  - **Institutional Email:** `l.celebrano@studenti.unina.it`
+    `Independent Researcher, Naples, Italy`
+  - **Institutional Email:** `luca.celebrano1@gmail.com`
   - **ORCID iD:** [`0009-0007-0931-3555`](https://orcid.org/0009-0007-0931-3555)
   - **Role:** Conceptualization, Methodology, Mathematical Proofs, Software Development, Data Curation, Formal Analysis, Validation, Visualization, Writing - Original Draft, Writing - Review & Editing.
 
@@ -56,7 +56,7 @@ Availability and Implementation: InSituGame is implemented as an open-source Pyt
 - **Conflict of Interest / Competing Interests:**  
   `The author declares no competing financial, personal, or commercial interests.`
 - **Funding Statement:**  
-  `This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors. Open Access publication fees are eligible for 100% coverage (0€ APC) under the national CRUI-CARE Transformative Agreement with the University of Naples Federico II.`
+  `This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors. Open Access publication fees are eligible for 100% coverage (0€ APC) under the national CRUI-CARE Transformative Agreement with the Independent Researcher.`
 - **Data Availability Statement:**  
   `All clinical spatial transcriptomics datasets analyzed in this study are publicly available from official 10x Genomics open repositories (Human Lung Squamous Cell Carcinoma CytAssist FFPE, Human Breast Carcinoma CytAssist FFPE, Human Cutaneous Melanoma CytAssist FFPE, and Invasive Ductal Carcinoma Visium Serial Sections 1 and 2). Automated download scripts with verified 10x Genomics URLs (download_data.py, download_cohort.py, download_replicates.py) along with the processed spatial coordinate and expression cache (data/cache/clinical_pan_cancer_cache.npz) are provided in the accompanying repository to allow immediate offline verification and end-to-end raw data retrieval.`
 - **Code Availability Statement:**  
@@ -64,7 +64,7 @@ Availability and Implementation: InSituGame is implemented as an open-source Pyt
 - **Ethical Approval:**  
   `Not applicable. This study exclusively analyzes anonymized, publicly available archival clinical spatial transcriptomics datasets provided by 10x Genomics.`
 - **Acknowledgments:**  
-  `The author warmly acknowledges the Telethon Institute of Genetics and Medicine (TIGEM), Pozzuoli, Italy, for scientific hospitality and providing a stimulating research environment during experimental degree thesis investigations.`
+  `The author acknowledges the open-source biophysics and computational oncology community for foundational methodologies and reproducible software.`
 
 ---
 

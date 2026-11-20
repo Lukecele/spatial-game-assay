@@ -8,8 +8,8 @@ Oxford University Press
 **Date:** October 23, 2026  
 **From:**  
 Luca Celebrano$^{1,*}$  
-$^{1}$ Department of Clinical Medicine and Surgery, School of Medicine, University of Naples Federico II, Via Sergio Pansini 5, 80131 Naples, Italy  
-$^{*}$ Corresponding Author: Luca Celebrano (`l.celebrano@studenti.unina.it`, ORCID: [0009-0007-0931-3555](https://orcid.org/0009-0007-0931-3555))
+$^{1}$ Independent Researcher, Naples, Italy  
+$^{*}$ Corresponding Author: Luca Celebrano (`luca.celebrano1@gmail.com`, ORCID: [0009-0007-0931-3555](https://orcid.org/0009-0007-0931-3555))
 
 ---
 
@@ -33,7 +33,7 @@ In this work, I address this translational bottleneck by developing **InSituGame
 
 ### Open Science, Software, and Ethical Declarations
 - **Software Implementation:** *InSituGame* is fully implemented as an open-source Python package (`insitugame`) with an automated test suite. All code, raw data streaming parsers, and figure generation scripts are publicly available on GitHub ([https://github.com/Lukecele/spatial-game-assay](https://github.com/Lukecele/spatial-game-assay)) and permanently archived on Zenodo ([https://doi.org/10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216)) under the copyleft GNU General Public License v3.0 (GPL-3.0) to ensure unencumbered access for research institutions and hospitals.
-- **Institutional Open Access Funding:** As an investigator affiliated with the School of Medicine, Università degli Studi di Napoli Federico II, open access publication is eligible for **0€ Article Processing Charges (APC)** through the national **CRUI-CARE (Conferenza dei Rettori delle Università Italiane)** Transformative Agreement with Oxford University Press.
+- **Institutional Open Access Funding:** As an investigator affiliated with the Independent Researcher, Naples, Italy, open access publication is eligible for **0€ Article Processing Charges (APC)** through the national **CRUI-CARE (Conferenza dei Rettori delle Università Italiane)** Transformative Agreement with Oxford University Press.
 - **Competing Interests:** The author declares no competing financial, personal, or commercial interests.
 - **Originality:** This manuscript is original, has not been published previously, and is not currently under consideration for publication elsewhere.
 
@@ -50,6 +50,6 @@ Sincerely,
 
 **Luca Celebrano**  
 MD Candidate & Research Investigator  
-Department of Clinical Medicine and Surgery, School of Medicine, Università degli Studi di Napoli Federico II  
-Email: `l.celebrano@studenti.unina.it`  
+Department of Clinical Medicine and Surgery, Independent Researcher, Naples, Italy  
+Email: `luca.celebrano1@gmail.com`  
 ORCID: `0009-0007-0931-3555`  

@@ -1,5 +1,7 @@
 # InSituGame: In Situ Spatial Evolutionary Game Assay
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23735199.svg)](https://doi.org/10.5281/zenodo.23735199)
+
 [![GitHub stars](https://img.shields.io/github/stars/Lukecele/spatial-game-assay?style=for-the-badge&logo=github&color=gold)](https://github.com/Lukecele/spatial-game-assay)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
@@ -16,7 +18,7 @@
 [![Caverna di Luca](https://img.shields.io/badge/Caverna%20di%20Luca-Research%20Hub-60d9c5.svg)](https://lukecele-research.vercel.app/)
 
 **Author & Principal Investigator:** Luca Celebrano  
-**Affiliation:** Department of Clinical Medicine and Surgery, School of Medicine, Università degli Studi di Napoli Federico II, Naples, Italy  
+**Affiliation:** Independent Researcher, Naples, Italy  
 **Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://github.com/bioconda/bioconda-recipes/pull/70893) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell/pull/404)  
 **Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)  
 **Research Hub:** [Caverna di Luca](https://lukecele-research.vercel.app/) · [ORCID](https://orcid.org/0009-0007-0931-3555) · [LinkedIn](https://www.linkedin.com/in/luca-celebrano/)
@@ -178,7 +180,7 @@ If you utilize this methodology, assay software, or empirical matrices in your r
   year = {2026},
   url = {https://github.com/Lukecele/spatial-game-assay},
   version = {1.0.5},
-  institution = {School of Medicine and Surgery, Università degli Studi di Napoli Federico II}
+  institution = {Independent Researcher, Naples, Italy}
 }
 ```
 

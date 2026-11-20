@@ -4,7 +4,7 @@ test_insitugame_reproducibility.py
 ==================================
 Comprehensive Unit, Mathematical, and Empirical Reproducibility Test Suite
 for InSituGame (In Situ Spatial Evolutionary Game Assay).
-Author: Luca Celebrano (School of Medicine and Surgery, Università degli Studi di Napoli Federico II)
+Author: Luca Celebrano (Independent Researcher, Naples, Italy)
 
 Tests Covered:
 1. Exact Mathematical Contingency & Fisher Exact Test (via math.lgamma)
