@@ -1,10 +1,10 @@
 # InSituGame: In Situ Spatial Evolutionary Game Assay
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23735199.svg)](https://doi.org/10.5281/zenodo.23735199)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24393480-blue)](https://doi.org/10.5281/zenodo.24393480)
 
 [![GitHub stars](https://img.shields.io/github/stars/Lukecele/spatial-game-assay?style=for-the-badge&logo=github&color=gold)](https://github.com/Lukecele/spatial-game-assay)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23585216.svg)](https://doi.org/10.5281/zenodo.23585216)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23585216-blue)](https://doi.org/10.5281/zenodo.23585216)
 [![bio.tools](https://img.shields.io/badge/bio.tools-InSituGame-60d9c5.svg)](https://bio.tools/insitugame)
 [![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](https://github.com/bioconda/bioconda-recipes/pull/70893)
 [![Bioconda Version](https://img.shields.io/conda/vn/bioconda/insitugame.svg?color=green)](https://github.com/bioconda/bioconda-recipes/pull/70893)
