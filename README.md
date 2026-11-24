@@ -21,7 +21,7 @@
 **Affiliation:** Independent Researcher, Naples, Italy  
 **Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://github.com/bioconda/bioconda-recipes/pull/70893) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell/pull/404)  
 **Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)  
-**Research Hub:** [Caverna di Luca](https://lukecele-research.vercel.app/) · [ORCID](https://orcid.org/0009-0007-0931-3555) · [LinkedIn](https://www.linkedin.com/in/luca-celebrano/)
+**Research Hub:** [Luca's Cave](https://lucacelebrano.me/) · [ORCID](https://orcid.org/0009-0007-0931-3555)
 **bio.tools:** [InSituGame](https://bio.tools/insitugame)
 
 > [!TIP]
