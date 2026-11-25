@@ -6,8 +6,9 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23585216-blue)](https://doi.org/10.5281/zenodo.23585216)
 [![bio.tools](https://img.shields.io/badge/bio.tools-InSituGame-60d9c5.svg)](https://bio.tools/insitugame)
-[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](https://github.com/bioconda/bioconda-recipes/pull/70893)
-[![Bioconda Version](https://img.shields.io/conda/vn/bioconda/insitugame.svg?color=green)](https://github.com/bioconda/bioconda-recipes/pull/70893)
+[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](https://anaconda.org/bioconda/insitugame)
+[![nf-core module](https://img.shields.io/badge/nf--core-insitugame-239660)](https://github.com/nf-core/modules/pull/13471)
+[![Bioconda Version](https://img.shields.io/conda/vn/bioconda/insitugame.svg?color=green)](https://anaconda.org/bioconda/insitugame)
 [![AACR Under Editorial Consideration](https://img.shields.io/badge/AACR-CRC--26--0804%20QC%20Passed%20%7C%20Under%20Editorial%20Consideration-008080.svg)](https://crc.msubmit.net)
 [![Listed in Awesome Single-Cell](https://img.shields.io/badge/Awesome-Single--Cell%20(3.9k%20%E2%AD%90)-success?logo=github)](https://github.com/seandavi/awesome-single-cell/pull/404)
 [![CI](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml/badge.svg)](https://github.com/Lukecele/spatial-game-assay/actions/workflows/ci.yml)
@@ -15,11 +16,11 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Lukecele/spatial-game-assay/blob/main/notebooks/InSituGame_PanCancer_Colab.ipynb)
 [![Status: Peer-Review Ready](https://img.shields.io/badge/Validation-100%25%20Authentic%20Data-success.svg)](https://github.com/Lukecele/spatial-game-assay/tree/main/results)
 [![Interactive Web Portal](https://img.shields.io/badge/Web%20Portal-Live%20Demo-brightgreen.svg)](https://lukecele.github.io/spatial-game-assay/)
-[![Caverna di Luca](https://img.shields.io/badge/Caverna%20di%20Luca-Research%20Hub-60d9c5.svg)](https://lukecele-research.vercel.app/)
+[![Caverna di Luca](https://img.shields.io/badge/Caverna%20di%20Luca-Research%20Hub-60d9c5.svg)](https://lucacelebrano.me/)
 
 **Author & Principal Investigator:** Luca Celebrano  
 **Affiliation:** Independent Researcher, Naples, Italy  
-**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://github.com/bioconda/bioconda-recipes/pull/70893) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell/pull/404)  
+**Publication Status:** Submitted to *Cancer Research Communications* (AACR MS# `CRC-26-0804`, Initial QC Passed & Under Editorial Consideration) · **Bioconda Package:** [`conda install -c bioconda insitugame`](https://anaconda.org/bioconda/insitugame) · **Permanent Archival DOI:** [10.5281/zenodo.23585216](https://doi.org/10.5281/zenodo.23585216) · **Community Recognition:** [Listed in Awesome Single-Cell](https://github.com/seandavi/awesome-single-cell/pull/404)  
 **Live Interactive Portal:** [https://lukecele.github.io/spatial-game-assay/](https://lukecele.github.io/spatial-game-assay/)  
 **Research Hub:** [Luca's Cave](https://lucacelebrano.me/) · [ORCID](https://orcid.org/0009-0007-0931-3555)
 **bio.tools:** [InSituGame](https://bio.tools/insitugame)
